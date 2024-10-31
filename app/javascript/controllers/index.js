@@ -4,5 +4,41 @@
 
 import { application } from "./application"
 
-import HelloController from "./hello_controller"
-application.register("hello", HelloController)
+import FlashController from "./flash_controller"
+application.register("flash", FlashController)
+
+import FrmValueController from "./frm_value_controller"
+application.register("frm-value", FrmValueController)
+
+import MnnavController from "./mnnav_controller"
+application.register("mnnav", MnnavController)
+
+import ModalsController from "./modals_controller"
+application.register("modals", ModalsController)
+
+import NewContributionController from "./new_contribution_controller"
+application.register("new-contribution", NewContributionController)
+
+import OptionsController from "./options_controller"
+application.register("options", OptionsController)
+
+import OsearchController from "./osearch_controller"
+application.register("osearch", OsearchController)
+
+import PagesController from "./pages_controller"
+application.register("pages", PagesController)
+
+import ReconciliationController from "./reconciliation_controller"
+application.register("reconciliation", ReconciliationController)
+
+import ReportsController from "./reports_controller"
+application.register("reports", ReportsController)
+
+import SidebarController from "./sidebar_controller"
+application.register("sidebar", SidebarController)
+
+import SortmgmtController from "./sortmgmt_controller"
+application.register("sortmgmt", SortmgmtController)
+
+import ToggleController from "./toggle_controller"
+application.register("toggle", ToggleController)

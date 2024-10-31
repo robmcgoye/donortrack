@@ -1,0 +1,159 @@
+
+/*------------------------------------*\
+  #SETTINGS
+\*------------------------------------*/
+
+$dark-blue-color:    #0d1949;
+$white-color:        #ffffff;
+$blue-color:         #006697;
+$light-blue-color:   #00B6B5;
+$light-purple-color: #ECE7FF;
+$lht-purple2-color:  #F9F7FF;
+$dark-purple-color:  #662A63;
+$my-purple:          #BDBAFA;
+$my-dark-gray:       #464555;
+$my-light-grey:      #eeee;
+$my-light-yellow:    #FFFADE;
+$my-light-green:     #C9FCE9;
+$my-light-contrast:  #E8D5B5;
+
+/*------------------------------------*\
+  #UNAUTHENTICATED PAGES
+\*------------------------------------*/
+button > * {
+  pointer-events: none;
+}
+
+.secondary-main {
+  background-color: $blue-900;
+}
+
+.primary-main {
+  background-color: $dark-blue-color;
+  // min-width: 600px;
+  // background-color: $gray-100;
+  // height: 100vh;
+}
+
+.full-height {
+  height: 100vh;
+}
+
+.my-bg-light {
+  background-color: $light;
+}
+
+.my-bg-gray {
+  background-color: $gray-200;
+}
+
+.my-header {
+  background-color:rgb(0, 102, 151, 0.1);
+  // background-color: rgb(0, 142, 172, 0.1);
+  // background-color: rgb(0, 200, 147, 0.1);
+  
+  // opacity: 0.3;
+}
+
+.my-hr {
+  height: 2px;
+  border: none;
+}
+/*------------------------------------*\
+  #GENERIC
+\*------------------------------------*/
+
+// .my-bg-lht-purple {
+//   background-color: $lht-purple2-color;
+//   color: $black;
+// }
+
+.my-bg-primary {
+  background-color: $dark-blue-color;
+}
+
+// .my-bg-lght {
+//   background-color: $my-light-yellow;
+// }
+
+.my-text-small {
+  font-size: 0.875em;
+}
+
+.primary-highlight {
+  // color: $dark-blue-color;
+  // color: #7C1924;
+  color: $light-purple-color;
+  font-weight: 550;
+}
+
+.my-text-bg-secondary {
+  background-color: $light-purple-color;
+  color: $black;
+}
+
+.tb-bg-dark {
+  background-color: $my-light-grey;
+}
+
+.tb-bg-light {
+  background-color: $white;
+}
+
+.tb-header {
+  background-color: $my-light-grey;
+  border-bottom: 2px solid $black;
+  border-top: 1px solid $dark-blue-color;
+  // border-left: 1px solid $dark-blue-color;
+  // border-right: 1px solid $light-purple-color;
+  font-weight: bold;
+}
+
+.grid-striped .grid:nth-child(odd) {
+    // background-color: rgba(0,0,0,.05);
+    background-color: $my-light-grey;
+  }
+
+.my-small-text {
+  font-size: small;
+} 
+
+.my-dropdown-toggle::after {
+  content: none;
+}
+
+.my-content{
+  min-width: 400px;
+}
+// .my-table-row {
+//   min-width: 500px;
+// }
+
+.my-table-row:hover{
+  background-color: $light-purple-color;
+  // background-color: $my-light-grey;
+}
+
+.scroll {
+  max-height: 100px;
+  overflow-y: auto;
+}
+
+.my-modal {
+  position: fixed;
+  z-index: 2;
+  // padding: 2em;
+  
+  /* Centering */
+  left: 50%;
+  top: 15%;
+  // transform: translate(-50%, -50%);
+
+  overflow: auto;
+  background-color: rgb(0,0,0);
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 5px;
+  /* Add the drop shadow */
+  box-shadow: 0 0 10px 0 rgba(0,0,0,0.2), 0 5px 10px 0 rgba(0,0,0,0.19);
+  // backdrop-filter: blur(15px);
+}

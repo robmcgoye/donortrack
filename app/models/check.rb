@@ -4,13 +4,13 @@ class Check < ApplicationRecord
   has_many :reconciliation_items
   has_many :reconciliations, through: :reconciliation_items
   has_many :contributions, as: :agreement
-    # has_one :contribution
-    # , dependent: :destroy
-  monetize :amount_cents, numericality: {greater_than: 0}
+  # has_one :contribution
+  # , dependent: :destroy
+  monetize :amount_cents, numericality: { greater_than: 0 }
   attribute :orginal_amount_cents
   attribute :orginal_bank_account_id
   monetize :orginal_amount_cents, allow_nil: true
-  
+
   after_initialize :set_orginals
   after_create :update_bank_account_balance
   after_save :check_bank_account_balance
@@ -19,15 +19,14 @@ class Check < ApplicationRecord
   enum :transaction_type, { debit: 0, credit: 1 }, default: :debit
 
   validates :check_number, uniqueness: { scope: :bank_account_id }, allow_nil: true
-  validates :transaction_at, presence: { message: "must have date of transaction" } 
-  validates :cleared, inclusion: { in: [true, false] }
-  
+  validates :transaction_at, presence: { message: "must have date of transaction" }
+  validates :cleared, inclusion: { in: [ true, false ] }
+
   validate :prevent_edits_when_cleared
   validate :require_funding_source_when_debit
 
   scope :open_transactions, -> () { where(cleared: false).order(:transaction_at) }
   scope :open_deposits, -> () { where(cleared: false).where(transaction_type: :credit).order(transaction_at: :desc) }
-  
 
   private
 
@@ -68,7 +67,7 @@ class Check < ApplicationRecord
         if orginal_amount != amount
           balance = calculate_balance(bank_account.balance, credit?, orginal_amount, true)
           bank_account.update_balance!(calculate_balance(balance, credit?, amount, false))
-        end  
+        end
       end
     end
 
