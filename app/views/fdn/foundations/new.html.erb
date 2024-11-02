@@ -1,0 +1,14 @@
+<%= turbo_frame_tag Foundation.new do %>
+
+  <div class="card">
+    <div class="card-header">New foundation</div>
+    <div class="card-body">
+
+      <%= render "form", foundation: @foundation, form_url: foundations_url %>    
+    </div>
+  </div>
+
+<% end %>
+
+
+

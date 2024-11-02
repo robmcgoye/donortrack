@@ -1,0 +1,26 @@
+<%= turbo_frame_tag "bank-account-sub" do %>
+  <%= render "fdn/accounting/nav" %>
+
+  <div class="border border-top-0">
+    <div class="container-fluid px-0 pt-4">
+    
+      <div class="row tb-header mx-0 py-1 mb-1 align-items-end">
+        <div class="col-4 col-md-2">Date</div>
+        <div class="d-none d-md-block col-md-4">Note</div>
+        <div class="col-5 col-md-4 text-center">Amount</div>
+        <div class="col-3 col-md-2">
+          <%= link_to new_foundation_bank_account_check_path(@foundation, @bank_account), class: "py-0 btn btn-sm btn-outline-success", data: { turbo_frame: "new_check" } do %>
+            <div class="row text-center px-2">
+              <div class="d-none d-md-block col pe-0">Add</div>
+              <div class="col-auto px-1"><i class="bi bi-cash ps-1"></i></div>
+            </div>
+          <% end %>
+        </div>
+      </div>
+      
+      <%= render "checks_list", checks: @checks %>
+        
+    </div>
+  </div>
+
+<% end %>

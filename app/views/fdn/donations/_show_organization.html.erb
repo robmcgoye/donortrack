@@ -1,0 +1,30 @@
+<%# param { organization } %>
+<div class="col border-start border-warning">
+
+  <div class="row">          
+    <div class="col fs-5">
+      <%= organization.contact %>
+    </div>
+    <div class="col">
+      <span class="badge rounded-pill bg-warning">TYPE : </span>
+      <%= organization.organization_type.code %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col"><hr class="m-2 my-hr bg-warning"></div>
+  </div>
+  <div class="row ">
+    <div class="col">
+      <b><%= organization.name %></b><br>
+      <span class="my-text-small">
+        <%= organization.address_1 %><br>
+        <% if !organization.address_2.blank? %>
+          <%= organization.address_2 %><br>
+          <% end %>
+        <%= "#{organization.city}, #{organization.state} #{organization.zip}" %><br>
+        <%= organization.country %>
+      </span>
+    </div>
+  </div>
+
+</div>

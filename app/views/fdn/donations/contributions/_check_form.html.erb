@@ -1,0 +1,43 @@
+<%# locals: (check_builder:) %>
+
+<div class="row mb-2 align-items-center">
+  <div class="col-4 col-md-3 px-0">
+    <%= check_builder.date_field :transaction_at, class: "form-control form-control-sm" %>
+  </div>
+  <div class="col-3 col-md-2 text-end">
+    <%= check_builder.label :check_number, "Check #", class: "badge text-bg-primary" %>
+  </div>
+  <div class="col-5 col-md 3 px-0">
+    <%= check_builder.text_field :check_number, class: "form-control form-control-sm" %>
+  </div>
+  <div class="col-4 col-md-1 text-end">
+    <%= check_builder.label :amount, "Amt", class: "badge text-bg-primary" %>
+  </div>
+  <div class="col-7 col-md 3 px-0">
+    <%= check_builder.text_field :amount, class: "text-end form-control form-control-sm" %>
+  </div>
+</div>
+
+<div class="row mb-2 align-items-center">
+  <div class="col-sm-2">
+    <%= check_builder.label :funding_source_id, "Funding", class: "badge text-bg-primary" %>
+  </div>
+  <div class="col-sm 4 px-0">
+    <%= check_builder.collection_select :funding_source_id, @foundation.funding_sources, :id, :code,  
+      {include_blank: 'Choose...'}, {class: "form-select form-select-sm"}  %>
+  </div>
+  <div class="col-sm-2 text-end">
+    <%= check_builder.label :bank_account_id, "Account", class: "badge text-bg-primary" %>
+  </div>
+  <div class="col-sm 4 px-0">
+    <%= check_builder.collection_select :bank_account_id, @foundation.bank_accounts, :id, :full_name,  
+      {include_blank: 'Choose...'}, {class: "form-select form-select-sm"}  %>
+  </div>          
+</div>
+
+<div class="row">
+  <div class="col">
+    <%= check_builder.label :description, class: "badge text-bg-primary mb-1" %><br />
+    <%= check_builder.text_area :description, class: "form-control", rows: 3 %>          
+  </div>
+</div>

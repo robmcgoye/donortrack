@@ -1,0 +1,5 @@
+<%# locals: (checks:) -%>
+<div class="mx-2 pb-4" id="bank-deposits">
+  <%= turbo_frame_tag Check.new %>
+  <%= (checks.size > 0) ? (render checks) : "No Deposits" %>
+</div>

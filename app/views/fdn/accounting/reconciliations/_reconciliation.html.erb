@@ -1,0 +1,24 @@
+<%#= turbo_frame_tag reconciliation do %>
+  <div class="row my-table-row mx-0">
+    <div class="col-4 col-sm-2 px-1 pt-1 my-0 border border-secondary-subtle border-end-0 border-start-0">
+      <%= reconciliation.started_at.strftime("%m/%d/%Y") %>
+    </div>
+    <div class="d-none d-sm-block col-sm-4 ps-1 pe-3 pt-1 my-0 border border-secondary-subtle border-end-0 border-start-0 text-end">
+      <%= reconciliation.starting_balance.format %>
+    </div>
+    <div class="col-4 ps-1 pe-3 pt-1 my-0 border border-secondary-subtle border-end-0 border-start-0 text-end">
+      <%= reconciliation.ending_balance.format %>
+    </div>
+    <div class="col-2 px-1 my-0 text-center">
+      <div class="btn-group">
+        <%= link_to reconciliation_path(reconciliation), class: "btn btn-sm btn-outline-secondary" do %>
+          <i class="bi bi-binoculars pe-1"></i>
+        <% end %>
+        <%= button_to reconciliation_path(reconciliation), method: :delete, class: "btn btn-sm btn-outline-danger", 
+              form: {data: {turbo_confirm: 'Are you sure?'}} do %>
+          <i class="bi bi-trash pe-1"></i>
+        <% end %>         
+      </div>
+    </div>
+  </div>
+<%# end %> 

@@ -1,0 +1,80 @@
+<div id="contributions-main" class="container-fluid py-3 px-0">
+
+  <div class="container-fluid mt-0" data-controller="sortmgmt" 
+            data-sortmgmt-url-value="<%= foundation_contributions_sort_path(@foundation, :page => page, :by => by) %>" 
+            data-sortmgmt-dir-value="<%= dir %>" 
+            data-sortmgmt-query-value="<%#= query %>" 
+            data-sortmgmt-selected-value="<%= by %>">
+
+    <%# <div class="text-center pb-2"><h5>Contributions</h5></div> %>
+
+    <%= render "new_button" %> 
+
+    <div class="row tb-header py-1">
+
+      <div class="col-10 col-md-7 col-lg-5">
+        <div class="row">
+          <div class="col-6 col-sm-3 col-lg-3">
+            <a href="#" data-action="sortmgmt#sort"
+                data-value="<%= ContributionConstants::COL_DATE %>"  
+                data-url="<%= foundation_contributions_sort_path(@foundation, :by => ContributionConstants::COL_DATE) %>" 
+                class="link-dark link-underline link-underline-opacity-0 link-underline-opacity-100-hover">
+              Date<i class="ps-1 bi" data-sortmgmt-target="sort_icon"></i>
+            </a>
+          </div>
+
+          <div class="col-6 col-sm-5 col-lg-5 text-center">
+            <a href="#" data-action="sortmgmt#sort"
+                data-value="<%= ContributionConstants::COL_AMOUNT %>"  
+                data-url="<%= foundation_contributions_sort_path(@foundation, :by => ContributionConstants::COL_AMOUNT) %>" 
+                class="link-dark link-underline link-underline-opacity-0 link-underline-opacity-100-hover">
+              Amt<i class="ps-1 bi" data-sortmgmt-target="sort_icon"></i>
+            </a>
+          </div>
+
+          <div class="d-none d-sm-block col-sm-4 col-lg-4 text-center">
+                        <a href="#" data-action="sortmgmt#sort"
+                data-value="<%= ContributionConstants::COL_TYPE %>"  
+                data-url="<%= foundation_contributions_sort_path(@foundation, :by => ContributionConstants::COL_TYPE) %>" 
+                class="link-dark link-underline link-underline-opacity-0 link-underline-opacity-100-hover">
+              Type<i class="ps-1 bi" data-sortmgmt-target="sort_icon"></i>
+            </a>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="col-2 col-md-5 col-lg-7">
+        <div class="row">
+          <div class="d-none d-md-block col-md-10 col-lg-7">
+            <a href="#" data-action="sortmgmt#sort"
+                data-value="<%= ContributionConstants::COL_ORG %>"  
+                data-url="<%= foundation_contributions_sort_path(@foundation, :by => ContributionConstants::COL_ORG) %>" 
+                class="link-dark link-underline link-underline-opacity-0 link-underline-opacity-100-hover">
+              Organization<i class="ps-1 bi" data-sortmgmt-target="sort_icon"></i>
+            </a>
+          </div>
+
+          <div class="d-none d-lg-block col-lg-3">
+            <a href="#" data-action="sortmgmt#sort"
+                data-value="<%= ContributionConstants::COL_DONOR %>"  
+                data-url="<%= foundation_contributions_sort_path(@foundation, :by => ContributionConstants::COL_DONOR) %>" 
+                class="link-dark link-underline link-underline-opacity-0 link-underline-opacity-100-hover">
+              Donor<i class="ps-1 bi" data-sortmgmt-target="sort_icon"></i>
+            </a>
+          </div>
+
+          <div class="col-2 px-0 text-center">
+            <%= link_to new_foundation_contribution_path(@foundation), class: "py-0 btn btn-sm btn-outline-success", data: { turbo_frame: "new_contribution" } do %>
+              New
+            <% end %>      
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <%= render "contribution_list", contributions: @contributions %>
+
+  </div>
+
+</div>

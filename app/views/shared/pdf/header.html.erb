@@ -1,0 +1,11 @@
+<%# locals: (title: "", additional_header: nil) -%>
+<div class="table">
+  <div class="row">
+    <div class="col w-50p"><%= image_tag(@foundation.resize_image_header(500, 80)) if @foundation.image_header.attached? %></div>
+    <div class="col w-45p text-btm text-end"><%= title %></div>
+  </div>
+  <div class="row">
+    <div class="col w-100p"><hr class="black-line pt-0 mb-2"></div>
+  </div>
+  <%= render additional_header unless additional_header.nil? %>
+</div>

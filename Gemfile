@@ -36,11 +36,11 @@ gem "bootsnap", require: false
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 gem "image_processing", "~> 1.2"
 
-gem "authentication-zero", "~> 2.16", ">= 2.16.36"
+gem "authentication-zero", "~> 4.0"
 gem "rolify", "~> 6.0", ">= 6.0.1"
 gem "pundit", "~> 2.3", ">= 2.3.1"
 gem "money-rails", "~> 1.15"
-gem "pagy", "~> 6.1"
+gem "pagy", "~> 9.1"
 # gem "faker", "~> 3.2", ">= 3.2.1"
 gem "chartkick", "~> 5.0", ">= 5.0.4"
 gem "groupdate", "~> 6.4"

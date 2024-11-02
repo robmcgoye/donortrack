@@ -1,0 +1,5 @@
+<%= turbo_frame_tag "reconciliation-main" do %>
+  <div class="card bg-info bg-opacity-10 border-info px-2 mx-1">
+      <%= render "form", reconciliation: @reconciliation, form_url: foundation_bank_account_reconciliations_new_next_path(@foundation, @bank_account) %>
+  </div>
+<% end %>

@@ -1,0 +1,5 @@
+<%# locals: (bank_account:) -%>
+<div id="bank_account_main">
+  <%= render "bank_account", bank_account: bank_account %>
+  <%= turbo_frame_tag "bank-account-sub", src: foundation_bank_account_checks_path(@foundation, bank_account) %>
+</div>

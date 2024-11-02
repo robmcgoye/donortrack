@@ -1,0 +1,29 @@
+<%# locals: (in_kind_builder:) %>
+
+<div class="row mb-2 align-items-center">
+  <div class="col-sm-3 px-0">
+    <%= in_kind_builder.date_field :transaction_at, class: "form-control form-control-sm" %>
+  </div>
+
+  <div class="col-sm-2 col-md-1">
+    <%= in_kind_builder.label :type_of, "Type", class: "badge text-bg-primary" %>
+  </div>
+  <div class="col-sm 3 col-md-4 px-0">
+    <%= in_kind_builder.select :type_of, InKind.type_ofs.map{|k, v| [ k.titleize, k ]},  
+      {include_blank: 'Choose...'}, {class: "form-select form-select-sm"}  %>
+  </div>
+
+  <div class="col-sm-1 text-end">
+    <%= in_kind_builder.label :value, "Value", class: "badge text-bg-primary" %>
+  </div>
+  <div class="col-sm 3 px-0">
+    <%= in_kind_builder.text_field :value, class: "text-end form-control form-control-sm" %>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col">
+    <%= in_kind_builder.label :description, class: "badge text-bg-primary mb-1" %><br />
+    <%= in_kind_builder.text_area :description, class: "form-control", rows: 3 %>          
+  </div>
+</div>

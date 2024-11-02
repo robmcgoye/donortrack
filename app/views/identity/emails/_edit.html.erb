@@ -1,0 +1,52 @@
+  <div class="container" id="main_content">
+    
+    <% if !Current.user.verified? %>
+      <div class="card mb-3">
+        <div class="card-header my-text-bg-secondary pb-0">
+          <h5>Verify your email</h5>
+        </div>
+        <div class="card-body">
+          We sent a verification email to <i><%= Current.user.email %></i>. Check that email and follow 
+          those instructions to confirm it's your email address.
+          <p>
+            <%= button_to identity_email_verification_path, class: "btn btn-sm btn-outline-secondary" do %>
+              <i class="bi bi-arrow-repeat pe-1"></i>Re-send verification email
+            <% end %>
+          </p>
+        </div>
+      </div>
+    <% end %>
+    <%= render 'shared/error_messages', resource: @user %>
+    <div class="card">
+      <div class="card-header my-text-bg-secondary pb-0">
+        <h5>Change your email</h5>
+      </div>
+      <div class="card-body">
+        <%= form_with(url: identity_email_path, method: :patch) do |form| %>
+
+          <div class="row mb-3">
+            <%= form.label :email, "New email", class: "col-md-3 col-form-label" %>
+            <div class="col-md-9">
+              <%= form.email_field :email, required: true, autofocus: true, class: "form-control", placeholder: "name@domain.com" %>
+            </div>
+          </div>
+
+          <div class="row mb-3">
+            <%= form.label :current_password, class: "col-md-3 col-form-label" %>
+            <div class="col-md-9">
+              <%= form.password_field :current_password, required: true, placeholder: "Current Password", class: "form-control" %>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-9 offset-md-3 ">
+              <%= form.button nil, class: "btn btn-sm btn-outline-secondary" do %>
+                <i class="bi bi-floppy pe-2"></i>Save changes
+              <% end %>
+            </div>
+          </div>
+        <% end %>    
+      </div>
+    </div>
+  </div>
+

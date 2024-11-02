@@ -1,0 +1,7 @@
+<% provide(:title, "#{@foundation.short_name} Organizations List") %>
+
+<div>
+  <% @organizations.each do |organization| %>
+    <%= organization.name %><br/>
+  <% end %>
+</div>

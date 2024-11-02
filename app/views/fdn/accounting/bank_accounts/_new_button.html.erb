@@ -1,0 +1,36 @@
+<%# locals: (bank_accounts:) -%>
+<%= turbo_frame_tag BankAccount.new do %>
+
+  <div class="row">
+
+    <div class="col-12 col-sm-6 pb-1 text-center">
+      <%= link_to new_foundation_bank_account_path(@foundation), class: "btn btn-outline-secondary py-1" do %>
+        <i class="bi bi-plus-circle pe-1"></i>New Bank Account
+      <% end %>
+    </div>
+
+    <div class="col-12 col-sm-6 text-center">
+      <% if bank_accounts.present? %>
+        <div class="dropdown">
+          <a class="btn btn-outline-secondary dropdown-toggle py-1" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Select an Account...
+          </a>
+          <ul class="dropdown-menu">
+            <% bank_accounts.each do |bank_account| %>
+              <li>
+                <%#= link_to bank_account.full_name, foundation_bank_account_path(@foundation, bank_account), 
+                    class: "dropdown-item #{"text-bg-success" if bank_account.primary }" %>
+                <%= link_to foundation_bank_account_path(@foundation, bank_account), class: "dropdown-item" do %>
+                  <%= bank_account.full_name %>
+                  <%== '<i class="bi bi-check2-circle ps-1"></i>' if bank_account.primary %>
+                <% end %>
+              </li>
+            <% end %>
+          </ul>
+        </div> 
+      <% end %>
+    </div>
+
+  </div>
+
+<% end %>

@@ -1,0 +1,5 @@
+<%= turbo_frame_tag @foundation do %>
+  <div class="container py-3">
+    <%= render "form", foundation: @foundation, form_url: foundation_url(@foundation) %>
+  </div>
+<% end %>

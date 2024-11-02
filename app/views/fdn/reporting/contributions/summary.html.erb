@@ -1,0 +1,29 @@
+<% provide(:title, "#{@foundation.short_name} Contribution Report") %>
+
+<div class="table">
+  <% @contributions.each do |contribution| %>
+    <div class="row ps-1 pt-1">
+      <div class="col w-6">
+        <%= contribution.agreement.transaction_at.strftime("%m/%d/%Y") %>
+      </div>
+      <div class="col w-16">
+        <%= contribution.organization.name %>
+      </div>
+      <div class="col w-7">
+        <%= contribution.organization.city %>
+      </div>
+      <div class="col w-4">
+        <%= contribution.organization.state %>
+      </div>
+      <div class="col w-5">
+        <%= contribution.donor.code %>
+      </div>
+      <div class="col w-5">
+        <%= contribution.agreement.check_number %>
+      </div>
+      <div class="col w-7 text-end">
+        <%= contribution.agreement.amount.format %>
+      </div>
+    </div>
+  <% end %>
+</div>

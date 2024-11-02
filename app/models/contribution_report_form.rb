@@ -18,5 +18,4 @@ class ContributionReportForm
   def persisted?
     false
   end
-
 end

@@ -1,0 +1,10 @@
+<div id="main_content" data-controller="pages" 
+      data-pages-sbnum-value="1"
+      data-pages-sidebar-outlet="#sidebar-controller">
+
+  <%= render "show_details", foundation: @foundation, organization: @organization, page: @page, by: @by, dir: @dir, query: query %>
+  
+  <div class="card border-primary mt-2">
+    <%#= render "contributions" %>
+  </div>
+</div>

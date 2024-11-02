@@ -1,0 +1,16 @@
+
+<div class="container" data-controller="flash" id="messages">
+  <% flash.each do |name, msg| %>
+    <div class="mt-1 py-2 alert alert-<%= name == "notice" ? "success" : "danger" %> alert-dismissible fade show" role="alert">
+      <div class="row">
+        <div class="col-auto pe-1 ">
+          <i class="<%= "fs-2 bi pe-2 bi-#{name == "notice" ? "info-circle" : "exclamation-triangle" }" %>"></i>
+        </div>
+        <div class="col align-self-center ps-1 fs-6 lh-sm pt-1">
+          <%= msg %>
+        </div>
+      </div>
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+  <% end %>
+</div>

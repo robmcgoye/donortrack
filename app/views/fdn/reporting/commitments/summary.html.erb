@@ -1,0 +1,48 @@
+<% provide(:title, "#{@foundation.short_name} Commitment Report") %>
+
+<div class="table">
+  <% proposed_payments_total = 0 %>
+  <% payments_made_total = 0 %>
+  <% total_commitment = 0 %>
+  <% total_commitment_payed = 0 %>
+  <% total_commitment_due = 0 %>
+
+  <% @commitments.each do |commitment| %>
+
+    <% proposed_payments_total += commitment.number_payments %>
+    <% payments_made_total += commitment.contributions.size %>
+    <% total_commitment += commitment.total_commitment %>
+    <% total_commitment_payed += commitment.payments %>
+    <% total_commitment_due += commitment.amount_due %>
+  
+    <div class="row ps-1 pt-1">
+      <div class="col w-15"><%= commitment.organization.name %></div>
+      <div class="col w-11"><%= commitment.code %></div>
+      <div class="col w-5"> <%= commitment.start_at.strftime("%m/%d/%Y") %></div>
+      <div class="col w-5"> <%= commitment.end_at.strftime("%m/%d/%Y") %></div>
+      <div class="col w-2 text-center"><%= commitment.number_payments %></div>
+      <div class="col w-2 text-center"><%= commitment.contributions.size %></div>
+      <div class="col w-1"></div>
+      <div class="col w-5">
+        <%= commitment.contributions.sort_date_down.first.agreement.transaction_at.strftime("%m/%d/%Y") if commitment.contributions.size > 0 %>
+      </div>
+      <div class="col w-7 text-end"><%= Money.new(commitment.total_commitment).format %></div>
+      <div class="col w-7 text-end"><%= Money.new(commitment.payments).format %></div>
+      <div class="col w-7 text-end"><%= Money.new(commitment.amount_due).format %></div>
+    </div>
+  <% end %>
+  <div class="row ps-1 pt-4">
+    <div class="col w-26"></div>
+    <div class="col">
+      <div class="row footer ps-1 pt-1">
+        <div class="col w-10"> Report Totals</div>
+        <div class="col w-2 text-center"><%= proposed_payments_total %></div>
+        <div class="col w-2 text-center"><%= payments_made_total %></div>
+        <div class="col w-6"></div>
+        <div class="col w-7 text-end"><%= Money.new(total_commitment).format %></div>
+        <div class="col w-7 text-end"><%= Money.new(total_commitment_payed).format %></div>
+        <div class="col w-7 text-end pe-1"><%= Money.new(total_commitment_due).format %></div>
+      </div>
+    </div>
+  </div>
+</div>

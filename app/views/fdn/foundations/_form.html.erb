@@ -1,0 +1,43 @@
+<%= render 'shared/error_messages', resource: foundation %>
+
+<%= form_with model: foundation, url: form_url do |form| %>
+
+  <div class="row mb-2">
+    <%= form.label :short_name, class: "col-md-3 col-form-label-sm" %>
+    <div class="col-md-9">
+      <%= form.text_field :short_name, class: "form-control" %>
+    </div>
+  </div>
+
+  <div class="row mb-2">
+    <%= form.label :long_name, class: "col-md-3 col-form-label-sm" %>
+    <div class="col-md-9">
+      <%= form.text_field :long_name, class: "form-control" %>
+    </div>
+  </div>
+
+  <div class="row mb-2">
+    <%= form.label :image_logo, class: "col-md-3 col-form-label-sm" %>
+    <div class="col-md-9">
+      <%= form.file_field :image_logo, class: "form-control" %>
+    </div>
+  </div>
+  <div class="row mb-2">
+    <%= form.label :image_header, class: "col-md-3 col-form-label-sm" %>
+    <div class="col-md-9">
+      <%= form.file_field :image_header, class: "form-control" %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-9 offset-md-3">
+      <div class="btn-group">
+        <%= form.button class: "btn btn-sm btn-outline-secondary text-start" do %>
+          <i class="bi bi-save pe-1"></i>Save
+        <% end %>
+        <%= link_to foundation_cancel_path, class: "btn btn-sm btn-outline-secondary text-start" do %>
+          <i class="bi bi-x-square pe-1"></i>Cancel
+        <% end %>
+      </div>
+    </div>
+  </div>
+<% end %>

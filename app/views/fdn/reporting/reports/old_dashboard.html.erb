@@ -1,0 +1,44 @@
+<div id="main_content" data-controller="pages" 
+      data-pages-sbnum-value="4"
+      data-pages-sidebar-outlet="#sidebar-controller">
+
+  <div class="card">
+    <div class="card-header text-center my-header">
+      <div class="row">
+        <div class="col-auto"><%= image_tag(@foundation.resize_image_logo(25,25)) if @foundation.image_logo.attached? %></div>
+        <div class="col text-center"><h5 class="mb-0">Reports</h5></div>
+      </div>
+    </div>
+
+    <div class="container py-2">
+      <div class="row">
+        <div class="col-auto">
+          <div class="btn-group-vertical">
+            <a class="btn btn-sm btn-outline-secondary" data-bs-toggle="collapse" href="#collapseCommitmentReport" role="button" aria-expanded="false" aria-controls="collapseCommitmentReport">
+              Commitments
+            </a>
+            <a class="btn btn-sm btn-outline-secondary" data-bs-toggle="collapse" href="#collapseContributionReport" role="button" aria-expanded="false" aria-controls="collapseContributionReport">
+              Contributions
+            </a>
+          </div>
+        </div>
+        <div class="col">
+      <div class="collapse" id="collapseCommitmentReport">
+        <div class="card small py-1 mb-1" data-controller="reports">
+          <%= render "fdn/reporting/commitments/form" %>
+        </div>
+      </div>
+      <div class="collapse" id="collapseContributionReport">
+        <div class="card small py-1 mb-1" data-controller="reports">
+          <%= render "fdn/reporting/contributions/form" %>
+        </div>
+      </div>
+
+        </div>
+      </div>
+
+
+    </div>
+    
+  </div>
+</div>

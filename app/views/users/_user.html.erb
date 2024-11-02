@@ -1,0 +1,50 @@
+<%# locals: (user:, index:) -%>
+<%= turbo_frame_tag user do %>
+  <div class="row align-items-center py-1 mt-1 <%= index.odd? ? "tb-bg-dark" : "tb-bg-light" %>">
+    <div class="col"><%= user.email %></div>
+    <div class="col">
+      <% user.get_roles.each do |role| %>
+        <span class="mx-1 badge rounded-pill <%= "#{role == "user" ? "bg-secondary" : "bg-primary" }" %>"> 
+          <%= role %>
+        </span>
+      <% end %>
+
+      <% if user.sessions.count > 0 %>
+        <span class="mx-1 badge rounded-pill text-bg-success position-relative">
+          Active
+          <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+            <%= user.sessions.count %>
+          </span>
+        </span>
+      <% else %>
+        <span class="mx-1 badge rounded-pill text-bg-secondary">No Active Sessions</span>
+      <% end %>
+
+      <% if user.verified? %>
+        <span class="mx-1 badge rounded-pill text-bg-success">Email Verified</span>
+      <% else %>
+        <span class="mx-1 badge rounded-pill text-bg-warning">Email NOT Verified</span>
+      <% end %>
+    </div>
+
+    <div class="col-auto">
+      <div class="dropstart" role="group">
+        <button type="button" class="btn btn-sm btn-outline-dark my-dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+          <i class="bi bi-three-dots-vertical"></i>
+        </button>
+        <ul class="dropdown-menu dropdown-menu-dark">
+          <li>
+            <%= link_to edit_user_path(user, index: index), class: "dropdown-item" do %>
+              <i class="bi bi-pencil-square pe-1"></i>Edit
+            <% end %>
+          </li>
+          <li>
+            <%= button_to user, method: :delete, class: "dropdown-item", form: {data: {turbo_confirm: 'Are you sure?'}} do %>
+              <i class="bi bi-trash pe-1"></i>Delete
+            <% end %>          
+          </li>
+        </ul>
+      </div>  
+    </div>
+  </div>
+<% end %>

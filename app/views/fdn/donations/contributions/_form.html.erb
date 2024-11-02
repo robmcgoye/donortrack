@@ -1,0 +1,62 @@
+<div class="container pt-2">
+  <%= render 'shared/error_messages', resource: contribution %>
+</div>
+<%= form_with model: contribution, url: form_url do |f| %>
+  <%= f.hidden_field :organization_id, value: contribution.organization.id %>
+  <%= f.hidden_field :agreement_type, value: contribution.agreement_type %>
+  <%= f.hidden_field :show, value: show %>
+
+    <div class="card-body pt-1 pb-2">
+      
+      <div class="row mb-2 border-bottom border-3 border-primary align-items-center">
+        <div class="col-sm-8 border-end border-3 border-primary">
+          <div class="row">
+            <div class="col fw-semibold"><%= contribution.organization.name %></div>
+          </div>
+          <div class="row">
+            <div class="col fst-italic"><%= contribution.organization.contact %></div>
+            <div class="col">
+              <span class="badge text-bg-primary mb-1">TYPE:</span> <%= contribution.organization.organization_type.code %>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-4">
+          <div class="row mb-2">
+            <div class="col-5 col-md-4 col-lg-3 px-1">
+              <%= f.label :donor_id, "Donor", class: "badge text-bg-primary" %>
+            </div>
+            <div class="col-7 col-md-8 col-lg-9 px-0">
+              <%= f.collection_select :donor_id, @foundation.donors.sort_full_name_up, :id, :full_name,  
+                {include_blank: 'Choose...'}, {class: "form-select form-select-sm"}  %>
+            </div>
+          </div>
+        </div>
+      </div>
+      <%= f.fields_for :agreement do |sub_form| %>
+        <% if contribution.agreement_type == "FundsTransfer" %>
+          <%= render "funds_transfer_form", funds_transfer_builder: sub_form %>
+        <% elsif contribution.agreement_type == "InKind" %>
+          <%= render "in_kind_form", in_kind_builder: sub_form %>
+        <% else %>
+          <%= render "check_form", check_builder: sub_form %>
+        <% end %>
+      <% end %>
+    </div>
+    <div class="card-footer border-primary bg-primary bg-opacity-10 py-1">
+      <div class="row">
+        <div class="col text-start">
+          <%= link_to cancel_foundation_contribution_path(@foundation, get_id(contribution), :show => show), class: "py-1 btn btn-sm btn-outline-primary text-start" do %>
+            <i class="bi bi-x-square pe-1"></i>Cancel
+          <% end %>
+        </div>
+        <div class="col text-end"> 
+          <%= f.button class: "btn btn-sm btn-outline-primary text-start py-1" do %>
+            <%= "#{get_id(contribution) == -1 ? "Finish" : "Save" }" %>
+            <i class="bi bi-arrow-right-circle ps-1"></i>
+          <% end %>
+        </div>
+      </div>        
+    </div>
+
+<% end %>
+

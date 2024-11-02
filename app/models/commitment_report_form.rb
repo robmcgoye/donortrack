@@ -9,7 +9,6 @@ class CommitmentReportForm
   # enum :format, { summary: 0, detailed: 1 }
   # enum :state, { open: 0, closed: 1 }
   # enum :sort, { alpha: 0, date: 1 }
-  
 
   def initialize(attributes = {})
     # @errors = ActiveModel::Errors.new(self)
@@ -24,7 +23,5 @@ class CommitmentReportForm
   end
 
   # def filter(foundation)
-    
   # end
-
 end

@@ -1,0 +1,12 @@
+<%# locals: (contributions:) -%>
+<%=turbo_frame_tag "commitment-payments" do %>
+  <div class="container border-bottom">
+    <% if contributions.blank? %>
+      No payments...
+    <% else %>
+      <% contributions.each do |contribution| %>
+        <%= render "contribution", contribution: contribution %>
+      <% end %>
+    <% end %>
+  </div>
+<% end %>

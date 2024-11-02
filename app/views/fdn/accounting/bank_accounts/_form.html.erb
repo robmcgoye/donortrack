@@ -1,0 +1,60 @@
+<%# locals: (bank_account:, form_url:) -%>
+<%= form_with model: bank_account, url: form_url, id: dom_id(bank_account, "form"), class: "align-items-center pb-1 ps-2" do |form| %>
+  <div class="container pt-2">
+    <div class="row justify-content-center">
+      <div class="col-md-9">
+        <%= render 'shared/error_messages', resource: bank_account %>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col">
+      <div class="row align-items-center">
+        <div class="col offset-sm-2">  
+          <div class="form-check form-switch">
+            <%= form.check_box :primary, class: "form-check-input", id: "flexSwitchCheckPrimary" %>
+            <%= form.label :primary,  class: "form-check-label", for: "flexSwitchCheckPrimary" %>        
+          </div>      
+        </div>
+      </div>
+
+      <div class="row pb-1">
+        <%= form.label :full_name, class: "col-sm-2" %>
+        <div class="col-sm-10">
+          <%= form.text_field :full_name, class: "form-control form-control-sm" %>  
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-sm-2">Balance</div>
+        <div class="col-sm-10">
+          <% if bank_account.id.nil? %>
+            <%= form.text_field :starting_balance, class: "form-control form-control-sm" %>
+          <% else %>
+            <%= bank_account.balance %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-auto border-start border-primary d-flex align-items-center">
+
+      <div class="btn-group-vertical">
+        <%= form.button class: "btn btn-sm btn-outline-primary text-start" do %>
+          <% if bank_account.id.nil? %>
+            <i class="bi bi-plus-circle pe-1"></i>New
+          <% else %>
+            <i class="bi bi-floppy pe-1"></i>Save
+          <% end %>
+        <% end %>
+
+        <%= link_to cancel_foundation_bank_account_path(@foundation, get_id(bank_account)), class: "btn btn-sm btn-outline-primary text-start" do %>
+          <i class="bi bi-x-square pe-1"></i>Cancel
+        <% end %>        
+      </div>
+
+    </div>
+  </div>
+
+<% end %>

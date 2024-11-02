@@ -1,0 +1,71 @@
+<%= turbo_frame_tag dom_id(contribution, :commitment) do %>
+  <div class="row my-1 my-table-row ps-1">
+    <div class="row align-items-center mx-0">
+      <div class="col-5 col-sm-2 px-0">
+        <% if contribution.agreement_type == "check" %>
+                <% if contribution.agreement.cleared? %>
+                  <i class="bi bi-check2-circle"></i>
+                <% else %>
+                  <i class="bi bi-circle"></i>
+                <% end %>
+                <% end %>
+        <%= contribution.agreement.transaction_at.strftime("%m/%d/%Y") %>
+      </div>
+      <div class="d-none d-sm-block col-sm-2">
+        <%= contribution.agreement.check_number %>
+      </div>
+      <div class="col-6 col-sm-2 pe-3 text-end">
+        <%= contribution.agreement.amount.format %>
+      </div>
+      <div class="d-none d-sm-block col-sm-2">
+        <%= contribution.agreement.funding_source.code %>
+      </div>
+      <div class="d-none d-sm-block col-sm-3">
+        <%= contribution.agreement.bank_account.full_name %>
+      </div>
+      <div class="d-none d-sm-block col-sm-1">
+        <button class="btn btn-outline-secondary py-0 px-1 bi-chevron-left" type="button" 
+                data-bs-toggle="collapse" 
+                data-controller="toggle"
+                data-action="toggle#update"
+                data-bs-target="#<%= dom_id(contribution, :collapse) %>" 
+                aria-expanded="false">
+        </button>
+      </div>
+    </div>
+
+    <div class="collapse" id="<%= dom_id(contribution, :collapse) %>">
+      <div class="row border-primary border-start border-end border-bottom m-1 p-1">
+        <div class="col-sm-4">
+          <table>
+            <tr>
+              <td class="border-primary border-end pe-1"><span class="badge text-bg-primary">Donor</span></td>
+              <td class="ps-1"><%= contribution.donor.code %></td>
+            </tr>
+          </table>
+        </div>
+        <div class="col-sm-6">
+          <table>
+            <tr>
+              <td class="border-primary border-end pe-1"><span class="badge text-bg-primary">Desc</span></td>
+              <td class="ps-1"><%= contribution.agreement.description %></td>
+            </tr>
+          </table>
+        </div>
+        <div class="col-sm-2 text-end">
+          <%# if !contribution.check.cleared? %>
+          <div class="btn-group">
+            <%= link_to foundation_commitment_contribution_path(@foundation, contribution.commitment, contribution), class: "btn btn-sm btn-outline-secondary" do %>
+              <i class="bi bi-pencil-square pe-1"></i>
+            <% end %>
+            <%= button_to foundation_commitment_contribution_path(@foundation, contribution.commitment, contribution), method: :delete, class: "btn btn-sm btn-outline-danger", 
+                form: {data: {turbo_confirm: 'Are you sure?'}} do %>
+              <i class="bi bi-trash pe-1"></i>
+            <% end %>        
+          </div>  
+          <%# end %>      
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>

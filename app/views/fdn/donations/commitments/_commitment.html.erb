@@ -1,0 +1,39 @@
+<%# locals: (commitment:, commitment_counter: 0, commitment_iteration: 1) -%>
+<%= turbo_frame_tag commitment do %>
+  <div class="row my-1 my-table-row align-items-center">
+
+      <div class="col-5 col-sm-2"><%= commitment.start_at.strftime("%m/%d/%Y") %></div>
+      <div class="d-none d-sm-block col-sm-2"><%= commitment.end_at.strftime("%m/%d/%Y") %></div>
+      <div class="col-5 col-sm-3">
+        <%= commitment.amount.format %>
+        <span class="fw-medium text-primary"> X 
+        <%= commitment.number_payments %></span>
+      </div>
+      <div class="d-none d-sm-block col-sm-4"><%= commitment.organization.name %></div>
+      <div class="col-2 col-sm-1 pb-1">
+        <div class="dropstart" role="group">
+          <button type="button" class="px-1 btn btn-sm btn-outline-dark my-dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+            <i class="bi bi-three-dots-vertical"></i>
+          </button>
+          <ul class="dropdown-menu dropdown-menu-dark">
+            <li>
+              <%= link_to foundation_commitment_path(@foundation, commitment), class: "dropdown-item" do %>
+                <i class="bi bi-folder-symlink pe-1"></i>Show
+              <% end %>
+            </li>
+            <li>
+              <%= link_to edit_foundation_commitment_path(@foundation, commitment, :show => "0"), class: "dropdown-item" do %>
+                <i class="bi bi-pencil-square pe-1"></i>Edit
+              <% end %>
+            </li>
+            <li>
+              <%= button_to foundation_commitment_path(@foundation, commitment), method: :delete, class: "dropdown-item", form: {data: {turbo_confirm: 'Are you sure?'}} do %>
+                <i class="bi bi-trash pe-1"></i>Delete
+              <% end %>          
+            </li>
+          </ul>
+        </div> 
+      </div>
+
+  </div>
+<% end %>

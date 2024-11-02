@@ -1,0 +1,82 @@
+<div class="container pt-2">
+  <%= render 'shared/error_messages', resource: contribution %>
+</div>
+<%= form_with model: contribution, url: form_url do |f| %>
+  <%= f.hidden_field :organization_id, value: contribution.organization.id %>
+  <%= f.hidden_field :commitment_id, value: contribution.commitment.id %>
+  <%= f.hidden_field :agreement_type, value: "Check" %>
+  <%#= f.hidden_field :show, value: show %>
+  <%= f.fields_for :agreement do |check_builder| %>
+    <div class="card-body pt-1 pb-2">
+      
+      <div class="row mb-2 align-items-center">
+        <div class="col-sm-3 px-0">
+          <%= check_builder.date_field :transaction_at, class: "form-control form-control-sm" %>
+        </div>
+        <div class="col-sm-2 text-end">
+          <%= check_builder.label :check_number, "Check #", class: "badge text-bg-primary" %>
+        </div>
+        <div class="col-sm 3 px-0">
+          <%= check_builder.text_field :check_number, class: "form-control form-control-sm" %>
+        </div>
+        <div class="col-sm-1 text-end">
+          <%= check_builder.label :amount, "Amt", class: "badge text-bg-primary" %>
+        </div>
+        <div class="col-sm 3 px-0">
+          <%= check_builder.text_field :amount, class: "text-end form-control form-control-sm" %>
+        </div>
+      </div>
+
+      <div class="row mb-2 align-items-center">
+        <div class="col-sm-2">
+          <%= check_builder.label :funding_source_id, "Funding", class: "badge text-bg-primary" %>
+        </div>
+        <div class="col-sm 4 px-0">
+          <%= check_builder.collection_select :funding_source_id, @foundation.funding_sources, :id, :code,  
+            {include_blank: 'Choose...'}, {class: "form-select form-select-sm"}  %>
+        </div>
+        <div class="col-sm-2 text-end">
+          <%= check_builder.label :bank_account_id, "Account", class: "badge text-bg-primary" %>
+        </div>
+        <div class="col-sm 4 px-0">
+          <%= check_builder.collection_select :bank_account_id, @foundation.bank_accounts, :id, :full_name,  
+            {include_blank: 'Choose...'}, {class: "form-select form-select-sm"}  %>
+        </div>          
+      </div>
+
+      <div class="row mb-2">
+        <div class="col-sm-2">
+          <%= f.label :donor_id, "Donor", class: "badge text-bg-primary" %>
+        </div>
+        <div class="col-sm 4 px-0">
+          <%= f.collection_select :donor_id, @foundation.donors.sort_full_name_up, :id, :full_name,  
+            {include_blank: 'Choose...'}, {class: "form-select form-select-sm"}  %>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col">
+          <%= check_builder.label :description, class: "badge text-bg-primary mb-1" %><br />
+          <%= check_builder.text_area :description, class: "form-control", rows: 3 %>          
+        </div>
+      </div>
+
+    </div>
+    <div class="card-footer border-primary bg-light py-1">
+      <div class="row">
+        <div class="col text-start">
+          <%= link_to cancel_foundation_commitment_path(@foundation, contribution.commitment.id, contribution: get_id(contribution)), class: "py-0 btn btn-sm btn-outline-secondary text-start" do %>
+            <i class="bi bi-x-square pe-1"></i>Cancel
+          <% end %>  
+        </div>
+        <div class="col text-end"> 
+          <%= f.button class: "btn btn-sm btn-outline-secondary text-start py-0" do %>
+            <%= "#{get_id(contribution) == -1 ? "Create" : "Save" }" %>
+            <i class="bi bi-arrow-right-circle ps-1"></i>
+          <% end %>
+        </div>
+      </div>        
+    </div>
+  <% end %>
+<% end %>
+

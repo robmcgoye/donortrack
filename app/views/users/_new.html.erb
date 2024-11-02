@@ -1,0 +1,10 @@
+<%= turbo_frame_tag User.new do %>
+  <div class="row">
+    <div class="col"><h5>Users</h5></div>  
+    <div class="col-auto">
+        <%= link_to new_user_path, class: "btn btn-sm btn-outline-secondary" do %>
+          <i class="bi bi-plus-circle pe-1"></i>New User
+        <% end %>
+    </div>
+  </div>
+<% end %>

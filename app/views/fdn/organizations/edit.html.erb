@@ -1,0 +1,12 @@
+<%= turbo_frame_tag @organization do %>
+  <div class="card mb-2 border-primary">
+
+    <div class="card-body bg-primary bg-opacity-10 pb-2">
+      <%= render "form", 
+            organization: @organization, 
+            form_url: foundation_organization_path(@foundation, @organization, page: params[:page], show: params[:show]), 
+            page: params[:page], show: params[:show] %>
+    </div>
+  </div>
+<% end %>
+

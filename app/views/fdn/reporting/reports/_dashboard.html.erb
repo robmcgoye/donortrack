@@ -1,0 +1,45 @@
+<div id="main_content" data-controller="pages" 
+      data-pages-sbnum-value="4"
+      data-pages-sidebar-outlet="#sidebar-controller">
+
+  <div class="card">
+    <div class="card-header text-center my-header">
+      <div class="row">
+        <div class="col-auto"><%= image_tag(@foundation.resize_image_logo(25,25)) if @foundation.image_logo.attached? %></div>
+        <div class="col text-center"><h5 class="mb-0">Reports</h5></div>
+      </div>
+    </div>
+
+    <div class="container py-2" data-controller="reports">
+      <div class="row">
+        <div class="col-auto">
+          <div class="btn-group-vertical">
+            <%= link_to foundation_reporting_commitment_path(@foundation), class: "btn btn-sm btn-outline-secondary",  
+                  data: { turbo_frame: 'report_form' },
+                  "data-action": "click->reports#toggle",
+                  "data-reports-target": "btn" do %>
+              <i class="bi bi-file-earmark-pdf me-2"></i>
+              Commitments
+            <% end %>
+
+            <%= link_to foundation_reporting_contribution_path(@foundation), class: "btn btn-sm btn-outline-secondary",  
+                  data: { turbo_frame: 'report_form' },
+                  "data-action": "click->reports#toggle",
+                  "data-reports-target": "btn" do %>
+              <i class="bi bi-file-earmark-pdf me-2"></i>
+              Contributions
+            <% end %>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card small py-1 mb-1">
+            <%= render "fdn/reporting/commitments/form" %>
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+    
+  </div>
+</div>

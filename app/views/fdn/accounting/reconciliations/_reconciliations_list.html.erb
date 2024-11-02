@@ -1,0 +1,15 @@
+<%= turbo_frame_tag "reconciliation-main" do %>
+  <div class="row tb-header mx-0 py-1 align-items-center mb-1">
+    <div class="col-4 col-sm-2">Date</div>
+    <div class="d-none d-sm-block col-sm-4 text-center">Opening Balance</div>
+    <div class="col-4 text-center">Ending Balance</div>
+    <div class="col-2">
+      <%# , data: { turbo_frame: "new_reconciliation" } %>
+      <%= link_to new_foundation_bank_account_reconciliation_path(@foundation, @bank_account), class: "btn btn-outline-success btn-sm py-0" do %>
+        <i class="bi calendar2-plus pe-1"></i>Reconcile
+      <% end %>          
+    </div>
+  </div>
+
+  <%= render @reconciliations %>  
+<% end %>

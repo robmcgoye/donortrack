@@ -1,0 +1,8 @@
+<%= turbo_frame_tag dom_id(@contribution, :commitment) do %>
+  <div class="card m-2 border-primary">
+    <div class="card-header border-primary py-0">Edit Payment</div>
+    
+    <%= render "contribution_form", contribution: @contribution, form_url: foundation_commitment_contribution_path(@foundation, @commitment, @contribution) %>
+  </div>
+
+<% end %>

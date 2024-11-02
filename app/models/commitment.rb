@@ -4,7 +4,7 @@ class Commitment < ApplicationRecord
   # , dependent: :destroy
   monetize :amount_cents, numericality:  { greater_than: 0 }
 
-  scope :organization_commitments, -> (organization_ids) { where(organization_id: organization_ids) }
+  scope :organization_commitments, ->(organization_ids) { where(organization_id: organization_ids) }
 
   validates :code, :start_at, :end_at, presence: true
   validates :start_at, comparison: { less_than: :end_at }
@@ -12,7 +12,7 @@ class Commitment < ApplicationRecord
   validate :commitment_total
 
   before_destroy :validate_before_destroy
-  
+
   scope :not_completed, -> { where(completed: false) }
   scope :completed, -> { where(completed: true) }
   scope :sort_organization_up, -> { includes(:organization).order("organizations.name") }
@@ -25,7 +25,7 @@ class Commitment < ApplicationRecord
   scope :sort_payment_down, -> { order(amount_cents: :desc) }
 
   def total_commitment
-    amount_cents * number_payments 
+    amount_cents * number_payments
   end
 
   def payments
@@ -41,7 +41,7 @@ class Commitment < ApplicationRecord
     def commitment_total
       if amount_cents.nil? || number_payments.nil?
       elsif total_commitment < payments
-        errors.add(:base, "Existing payments exceed the commitment total") 
+        errors.add(:base, "Existing payments exceed the commitment total")
       end
     end
 
@@ -53,5 +53,4 @@ class Commitment < ApplicationRecord
         contributions.destroy_all
       end
     end
-
 end

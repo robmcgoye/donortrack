@@ -1,0 +1,10 @@
+<%= turbo_frame_tag BankAccount.new do %>
+  <div class="card bg-primary bg-opacity-10 border-primary mx-1">
+    <div class="card-header border-primary bg-primary bg-opacity-25 text-center py-1 fs-bold">
+      New Bank Account
+    </div>
+    <div class="card-body py-1">
+      <%= render "form", bank_account: @bank_account, form_url: foundation_bank_accounts_path(@foundation) %>
+    </div>
+  </div>
+<% end %>

@@ -1,0 +1,64 @@
+<%# locals: (organization:, foundation:, page:, by:, dir:, query:) -%>
+<%= turbo_frame_tag organization do %>
+  <div class="card border-primary">
+    <div class="card-header border-primary bg-primary bg-opacity-10 py-1">
+      <div class="row align-items-center">
+        <div class="col-12 col-sm-8 fw-semibold"><%= organization.name %></div>
+        <div class="col-12 col-sm-4 text-center pe-0">
+
+          <div class="btn-group btn-group-sm">
+           <%= link_to edit_foundation_organization_path(foundation, organization, show: "1"), class: "py-1 btn btn-sm btn-outline-secondary" do %>
+              <i class="bi bi-pencil-square pe-1"></i>Edit
+            <% end %>
+            <%= button_to foundation_organization_path(foundation, organization, show: "1"), method: :delete, class: "py-1 btn btn-sm btn-outline-danger", form: {data: {turbo_confirm: 'Are you sure?'}} do %>
+              <i class="bi bi-trash pe-1"></i>Delete
+            <% end %> 
+            <%= link_to foundation_organizations_path(foundation, page: page, by: by, dir: dir, query: query), class: "py-1 btn btn-sm btn-outline-secondary text-start" do %>
+              <i class="bi bi-folder-symlink pe-1"></i>Back
+            <% end %>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="card-body">
+      <div class="row">
+
+        <div class="col">
+          <div class="row">
+            <div class="col">
+              <b><%= organization.name %></b> <br/>
+              <span class="my-text-small">
+                <%= organization.address_1 %><br>
+                <% if !organization.address_2.blank? %>
+                  <%= organization.address_2 %><br>
+                  <% end %>
+                <%= "#{organization.city}, #{organization.state} #{organization.zip}" if organization.city.present? && organization.state.present? && organization.zip.present? %>
+                <br>
+                <%= organization.country %>
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <div class="col">
+          <div class="row">
+            <div class="col-12 col-sm-3"><span class="badge bg-primary">Tax #</span></div>
+            <div class="col-12 col-sm-9"><%= organization.tax_number %></div>
+          </div>  
+          <div class="row">
+            <div class="col-12 col-sm-3"><span class="badge bg-primary">Type</span></div>
+            <div class="col-12 col-sm-9"><%= organization.organization_type.code %></div>
+          </div>
+          <div class="row">
+            <div class="col-12 col-sm-3"><span class="badge bg-primary">Contact</span></div>
+            <div class="col-12 col-sm-9"><%= organization.contact %></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+<% end %>

@@ -1,0 +1,6 @@
+<%# locals: (name:) -%>
+<%= turbo_frame_tag "sidebar-button" do %>
+  <button type="button" id="sidebarCollapse" data-action="mnnav#toggle" class="btn btn-outline-light">
+      <i class="bi bi-piggy-bank pe-2"></i><span class="show-xl"><%= name %></span>
+  </button>
+<% end %>

@@ -1,0 +1,55 @@
+<%= form_with model: reconciliation, url: form_url, id: dom_id(reconciliation, "form"), class: "pb-1 ps-1" do |f| %>
+
+ <%= f.hidden_field :bank_account_id, value: @bank_account.id %>
+
+  <div class="container pt-2">
+    <div class="row justify-content-center">
+      <div class="col-md-9">
+        <%= render 'shared/error_messages', resource: reconciliation %>
+      </div>
+    </div>
+  </div>
+
+  <div class="row pb-1">
+    <div class="col-sm-3">
+      <%= f.label :started_at, "Start" %>
+    </div>
+    <div class="col-sm-3">
+      <%= f.date_field :started_at, class: "form-control form-control-sm" %>  
+    </div>
+    <div class="col-sm-3">
+      <%= f.label :ended_at, "End" %>
+    </div>
+    <div class="col-sm-3">
+      <%= f.date_field :ended_at, class: "form-control form-control-sm" %>  
+    </div>
+  </div>
+  
+  <div class="row pt-1 pb-2">
+    <div class="col-sm-3">
+      <%= f.label :starting_balance %>
+    </div>
+    <div class="col-sm-3">
+      <%= f.text_field :starting_balance, class: "form-control form-control-sm text-end" %>  
+    </div>
+    <div class="col-sm-3">
+      <%= f.label :ending_balance %>
+    </div>
+    <div class="col-sm-3">
+      <%= f.text_field :ending_balance, class: "form-control form-control-sm text-end" %>
+    </div>
+  </div>
+
+  <div class="row border-top border-info mx-0 py-1">
+    <div class="col-4 text-start">
+      <%= link_to foundation_bank_account_reconciliations_cancel_path(@foundation, @bank_account), class: "btn btn-outline-info btn-sm" do %>
+        <i class="bi calendar2-plus pe-1"></i>Cancel
+      <% end %> 
+    </div>
+    <div class="col-5 offset-3 text-end">
+      <%= f.button class: "btn btn-sm btn-outline-info text-start" do %>
+          <i class="bi bi-plus-circle pe-1"></i>Next
+      <% end %>
+    </div>
+  </div>
+<% end %>

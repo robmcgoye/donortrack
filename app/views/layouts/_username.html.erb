@@ -1,0 +1,6 @@
+<%# locals: () -%>
+<%= turbo_frame_tag "username" do %>
+  <span class="navbar-text ps-1 text-white ms-2 me-1 mb-2">
+    WELCOME: <i class="primary-highlight ps-1"><%= Current.user.email %></i>
+  </span>    
+<% end %>

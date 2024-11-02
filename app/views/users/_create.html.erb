@@ -1,0 +1,11 @@
+<%= turbo_frame_tag User.new do %>
+  <%# border border-primary %>
+  <div class="container-fluid p-2 m-1">
+    <div class="card">
+      <div class="card-header"><h6>New User</h6></div>
+      <div class="card-body"><%= render "form", user: @user %></div>
+    </div>
+  </div>
+  <h5>Users</h5>
+<% end %>
+

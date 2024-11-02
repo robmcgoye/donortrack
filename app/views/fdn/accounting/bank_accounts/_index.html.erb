@@ -1,0 +1,19 @@
+<div id="main_content" data-controller="pages" 
+      data-pages-sbnum-value="3"
+      data-pages-sidebar-outlet="#sidebar-controller">
+
+  <div class="card">
+    <div class="card-header text-center my-header">
+      <div class="row">
+        <div class="col-auto"><%= image_tag(@foundation.resize_image_logo(25,25)) if @foundation.image_logo.attached? %></div>
+        <div class="col text-center"><h5 class="mb-0">Accounting</h5></div>
+      </div>
+    </div>
+    <div class="container-fluid mx-0 px-0 py-3">
+
+      <%= render "new_button", bank_accounts: @bank_accounts %>
+      <hr>
+      <%= @primary_account.nil? ? (render "main_empty") : (render "main", bank_account: @primary_account) %>
+     
+  </div>
+</div>

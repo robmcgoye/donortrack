@@ -1,0 +1,89 @@
+<%= render 'shared/error_messages', resource: organization %>
+<%= form_with model: organization, url: form_url do |f| %>
+
+  <div class="row">
+    <div class="col pe-0">
+      <div class="row mb-1 align-items-center">
+        <div class="col-sm-2">
+          <%= f.label :name, class: "mb-1", class: "badge bg-primary" %>
+        </div>
+        <div class="col-sm-10">
+          <%= f.text_field :name, class: "form-control form-control-sm" %>
+        </div>
+      </div>
+      <div class="row align-items-center mb-1">
+        <div class="col-sm-2">
+          <%= f.label :contact, class: "badge bg-primary mb-1" %>
+        </div>
+        <div class="col-sm-10">
+          <%= f.text_field :contact, class: "form-control form-control-sm" %>
+        </div>
+      </div>
+      <div class="row align-items-center mb-1">
+        <div class="col-sm-2">
+          <%= f.label "Type", class: "badge bg-primary mb-1" %>
+        </div>
+        <div class="col-sm-4">
+          <%= f.select :organization_type_id, get_select_options_for_organization_types(@foundation), {include_blank: 'Choose...'}, class: "form-select form-select-sm" %>
+        </div>
+        <div class="col-sm-2">
+          <%= f.label :tax_number, "Tax #", class: "badge bg-primary mb-1" %>
+        </div>
+        <div class="col-sm-4">                
+          <%= f.text_field :tax_number, class: "form-control form-control-sm" %>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-2">
+          <%= f.label :address_1, "Address", class: "badge bg-primary mb-1" %>
+        </div>
+        <div class="col-sm-10">
+          <%= f.text_field :address_1, class: "form-control form-control-sm" %>
+        </div>
+      </div>
+      <div class="row mb-1">
+        <div class="col-sm-10 offset-sm-2">
+          <%= f.text_field :address_2, class: "form-control form-control-sm" %>
+        </div>
+      </div>
+      <div class="row align-items-center mb-1">
+        <div class="col-sm-2">
+          <%= f.label :city, class: "badge bg-primary mb-1" %>
+        </div>
+        <div class="col-sm-4">
+          <%= f.text_field :city, class: "form-control form-control-sm" %>
+        </div>
+        <div class="col-sm-1">
+          <%= f.label :state, "ST", class: "badge bg-primary mb-1" %>
+        </div>
+        <div class="col-sm-2">
+          <%= f.text_field :state, class: "form-control form-control-sm" %>
+        </div>
+        <div class="col-sm-1">
+          <%= f.label :zip, class: "badge bg-primary mb-1" %>
+        </div>
+        <div class="col-sm-2">
+          <%= f.text_field :zip, class: "form-control form-control-sm" %>
+        </div>
+      </div>
+      <div class="row align-items-center">
+        <div class="col-sm-2 offset-sm-5">
+          <%= f.label :country, class: "badge bg-primary mb-1" %>
+        </div>
+        <div class="col-sm-5">
+          <%= f.text_field :country, class: "form-control form-control-sm" %>
+        </div>
+      </div>          
+    </div>
+    <div class="col-auto" role="group">
+      <div class="btn-group-vertical">
+        <%= f.button class: "py-1 btn btn-sm btn-outline-primary text-start" do %>
+          <i class="bi bi-floppy pe-1"></i>Save
+        <% end %>
+        <%= link_to cancel_foundation_organization_path(@foundation, get_id(organization), page: page, show: show), class: "py-1 btn btn-sm btn-outline-primary text-start" do %>
+          <i class="bi bi-x-square pe-1"></i>Cancel
+        <% end %>
+      </div>
+    </div>
+  </div>
+<% end %>

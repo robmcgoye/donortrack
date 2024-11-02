@@ -1,0 +1,16 @@
+<!doctype html>
+<html>
+  <head>
+    <title><%= yield(:title) %></title>
+    <meta charset='utf-8' />
+    <%= stylesheet_link_tag wicked_pdf_asset_base64("pdf") %>
+    <%#= javascript_include_tag wicked_pdf_asset_base64("number_pages") %>
+
+  </head>
+  <body>
+
+    <div id="content">
+      <%= yield %>
+    </div>
+  </body>
+</html>

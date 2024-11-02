@@ -1,0 +1,56 @@
+<%# locals: (user:) -%>
+<%= render 'shared/error_messages', resource: user %>
+<%= form_with(model: user) do |form| %>
+
+  <%= form.hidden_field :index, value: params[:index] %>
+
+  <div class="row">
+    <div class="col col-12 col-md-10">
+    <div class="row mb-2">
+      <div class="col-md-9 offset-md-3">
+        <div class="form-check form-switch">
+          <%= form.check_box :admin, class: "form-check-input", id: "flexSwitchCheckAdmin_#{user.id}" %>
+          <%= form.label :admin,  class: "form-check-label", for: "flexSwitchCheckAdmin_#{user.id}" %>        
+        </div>
+      </div>
+    </div>
+      <div class="row mb-2">
+        <%= form.label :email, "Email", class: "col-md-3 col-form-label-sm" %>
+        <div class="col-md-9">
+          <%= form.email_field :email, required: true, autofocus: true, class: "form-control", placeholder: "name@domain.com" %>
+        </div>
+      </div>
+
+      <div class="row mb-2">
+        <%= form.label :password, "Password", class: "col-md-3 col-form-label-sm" %>
+        <div class="col-md-9">
+          <div class="row">
+            <div class="col"><%= form.password_field :password, class: "form-control" %></div>
+          </div>
+          <div class="row">
+            <div class="col"><span class="small">6 characters minimum.</span></div>
+          </div>    
+        </div>
+      </div>
+
+      <div class="row mb-2">
+        <%= form.label :password_confirmation, "Confirm password", class: "col-md-3 col-form-label-sm" %>
+        <div class="col-md-9">
+          <%= form.password_field :password_confirmation, class: "form-control" %>
+        </div>
+      </div>    
+    </div>
+
+    <div class="col-auto">
+      <div class="btn-group-vertical" role="group">
+        <%= form.button class: "btn btn-sm btn-outline-secondary text-start" do %>
+          <i class="bi bi-floppy pe-1"></i>Save
+        <% end %>
+        <%= link_to users_cancel_path(get_user_id(user), index: params[:index]), class: "btn btn-sm btn-outline-secondary text-start" do %>
+          <i class="bi bi-x-square pe-1"></i>Cancel
+        <% end %>
+      </div>  
+    </div>
+  </div>
+<% end %>
+

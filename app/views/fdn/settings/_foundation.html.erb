@@ -1,0 +1,30 @@
+<%= turbo_frame_tag "settings-foundation" do %>
+  <div class="card-body pt-1">
+    <div class="row">
+      <div class="col-md-8">
+        <div class="card border-info mt-3">
+          <div class="card-header my-text-bg-secondary pb-0">
+            <h5>Change Foundation</h5>
+          </div>
+          <%= render "fdn/settings/show_foundation" %>
+        </div>       
+      </div>
+      <div class="col-md-4">
+        <div class="card border-danger text-center mt-3">
+          <div class="card-header text-bg-danger pb-0"><h6>Remove Foundation</h6></div>
+          <div class="card-body">
+            <p class="my-small-text text-danger">
+              Warning deleting the foundation will remove all associated files. IE all of the commits, organizations donors, bank accounts etc WILL BE DESTROYED!
+            </p>
+
+            <%= button_to @foundation, method: :delete, class: "btn btn-sm btn-outline-danger text-start", 
+                  form: {data: {turbo_confirm: 'Are you sure? (This cannot be undone!!)',  turbo_frame: '_top'} } do %>
+              <i class="bi bi-trash pe-1"></i>Delete
+            <% end %> 
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>

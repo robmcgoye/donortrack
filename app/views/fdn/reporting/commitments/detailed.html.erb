@@ -1,0 +1,117 @@
+<% provide(:title, "#{@foundation.short_name} Commitment Report") %>
+
+<% last_index = @commitments.size - 1 %>
+<% @commitments.each_with_index do |commitment, index| %>
+  <div class="table">
+    <div class="row">
+      <div class="col w-30 text-top me-3 h-100">
+        <div class="row">
+          <div class="col text-bold text-italic">Organization :</div>
+        </div>
+        <div class="row">
+          <div class="col ps-2 text-300 text-italic"><%= commitment.organization.contact %></div>
+        </div>
+        <div class="row">
+          <div class="col text-500 ps-2"><%= commitment.organization.name.upcase %></div>
+        </div>
+        <div class="row">
+          <div class="col ps-2"><%= commitment.organization.address_1 %></div>
+        </div>
+        <% if commitment.organization.address_2.present? %>
+          <div class="row">
+            <div class="col ps-2"><%= commitment.organization.address_2 %></div>
+          </div>
+        <% end %>
+        <div class="row">
+          <div class="col ps-2">
+            <%= "#{commitment.organization.city}, #{commitment.organization.state} #{commitment.organization.zip}" %>
+          </div>
+        </div>
+        <% if commitment.organization.country.present? %>
+          <div class="row">
+            <div class="col ps-4"><%= commitment.organization.country %></div>
+          </div>
+        <% end %>        
+      </div>
+      <div class="col w-22 text-top h-100">
+        <div class="row">
+          <div class="col text-bold text-italic">Type :</div>
+        </div>
+        <div class="row">
+          <div class="col ps-2">
+            <%= commitment.organization.organization_type.code %>
+          </div>
+        </div>
+        <div class="row pt-4">
+          <div class="col text-bold text-italic">Commitment Code :</div>
+        </div>
+        <div class="row">
+          <div class="col ps-2">
+            <%= commitment.code %>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col w-100p"><hr class="black-line pt-0"></div>
+    </div>
+    <div class="row">
+      <div class="col w-11 me-2">
+        <%== "<b># of Payments :</b> #{commitment.number_payments}" %>
+      </div>
+      <div class="col w-20 me-2">
+        <%== "<b>Payment Amount : </b>#{commitment.amount.format}" %>
+      </div>
+      <div class="col w-20">
+        <%== "<b>Total Commitment : </b>#{Money.new(commitment.total_commitment).format}" %>
+      </div>
+    </div>
+    <div class="row pt-2">
+      <div class="col w-11 me-2">
+        <%== "<b>Start Date : </b>#{commitment.start_at.strftime("%m/%d/%Y")}" %>
+      </div>
+      <div class="col w-11">
+        <%== "<b>End Date : </b>#{commitment.end_at.strftime("%m/%d/%Y")}" %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col w-100p"><hr class="black-line pt-0"></div>
+    </div>
+    <div class="table ms-4 mt-2">
+      <div class="row text-bold text-italic">
+        <div class="col w-8 text-end me-2">Payment</div>
+        <div class="col w-6">Date</div>
+        <div class="col w-5">Check #</div>
+        <div class="col w-7">Fund</div>
+        <div class="col w-24">Description</div>
+      </div>
+      <% commitment.contributions.each do |contribution| %>
+        <div class="row pt-1">
+          <div class="col w-8 text-end me-2">
+            <%= contribution.agreement.amount.format %>
+          </div>
+          <div class="col w-6">
+            <%= contribution.agreement.transaction_at.strftime("%m/%d/%Y") %>
+          </div>
+          <div class="col w-5">
+            <%= contribution.agreement.check_number %>
+          </div>
+          <div class="col w-7">
+            <%= contribution.agreement.funding_source.short_name %>
+          </div>
+          <div class="col w-24">
+            <%= contribution.agreement.description %>
+          </div>
+        </div>
+      <% end %>
+      <div class="row">
+        <div class="col w-1"></div>
+        <div class="col w-7"><hr class="black-line"></div>
+      </div>
+      <div class="row">
+        <div class="col w-8 text-end pe-2"><%= Money.new(commitment.payments).format %></div>
+      </div>
+    </div>
+  </div>
+  <%== "<div class='alwaysbreak'></div>" unless last_index == index %>
+<% end %>

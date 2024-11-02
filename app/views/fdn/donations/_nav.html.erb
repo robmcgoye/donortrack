@@ -1,0 +1,15 @@
+<div class="row align-items-center">
+  <div class="col-auto"><%= image_tag(@foundation.resize_image_logo(40,40)) if @foundation.image_logo.attached? %></div>
+  <div class="col d-flex justify-content-center">
+    <ul class="nav nav-underline">
+      <li class="nav-item">
+        <%= link_to "Contributions", foundation_contributions_path(@foundation), 
+            class: "#{request.path == foundation_contributions_path(@foundation)  ? "nav-link active" : "nav-link"}" %>
+      </li>
+      <li class="nav-item">
+        <%= link_to "Commitments", foundation_commitments_path(@foundation), 
+            class: "#{request.path == foundation_commitments_path(@foundation)  ? "nav-link active" : "nav-link"}" %>
+      </li>
+    </ul>  
+  </div>
+</div>

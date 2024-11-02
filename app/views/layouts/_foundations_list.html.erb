@@ -1,0 +1,8 @@
+<%# locals: (foundations:) -%>
+<%= turbo_frame_tag "foundations-nav-list" do %>
+  <% foundations.each do |foundation| %>
+    <li>
+      <%= link_to foundation.short_name, dashboard_foundation_path(foundation), class: "dropdown-item main-navbar-dropdown-item" %>
+    </li>
+  <% end %>
+<% end %>

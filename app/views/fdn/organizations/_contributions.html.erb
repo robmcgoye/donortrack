@@ -1,0 +1,40 @@
+<%= turbo_frame_tag "organization-show-sub" do %>
+  <ul class="nav nav-underline justify-content-center">
+    <li class="nav-item">
+      <%= link_to "Contributions", contributions_foundation_organization_path(@foundation, @organization), class: "nav-link active" %>
+    </li>
+    <li class="nav-item">
+      <%= link_to "Commitments", commitments_foundation_organization_path(@foundation, @organization), class: "nav-link" %>
+    </li>
+  </ul>
+  <div class="container-fluid py-2">
+    <div class="row tb-header">
+      <div class="col-6 col-sm-3"><i class="bi bi-check2-circle pe-2"></i>Date</div>
+      <div class="d-none d-sm-block col-sm-3">Check #</div>
+      <div class="col-6 col-sm-3">Amount</div>
+      <div class="d-none d-sm-block col-sm-3">Donor</div>
+    </div>
+    <% if @organization.contributions.size > 0 %>
+      <% @organization.contributions.each do |contribution| %>
+        <div class="row">
+          <div class="col-6 col-sm-3 text-nowrap">
+            <%#== "<i class='bi bi-check2-circle pe-2'></i>" if contribution.check.cleared? %>
+            <i class="bi bi-<%= contribution.check.cleared? ? "check2-circle" : "circle" %> pe-1"></i>
+            <%= contribution.check.transaction_at.strftime("%m/%d/%Y") %>
+          </div>
+          <div class="d-none d-sm-block col-sm-3">
+            <%= contribution.check.check_number %>
+          </div>
+          <div class="col-6 col-sm-3">
+            <%= contribution.check.amount.format %>
+          </div>
+          <div class="d-none d-sm-block col-sm-3">
+            <%= contribution.donor.code %>
+          </div>
+        </div>
+      <% end %>
+    <% else %>
+      <div class="container text-center">No Contributions</div>
+    <% end %>
+  </div>
+<% end %>

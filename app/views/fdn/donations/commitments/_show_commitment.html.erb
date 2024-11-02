@@ -1,0 +1,59 @@
+  <%= turbo_frame_tag @commitment do %>
+    <div class="row">
+
+      <div class="col-sm-7 pb-1">
+        <div class="card bg-warning bg-opacity-10 border-warning p-2 h-100">
+          <div class="row">
+            <div class="col-auto text-end">
+              <span class="badge rounded-pill bg-warning">Org : </span>
+            </div>  
+            <%= render "fdn/donations/show_organization", organization: @commitment.organization %>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-sm-5">
+        <div class="card border bg-info bg-opacity-10 border-info p-2">
+          <div class="row">
+            <div class="col-4"><span class="badge rounded-pill bg-info">Start Date : </span></div>
+            <div class="col-8 text-end"><%= @commitment.start_at.strftime("%m/%d/%Y") %></div>
+          </div>
+          <div class="row">
+            <div class="col-4"><span class="badge rounded-pill bg-info">End Date : </span></div>
+            <div class="col-8 text-end"><%= @commitment.end_at.strftime("%m/%d/%Y") %></div>
+          </div>
+        </div>
+        <div class="card border bg-success bg-opacity-10 border-success p-2 mt-1">
+          <div class="row">              
+            <div class="col-5"><span class="badge rounded-pill bg-success">Commitment : </span></div>
+            <div class="col-7 text-end">
+                <span class="text-success"><%= @commitment.number_payments %> X </span>
+                <%= @commitment.amount.format %>                
+            </div>
+          </div>
+          <div class="row">              
+            <div class="col-5"><span class="badge rounded-pill bg-success">Payments : </span></div>
+            <div class="col-7 text-end">
+              <div class="border-bottom border-success"> - 
+                <%= Money.new(@commitment.payments).format %>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-5"><span class="badge rounded-pill bg-success">Total Due : </span></div>
+            <div class="col-7 text-end">
+              <%= Money.new(@commitment.amount_due).format %>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="row mt-3">
+      <div class="col-auto"> <span class="badge rounded-pill bg-secondary">Code : </span></div>
+      <div class="col border-start border-secondary">
+        <%= @commitment.code %>
+      </div>
+    </div>
+  <% end %>

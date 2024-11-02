@@ -1,0 +1,3 @@
+<%= turbo_frame_tag @donor do %>
+  <%= render "form", donor: @donor, form_url: foundation_settings_donor_path(@foundation.id, @donor) %>
+<% end %>

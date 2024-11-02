@@ -1,0 +1,22 @@
+<%# locals: ( organization_type:, organization_type_counter: 0, organization_type_iteration: 1 ) -%>
+<%= turbo_frame_tag organization_type do %>
+  <div class="row my-table-row mx-1">
+    <div class="col-3 col-sm-4 px-1 pt-1 my-0 border border-secondary-subtle border-end-0 border-start-0">
+      <%= organization_type.code %>
+    </div>
+    <div class="col-6 px-1 pt-1 my-0 border border-secondary-subtle border-end-0 border-start-0">
+      <%= organization_type.description %>
+    </div>
+    <div class="col-2 px-1 my-0 text-end">
+      <div class="btn-group">
+        <%= link_to edit_foundation_settings_organization_type_path(@foundation.id, organization_type), class: "btn btn-sm btn-outline-secondary" do %>
+          <i class="bi bi-pencil-square pe-1"></i>
+        <% end %>
+        <%= button_to foundation_settings_organization_type_path(@foundation.id, organization_type), method: :delete, class: "btn btn-sm btn-outline-danger", 
+              form: {data: {turbo_confirm: 'Are you sure?'}} do %>
+          <i class="bi bi-trash pe-1"></i>
+        <% end %>         
+      </div>
+    </div>
+  </div>
+<% end %>

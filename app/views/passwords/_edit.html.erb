@@ -1,0 +1,43 @@
+<div class="container" id="main_content">
+
+  <%= render 'shared/error_messages', resource: @user %>
+
+  <div class="card">
+    <div class="card-header my-text-bg-secondary pb-0">
+      <h4>Change your password</h4>
+    </div>
+    <div class="card-body">
+      <%= form_with(url: password_path, method: :patch) do |form| %>
+        <div class="row mb-3">
+          <%= form.label :current_password, class: "col-md-3 col-form-label" %>
+          <div class="col-md-9">
+            <%= form.password_field :current_password, required: true, autofocus: true, class: "form-control", placeholder: "Current Password" %>
+          </div>
+        </div>
+
+        <div class="row mb-2">
+          <%= form.label :password, "New password", class: "col-md-3 col-form-label" %>
+          <div class="col-md-9">
+          <%= form.password_field :password, required: true, class: "form-control", autocomplete: "new-password" %>
+          <span class="small">6 characters minimum.</span>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <%= form.label :password_confirmation, "Confirm password", class: "col-md-3 col-form-label" %>
+          <div class="col-md-9">
+          <%= form.password_field :password_confirmation, required: true, class: "form-control", autocomplete: "new-password" %>
+          </div>
+        </div>
+
+        <div class="row"> 
+          <div class="col-md-9 offset-md-3 ">
+            <%= form.button nil, class: "btn btn-sm btn-outline-secondary" do %>
+              <i class="bi bi-floppy pe-2"></i>Save changes
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

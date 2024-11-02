@@ -1,0 +1,56 @@
+<%= turbo_frame_tag "reconciliation-main" do %>
+  <div class="card bg-info bg-opacity-10 border-info mx-1">
+    <div class="card-header bg-info bg-opacity-25 px-1">
+      <div class="row align-items-center mx-0">
+        <div class="col-auto px-1">
+          <span class="badge rounded-pill bg-info">Statement : </span>
+        </div>
+        <div class="col px-1">
+          <%= "#{@reconciliation.started_at.strftime("%m/%d/%Y")} - #{@reconciliation.ended_at.strftime("%m/%d/%Y")}" %>
+        </div>
+      </div>
+    </div>
+    <div class="card-body px-1">
+
+      <div class="row align-items-center pb-2 mx-0">
+        <div class="col-5 col-md-2">
+          <span class="badge rounded-pill bg-info">Starting Balance : </span>
+        </div>
+        <div class="col-6 col-md-4 text-center">
+          <%= @reconciliation.starting_balance.format %>
+        </div>
+        <div class="col-5 col-md-2">
+          <span class="badge rounded-pill bg-info">Ending Balance : </span>
+        </div>
+        <div class="col-6 col-md-4 text-center">
+          <%= @reconciliation.ending_balance.format %>
+        </div>
+      </div>
+
+      <div class="card bg-info bg-opacity-10 border-info">
+        <div class="card-header py-0 text-center">Transactions</div>
+        <div class="card-body px-0 py-2">           
+          <% @reconciliation.checks.each do |check| %>
+
+            <div class="row mx-0 <%=  "bg-success bg-opacity-10" if check.credit? %>">
+              <div class="col-4 col-md-2 px-1">
+                <%= check.transaction_at.strftime("%m/%d/%Y") %>
+              </div>
+              <div class="d-none d-md-block col-md-1 px-1">
+                <%= check.debit? ? check.check_number : "DEP" %>
+              </div>
+              <div class="d-none d-md-block col-md-5 px-1">
+                <%= check.debit? ? check.contributions.take.organization.name : check.description %>
+              </div>
+              <div class="col-6 col-md-4 px-2 text-end">
+                <%= "#{check.debit? ? "-" : "+"} #{check.amount.format}" %>
+              </div>
+            </div>
+            
+          <% end %>
+        </div>
+      </div>
+
+    </div>
+  </div>
+<% end %>

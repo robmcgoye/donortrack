@@ -1,0 +1,11 @@
+<%= turbo_frame_tag @contribution do %>
+  <div class="card">
+    <div class="card-header">
+      <%= @contribution.agreement_type.titleize %>
+    </div>
+
+      <%= render "form", contribution: @contribution, form_url: foundation_contribution_path(@foundation, @contribution), show: @param_show %>
+
+  </div>
+<% end %>
+
