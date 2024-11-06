@@ -34,8 +34,8 @@
           </li>
 
           <li class="nav-item">
-            <%= link_to users_path, class: "nav-link main-navbar-link", 
-                      :"data-action" => "click->mnnav#view_accounts" do %>
+            <%= link_to users_path, class: "nav-link main-navbar-link", :"data-turbo-stream" => true, 
+              :"data-action" => "click->mnnav#view_accounts" do %>
               <i class="bi bi-people pe-1"></i>Accounts
             <% end %>
           </li>
@@ -47,17 +47,17 @@
             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="user_navbar_dropdown">
               <li>
                 <%= link_to "Change Password", edit_password_path, 
-                      class: "dropdown-item main-navbar-dropdown-item", 
+                      class: "dropdown-item main-navbar-dropdown-item", :"data-turbo-stream" => true,
                       :"data-action" => "click->mnnav#edit_password" %>
               </li>
               <li>
                 <%= link_to "Change Email Address", edit_identity_email_path, 
-                      class: "dropdown-item main-navbar-dropdown-item", 
-                      :"data-action" => "click->mnnav#edit_email" %>
+                      class: "dropdown-item main-navbar-dropdown-item", :"data-turbo-stream" => true,
+                      :"data-action" => "click->mnnav#edit_email"%>
               </li>
               <li>
                 <%= link_to "Sessions", sessions_path, 
-                      class: "dropdown-item main-navbar-dropdown-item",
+                      class: "dropdown-item main-navbar-dropdown-item", :"data-turbo-stream" => true,
                       :"data-action" => "click->mnnav#view_sessions" %>
               </li>
               <li><hr class="dropdown-divider"></li>

@@ -9,6 +9,11 @@ Rails.application.routes.draw do
   get "service-worker" => "rails/pwa#service_worker", as: :pwa_service_worker
   get "manifest" => "rails/pwa#manifest", as: :pwa_manifest
 
+  # get "/404", to: "errors#not_found"
+  # get "/422", to: "errors#unprocessable_entity"
+  # get "/500", to: "errors#internal_server_error"
+  get "/errors", to: "errors#show"
+
   get  "sign_in", to: "sessions#new"
   post "sign_in", to: "sessions#create"
   get  "sign_up", to: "registrations#new"

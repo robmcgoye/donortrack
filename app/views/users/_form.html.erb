@@ -46,8 +46,10 @@
         <%= form.button class: "btn btn-sm btn-outline-secondary text-start" do %>
           <i class="bi bi-floppy pe-1"></i>Save
         <% end %>
-        <%= link_to users_cancel_path(get_user_id(user), index: params[:index]), class: "btn btn-sm btn-outline-secondary text-start" do %>
-          <i class="bi bi-x-square pe-1"></i>Cancel
+        <%= link_to users_cancel_path(get_user_id(user), index: params[:index]),
+            :"data-turbo-stream" => true,
+            class: "btn btn-sm btn-outline-secondary text-start" do %>
+            <i class="bi bi-x-square pe-1"></i>Cancel
         <% end %>
       </div>  
     </div>
