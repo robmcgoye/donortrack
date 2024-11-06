@@ -41,7 +41,7 @@ class SessionsController < ApplicationController
         turbo_stream.replace("messages", partial: "layouts/messages"),
         turbo_stream.replace("main_content", partial: "sessions/index")
       ]
-    end 
+    end
 
     def set_session
       @session = Current.user.sessions.find(params[:id])

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ error_code }} - {{ error_title }}</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light d-flex justify-content-center align-items-center vh-100">
+    <div class="container text-center">
+        <div class="row justify-content-center">
+            <div class="col-lg-6 col-md-8">
+                <div class="card shadow-sm">
+                    <div class="card-body p-5">
+                        <h1 class="display-4" style="color: {{ error_color }}">{{ error_code }}</h1>
+                        <p class="lead">{{ error_message }}</p>
+                        <p>Requested Page: <span class="fw-bold text-primary">{{ requested_page }}</span></p>
+                        <p>Referring Page: <span class="fw-bold text-primary">{{ referring_page }}</span></p>
+                        <a href="/" class="btn btn-primary mt-4">Return to Home</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
+<%# error_code	error_title	             error_message	                                       error_color
+    404	"404"	"Page Not Found"	    "The page you’re looking for doesn’t exist."	        #dc3545
+    422	"422"	"Unprocessable Request"	"The request was valid, but we couldn’t process it."	#ffc107
+    500	"500"	"Internal Server Error"	"Something went wrong on our end. Please try again."	#dc3545 %>

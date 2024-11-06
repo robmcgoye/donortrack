@@ -1,14 +1,24 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: %i[ show edit update destroy ]
+  before_action :set_user, only: %i[ edit update destroy ] # show
   before_action :check_permissions
+  before_action :ensure_turbo_frame_request, except: [ :index ]
+
 
   def index
-    @users = User.all
-    render turbo_stream: [
-      turbo_stream.replace("messages", partial: "layouts/messages"),
-      turbo_stream.replace("main_content", partial: "users/index")
-    ]
+    respond_to do |format|
+      if request.headers["Accept"].include?("text/vnd.turbo-stream.html")
+        @users = User.all
+        format.turbo_stream { render turbo_stream: [
+          turbo_stream.replace("messages", partial: "layouts/messages"),
+          turbo_stream.replace("main_content", partial: "users/index")
+        ] }
+      else
+        set_errors
+        format.html { render layout: "layouts/errors/application", template: "errors/10"  }
+      end
+    end
   end
+
 
   def new
     @user = User.new
@@ -41,7 +51,7 @@ class UsersController < ApplicationController
         turbo_stream.replace("user_list", partial: "users/user_list")
       ]
     else
-      render :new, status: :unprocessable_entity
+        render :new, status: :unprocessable_entity
     end
   end
 
@@ -81,6 +91,12 @@ class UsersController < ApplicationController
       @user = User.find(params[:id])
     end
 
+    def set_errors
+      @request_action = request.env["REQUEST_URI"]
+      @error_code = "10"
+      @error_message = "This is an internal request that somehow was accessed externally."
+    end
+
     def user_params
       params.require(:user).permit(:email, :password, :password_confirmation, :admin)
     end
@@ -94,5 +110,11 @@ class UsersController < ApplicationController
         turbo_stream.replace("messages", partial: "layouts/messages"),
         turbo_stream.replace(user, partial: "users/user", locals: { user: user, index: index })
       ]
+    end
+    def ensure_turbo_frame_request
+      unless turbo_frame_request?
+        set_errors
+        render layout: "errors/application", template: "errors/show"
+      end
     end
 end

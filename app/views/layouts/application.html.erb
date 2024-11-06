@@ -5,6 +5,7 @@
     <%# <title><%= content_for(:title) || "Donortrack" ></title> %>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="apple-mobile-web-app-capable" content="yes">
+    <%# <meta name="turbo-prefetch" content="false"> %>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -16,7 +17,8 @@
     <link rel="apple-touch-icon" href="/icon.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
-    <%= javascript_include_tag "application", "data-turbo-track": "reload", type: "module" %>
+    <%#= javascript_include_tag "application", "data-turbo-track": "reload", type: "module" %>
+    <%= javascript_include_tag "application", "data-turbo-track": "reload", type: "module", defer: true %>
   </head>
 
   <body class="<%= Current.user.present? ? "primary-main" : "secondary-main" %>" >
