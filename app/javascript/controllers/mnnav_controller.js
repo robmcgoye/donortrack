@@ -29,7 +29,7 @@ export default class extends Controller {
   }
 
   set_page(title) {
-    console.log(title);
+    // console.log(title);
     const is_toggler_expanded = this.navbartogglerTarget.getAttribute("aria-expanded");
     document.title = title;
     this.sidebarOutlet.selectedValue = -1;

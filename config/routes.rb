@@ -21,7 +21,11 @@ Rails.application.routes.draw do
   resources :sessions, only: [ :index, :show, :destroy ]
   resource  :password, only: [ :edit, :update ]
   resources :users, excpet: [ :show ]
+  # get "/messages", to: "users#messages", as: "messages"
+  post "/users/:id/processed_admin", to: "users#processed_admin"
   get "users/cancel/:id", to: "users#cancel", as: "users_cancel"
+  patch "/users/:id/update_admin", to: "users#update_admin", as: "update_admin_user"
+
   namespace :identity do
     resource :email,              only: [ :edit, :update ]
     resource :email_verification, only: [ :show, :create ]

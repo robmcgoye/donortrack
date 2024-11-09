@@ -2,14 +2,15 @@ class User < ApplicationRecord
   rolify
   has_secure_password
 
-  attr_accessor :admin
-
   has_many :email_verification_tokens, dependent: :destroy
   has_many :password_reset_tokens, dependent: :destroy
   has_many :sessions, dependent: :destroy
 
   validates :email, presence: true, uniqueness: true, format: { with: URI::MailTo::EMAIL_REGEXP }
   validates :password, allow_nil: true, length: { minimum: 6 }
+
+  validate :cannot_revoke_own_admin_privileges, on: :remove_admin_role
+  # before_action :validate_cannot_revoke_own_admin_privileges, only: [ :remove_admin ]
 
   before_validation if: -> { email.present? } do
     self.email = email.downcase.strip
@@ -25,26 +26,16 @@ class User < ApplicationRecord
     sessions.where.not(id: Current.session).delete_all
   end
 
-  after_save do |user|
-    if User.count > 1
-      if user.admin? != (user.has_any_role? :admin)
-        if user.admin?
-          user.add_role(:admin)
-        else
-          user.remove_role :admin
-        end
-        user.add_role(:user) if roles.blank?
-      end
-    end
+  def add_admin_role
+    add_role :admin
   end
 
-  after_find do |user|
-    if user.has_any_role? :admin
-      user.admin = 1
-    else
-      user.admin = 0
-    end
-    # user.admin = user.has_any_role? :admin
+  def remove_admin_role
+    return false unless valid?(:remove_admin_role)
+    Rails.logger.debug("====Remove_admin_role++++++++++++++++++=")
+    remove_role :admin
+    add_role(:user) if roles.blank?
+    true
   end
 
   def get_roles
@@ -52,11 +43,7 @@ class User < ApplicationRecord
   end
 
   def admin?
-    if self.admin.to_i == 1
-      true
-    else
-      false
-    end
+    has_any_role? :admin
   end
 
   private
@@ -67,5 +54,16 @@ class User < ApplicationRecord
     else
       add_role(:user) if roles.blank?
     end
+  end
+
+  def cannot_revoke_own_admin_privileges
+    Rails.logger.debug("START-User#cannot_revoke_own_admin_privileges+++++++++++++++++++=")
+    Rails.logger.debug(admin?)
+    Rails.logger.debug(Current.user.id)
+    Rails.logger.debug(id)
+    if admin? && Current.user.id == id
+      errors.add(:admin, "can't revoke your own admin privileges")
+    end
+    Rails.logger.debug("END-User#cannot_revoke_own_admin_privileges++++++++++++++++++=")
   end
 end

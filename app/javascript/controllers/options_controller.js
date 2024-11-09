@@ -8,7 +8,7 @@ export default class extends Controller {
   frm = {};
 
   initialize() {
-    console.log("hello");
+    // console.log("hello");
     const radiobtn = document.getElementById(this.checkedValue);
     radiobtn.checked = true;
     this.frm = document.getElementById("set_contribution_type");
@@ -20,6 +20,6 @@ export default class extends Controller {
     // const frm = document.getElementById("set_contribution_type");
     const rb_value = e.srcElement.getAttribute("value");
     this.frm.value = rb_value;
-    console.log(this.frm.value);
+    // console.log(this.frm.value);
   }
 }

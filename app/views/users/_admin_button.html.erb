@@ -1,0 +1,12 @@
+<%# locals: (user:) -%>
+<%=turbo_frame_tag "admin_button_#{user.id}" do %>
+  <% if user.admin? %>
+        <button type="button"  class="btn btn-sm btn-outline-danger text-start mt-4" data-action="admin#revokeAdmin">
+          <i class="bi bi-person-x pe-1"></i> Revoke Admin
+        </button>
+  <% else %>
+          <button type="button" class="btn btn-sm btn-outline-success text-start mt-4" data-action="admin#grantAdmin">
+          <i class="bi bi-shield-lock pe-1"></i> Grant Admin
+        </button>
+  <% end %>
+<% end %>
