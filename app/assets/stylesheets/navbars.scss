@@ -1,6 +1,12 @@
 /*------------------------------------*\
   #NAVBAR
 \*------------------------------------*/
+$dark-blue-color:    #0d1949;
+$white:              #ffffff;
+$black:              #000000;
+$light-blue-color:   #00B6B5;
+$blue-color:         #006697;
+
 .main-navbar {
   // background-color: $light-purple-color;
   background-color: $dark-blue-color;
@@ -41,7 +47,7 @@
   max-width: 220px;
   // background: #7386D5;
   background: $dark-blue-color;
-  color: $white-color;
+  color: $white;
   transition: all 0.3s;
   height: 91vh;
   // position: fixed;
@@ -77,7 +83,7 @@
 
 #sidebar-controller .list-group a:hover,
 #sidebarCollapse:hover {
-  color: $white-color;
+  color: $white;
   background: $light-blue-color;
 }
 

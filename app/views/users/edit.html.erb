@@ -3,7 +3,7 @@
   <%# border border-primary %>
   <div class="container-fluid p-2 m-1">
     <div class="card">
-      <div class="card-header"><h6>Editing User</h6></div>
+      <%= render "edit_header", user: @user %>
       <div class="card-body"><%= render "form", user: @user %></div>
     </div>
   </div>
