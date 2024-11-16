@@ -73,6 +73,12 @@ button > * {
 //   background-color: $lht-purple2-color;
 //   color: $black;
 // }
+.my-disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  background-color: #8a8a8a;
+  border-color: #ccc;
+}
 
 .my-bg-primary {
   background-color: $dark-blue-color;

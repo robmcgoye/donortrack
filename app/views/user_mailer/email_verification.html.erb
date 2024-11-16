@@ -1,11 +1,13 @@
-<p>Hey there,</p>
-
-<p>This is to confirm that <%= @user.email %> is the email you want to use on your account. If you ever lose your password, that's where we'll email a reset link.</p>
-
-<p><strong>You must hit the link below to confirm that you received this email.</strong></p>
-
-<p><%= link_to "Yes, use this email for my account", identity_email_verification_url(sid: @signed_id) %></p>
-
-<hr>
-
-<p>Have questions or need help? Just reply to this email and our support team will help you sort it out.</p>
+<div class="container">
+  <h2>Welcome to DonorTrack!</h2>
+  <p>Thank you for signing up. To complete your registration, please verify your email address.</p>
+  <p style="text-align: center; margin: 30px 0;">
+    <%= link_to "Verify My Email Address", identity_email_verification_url(sid: @signed_id), style: "background-color: #007bff; color: #ffffff; padding: 10px 20px; text-decoration: none; border-radius: 5px;" %>
+  </p>
+  <p>If you did not create an account with DonorTrack, please disregard this email.</p>
+  <p>Thank you for joining DonorTrack!<br>The DonorTrack Team</p>
+  <div class="footer">
+    <p>If you have any questions or need assistance, feel free to <a href="mailto:support@donortrack.com">contact us</a>.</p>
+    <p>This email link will expire in <%= distance_of_time_in_words(Time.current, Time.current + @time_to_expire) %>.</p>
+  </div>
+</div>

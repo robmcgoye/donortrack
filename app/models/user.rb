@@ -10,7 +10,6 @@ class User < ApplicationRecord
   validates :password, allow_nil: true, length: { minimum: 6 }
 
   validate :cannot_revoke_own_admin_privileges, on: :remove_admin_role
-  # before_action :validate_cannot_revoke_own_admin_privileges, only: [ :remove_admin ]
 
   before_validation if: -> { email.present? } do
     self.email = email.downcase.strip
@@ -32,7 +31,6 @@ class User < ApplicationRecord
 
   def remove_admin_role
     return false unless valid?(:remove_admin_role)
-    Rails.logger.debug("====Remove_admin_role++++++++++++++++++=")
     remove_role :admin
     add_role(:user) if roles.blank?
     true
@@ -57,13 +55,8 @@ class User < ApplicationRecord
   end
 
   def cannot_revoke_own_admin_privileges
-    Rails.logger.debug("START-User#cannot_revoke_own_admin_privileges+++++++++++++++++++=")
-    Rails.logger.debug(admin?)
-    Rails.logger.debug(Current.user.id)
-    Rails.logger.debug(id)
     if admin? && Current.user.id == id
       errors.add(:admin, "can't revoke your own admin privileges")
     end
-    Rails.logger.debug("END-User#cannot_revoke_own_admin_privileges++++++++++++++++++=")
   end
 end

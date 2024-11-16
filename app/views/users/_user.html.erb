@@ -29,9 +29,22 @@
 
     <div class="col-auto">
       <div class="dropstart" role="group">
-        <button type="button" class="btn btn-sm btn-outline-dark my-dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+        <button
+          type="button"
+          class="btn btn-sm btn-outline-dark my-dropdown-toggle <%= "my-disabled" if Current.user == user %>"
+          data-bs-toggle="dropdown"
+          aria-expanded="false"
+
+          <% if Current.user == user %>
+            <%# disabled %>
+  data-bs-tooltip="You can't edit your account here"
+  title="Edit your account in your profile"
+
+          <% end %>
+        >
           <i class="bi bi-three-dots-vertical"></i>
         </button>
+        <% if Current.user != user %>
         <ul class="dropdown-menu dropdown-menu-dark">
           <li>
             <%= link_to edit_user_path(user, index: index), class: "dropdown-item" do %>
@@ -44,6 +57,7 @@
             <% end %>          
           </li>
         </ul>
+        <% end %>
       </div>  
     </div>
   </div>
