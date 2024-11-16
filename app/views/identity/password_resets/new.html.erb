@@ -23,7 +23,8 @@
     </div>
     <div class="card-footer text-end py-1">
       <div class="btn-group">
-      <%= link_to "Login", sign_in_path, class: "btn btn-outline-secondary btn-sm" %> 
+        <%= render "resend_verification_button", user: nil %>
+        <%= link_to "Login", sign_in_path, class: "btn btn-outline-secondary btn-sm" %> 
       </div>
     </div>
   </div>

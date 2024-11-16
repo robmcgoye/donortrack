@@ -1,4 +1,5 @@
 class Identity::EmailsController < ApplicationController
+  include SessionManagement
   before_action :set_user
 
   def edit
@@ -24,9 +25,15 @@ class Identity::EmailsController < ApplicationController
     def redirect_to_root
       if @user.email_previously_changed?
         resend_email_verification
-        flash.now[:notice] = "Your email has been changed."
+        flash[:notice] = "Your email has been changed. Please sign back in"
+        destroy_all_sessions_for(@user, redirect: true)
+      else
+        flash.now[:notice] = "Your email hasn't changed."
+        render turbo_stream: [
+          turbo_stream.replace("messages", partial: "layouts/messages"),
+          turbo_stream.replace("main_content", partial: "identity/emails/edit")
+        ]
       end
-      goto_dashboard
     end
 
     def resend_email_verification

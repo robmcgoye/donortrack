@@ -1,32 +1,43 @@
-<h1>Reset your password</h1>
-
-<%= form_with(url: identity_password_reset_path, method: :patch) do |form| %>
-  <% if @user.errors.any? %>
-    <div style="color: red">
-      <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
-
-      <ul>
-        <% @user.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
+<div class="container mb-5">
+  <div class="card">
+    <div class="card-header fw-semibold fs-4 text-center py-1">
+      Reset your password
     </div>
-  <% end %>
+    <div class="card-body">
+      <%= render 'layouts/messages' %>
+      <%= render 'shared/error_messages', resource: @user %>
+      <%= form_with(url: identity_password_reset_path, method: :patch) do |form| %>
+        <%= form.hidden_field :sid, value: params[:sid] %>
 
-  <%= form.hidden_field :sid, value: params[:sid] %>
+        <div class="row mb-2">
+          <%= form.label :password, "New password", class: "col-md-3 col-form-label" %>
+          <div class="col-md-9">
+          <%= form.password_field :password, required: true, class: "form-control", autocomplete: "new-password" %>
+          <span class="small">6 characters minimum.</span>
+          </div>
+        </div>
 
-  <div>
-    <%= form.label :password, "New password", style: "display: block" %>
-    <%= form.password_field :password, required: true, autofocus: true, autocomplete: "new-password" %>
-    <div>12 characters minimum.</div>
+        <div class="row mb-3">
+          <%= form.label :password_confirmation, "Confirm password", class: "col-md-3 col-form-label" %>
+          <div class="col-md-9">
+          <%= form.password_field :password_confirmation, required: true, class: "form-control", autocomplete: "new-password" %>
+          </div>
+        </div>
+
+        <div class="row"> 
+          <div class="col-md-9 offset-md-3 ">
+            <%= form.button nil, class: "btn btn-sm btn-outline-secondary" do %>
+              <i class="bi bi-floppy pe-2"></i>Save changes
+            <% end %>
+          </div>
+        </div>
+
+      <% end %>
+    </div>
+    <div class="card-footer text-end py-1">
+      <div class="btn-group">
+        <%= link_to "Login", sign_in_path, class: "btn btn-outline-secondary btn-sm" %> 
+      </div>
+    </div>
   </div>
-
-  <div>
-    <%= form.label :password_confirmation, "Confirm new password", style: "display: block" %>
-    <%= form.password_field :password_confirmation, required: true, autocomplete: "new-password" %>
-  </div>
-
-  <div>
-    <%= form.submit "Save changes" %>
-  </div>
-<% end %>
+</div>

@@ -6,14 +6,6 @@
 
   <div class="row">
     <div class="col col-12 col-md-10">
-    <%# <div class="row mb-2"> %>
-      <%# <div class="col-md-9 offset-md-3"> %>
-        <%# <div class="form-check form-switch"> %>
-          <%#= form.check_box :admin, class: "form-check-input", id: "flexSwitchCheckAdmin_#{user.id}" %>
-          <%#>= form.label :admin,  class: "form-check-label", for: "flexSwitchCheckAdmin_#{user.id}" %>        
-        <%# </div> %>
-      <%# </div> %>
-    <%# </div> %>
       <div class="row mb-2">
         <%= form.label :email, "Email", class: "col-md-3 col-form-label-sm" %>
         <div class="col-md-9">
@@ -53,10 +45,9 @@
             <i class="bi bi-x-square pe-1"></i>Cancel
         <% end %>
         <% if get_user_id(user) > 0 %>
-        <%= render "admin_button", user: user %>
+          <%= render "admin_button", user: user %>
         <% end %>
       </div>
     </div>
   </div>
 <% end %>
-

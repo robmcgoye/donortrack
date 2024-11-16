@@ -1,4 +1,5 @@
 class PasswordsController < ApplicationController
+  include SessionManagement
   before_action :set_user
 
   def edit
@@ -10,8 +11,8 @@ class PasswordsController < ApplicationController
       flash.now[:alert] = "The current password you entered is incorrect."
       goto_edit_password
     elsif @user.update(user_params)
-      flash.now[:notice] = "Your password has been changed."
-      goto_dashboard
+      flash[:notice] = "Your password has been changed. Please sign back in."
+      destroy_all_sessions_for(Current.user, redirect: true)
     else
       goto_edit_password
     end

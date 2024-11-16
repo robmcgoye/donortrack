@@ -1,22 +1,17 @@
 class RegistrationsController < ApplicationController
+  include SessionManagement
   skip_before_action :authenticate
+  before_action :redirect_if_user_exists, only: [ :new, :create ]
 
   def new
-    if User.first.nil?
-      @user = User.new
-    else
-      redirect_to sign_in_path, alert: "Contact admin to create account."
-    end
+    @user = User.new
   end
 
   def create
     @user = User.new(user_params)
-
     if @user.save
-      session_record = @user.sessions.create!
-      cookies.signed.permanent[:session_token] = { value: session_record.id, httponly: true }
-
-      send_email_verification
+      create_session_for(@user)
+      send_email_verification(@user)
       redirect_to root_path, notice: "Welcome! You have signed up successfully"
     else
       render :new, status: :unprocessable_entity
@@ -24,11 +19,18 @@ class RegistrationsController < ApplicationController
   end
 
   private
-    def user_params
-      params.permit(:email, :password, :password_confirmation)
-    end
 
-    def send_email_verification
-      UserMailer.with(user: @user).email_verification.deliver_later
+  def redirect_if_user_exists
+    if User.exists?
+      redirect_to sign_in_path, alert: "Contact admin to create account."
     end
+  end
+
+  def user_params
+    params.permit(:email, :password, :password_confirmation)
+  end
+
+  def send_email_verification(user)
+    UserMailer.with(user: user).email_verification.deliver_later
+  end
 end

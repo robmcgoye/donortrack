@@ -29,7 +29,9 @@ Rails.application.routes.draw do
   namespace :identity do
     resource :email,              only: [ :edit, :update ]
     resource :email_verification, only: [ :show, :create ]
-    resource :password_reset,     only: [ :new, :edit, :create, :update ]
+    resource :password_reset,     only: [ :new, :edit, :create, :update ] do
+      patch "resend_email_verification/:id", to: "password_resets#resend_email_verification", as: :resend_email_verification
+    end
   end
 
   root "fdn/foundations#index"
