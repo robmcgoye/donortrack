@@ -1,38 +1,19 @@
-import { Controller } from "@hotwired/stimulus"
+import { Controller } from "@hotwired/stimulus";
 
 export default class extends Controller {
-  static targets = [ "btn" ]
+  static targets = [ "sidebar", "icon", "btn" ]; // Declare targets
   static values = { selected: { type: Number, default: -1 } }
 
   initialize() {
-    // this.selectedValue = 0;
-    const side_bar = document.getElementById("sidebar-controller");
-    side_bar.classList.toggle('active');
+    this.selectedValue = 0;
+    this.toggle();
+    // const side_bar = document.getElementById("sidebar-controller");
+    // side_bar.classList.toggle('active');
   }
 
   connect() {
-    // console.log("Yo... hello!")
+    // console.log("connect");
   }
-
-  // organization(e) {
-  //   this.selectedValue = 1;
-  //   e.preventDefault();
-  // }
-
-  // contribution(e) {
-  //   this.selectedValue = 2;
-  //   e.preventDefault();
-  // }
-
-  // accounting(e) {
-  //   this.selectedValue = 3;
-  //   e.preventDefault();
-  // }
-
-  // report(e) {
-  //   this.selectedValue = 4;
-  //   e.preventDefault();
-  // }
 
   selectedValueChanged() {
     this.setButtonState();
@@ -60,6 +41,19 @@ export default class extends Controller {
       }
     });
   }
+  
+  toggle() {
+    this.sidebarTarget.classList.toggle("collapsed"); // Toggle the collapsed class
+    document.body.classList.toggle("collapsed-sidebar"); // Update layout class
+    this.updateIcon(); // Update the toggle icon
+  }
 
-
+  updateIcon() {
+    // Replace the icon's inner HTML with the appropriate icon
+    if (this.sidebarTarget.classList.contains("collapsed")) {
+      this.iconTarget.innerHTML = `<i class="bi bi-chevron-double-right"></i>`;
+    } else {
+      this.iconTarget.innerHTML = `<i class="bi bi-chevron-double-left"></i>`;
+    }
+  }
 }

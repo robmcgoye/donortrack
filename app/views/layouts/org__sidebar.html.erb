@@ -1,0 +1,47 @@
+<%# locals: (foundation:) -%>
+<%= turbo_frame_tag "sidebar" do %>    
+  <!-- Sidebar nav -->
+  <div class="list-group pt-1">
+    <%= link_to dashboard_foundation_path(foundation), class: "list-group-item",  
+        "data-sidebar-target": "btn" do %>
+      <i class="bi bi-speedometer2 me-2"></i>
+      <span class="show-xl">Dashboard</span>
+    <% end %>
+
+    <!-- nav item -->
+    <%= link_to foundation_organizations_path(foundation), class: "list-group-item list-group-item-action",  
+        "data-sidebar-target": "btn" do %>
+      <i class="bi bi-buildings me-2"></i>
+      <span class="show-xl">Organizations</span>
+    <% end %>
+ 
+    <!-- nav item -->
+    <%= link_to foundation_contributions_path(foundation), class: "list-group-item list-group-item-action",  
+        "data-sidebar-target": "btn" do %>
+      <i class="bi bi-credit-card me-2"></i>
+      <span class="show-xl">Contributions</span>
+    <% end %>
+
+    <!-- nav item -->
+    <%= link_to foundation_bank_accounts_path(foundation), class: "list-group-item list-group-item-action",  
+        "data-sidebar-target": "btn" do %>
+      <i class="bi bi-bank me-2"></i>
+      <span class="show-xl">Accounting</span>
+    <% end %>
+
+    <!-- nav item -->
+    <%= link_to foundation_reporting_dashboard_path(foundation), class: "list-group-item list-group-item-action",  
+        "data-sidebar-target": "btn" do %>
+      <i class="bi bi-printer me-2"></i>
+      <span class="show-xl">Reports</span>
+    <% end %>
+
+    <!-- nav item --> 
+    <%= link_to settings_foundation_path(foundation), class: "list-group-item list-group-item-action", 
+                          "data-sidebar-target": "btn" do %>
+      <i class="bi bi-gear me-2"></i>
+      <span class="show-xl">Settings</span>
+    <% end %>
+    <!-- end nav items -->
+  </div>
+<% end %>

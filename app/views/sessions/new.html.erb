@@ -1,7 +1,7 @@
 
 <div class="container mb-5 pb-5">
 
-  <div class="card">
+  <div class="card card-login">
     <div class="card-header fw-semibold fs-4 text-center py-1">
       Login
     </div>
@@ -22,7 +22,7 @@
         </div>
         <div class="row">
           <div class="col-sm-10 offset-sm-2 d-grid">
-            <%= form.button nil, class: "btn btn-secondary" do %>
+            <%= form.button nil, class: "btn btn-primary" do %>
               <i class="bi bi-box-arrow-in-left pe-1"></i>Login
             <% end %>
           </div>
@@ -33,9 +33,9 @@
   <div class="card-footer text-end py-1">
     <div class="btn-group">
       <% if User.first.nil? %>
-        <%= link_to "Sign up", sign_up_path, class: "btn btn-outline-secondary btn-sm" %> 
+        <%= link_to "Sign up", sign_up_path, class: "btn btn-outline-light btn-sm" %> 
       <% end %>
-      <%= link_to "Forgot your password?", new_identity_password_reset_path, class: "btn btn-outline-secondary btn-sm" %>
+      <%= link_to "Forgot your password?", new_identity_password_reset_path, class: "btn btn-outline-light btn-sm" %>
     </div>
   </div>
 </div>

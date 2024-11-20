@@ -1,7 +1,7 @@
 <%# locals: (user:) -%>
 <%=turbo_frame_tag "resend_verification_button" do %>
   <% if not user.nil? %>
-    <%= button_to resend_email_verification_identity_password_reset_path(user.id), method: :patch, data: { turbo: false }, class: "btn btn-sm btn-outline-secondary" do %>
+    <%= button_to resend_email_verification_identity_password_reset_path(user.id), method: :patch, data: { turbo: false }, class: "btn btn-sm btn-outline-light" do %>
       <i class="bi bi-arrow-repeat pe-1"></i>Re-send verification email
     <% end %>
   <% end %>

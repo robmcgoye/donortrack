@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>DonorTrack: <%= yield(:title) %></title>
+    <%# <title><%= content_for(:title) || "Donortrack" ></title> %>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <%# <meta name="turbo-prefetch" content="false"> %>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= yield :head %>
+
+    <link rel="manifest" href="/manifest.json">
+    <link rel="icon" href="/icon.png" type="image/png">
+    <link rel="icon" href="/icon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="/icon.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%#= javascript_include_tag "application", "data-turbo-track": "reload", type: "module" %>
+    <%= javascript_include_tag "application", "data-turbo-track": "reload", type: "module", defer: true %>
+  </head>
+
+  <body class="<%= Current.user.present? ? "primary-main" : "secondary-main" %>" >
+    <% if Current.user.present? %>
+      <div class="container-fluid ps-0">
+        <%= render "layouts/navbar" %>
+        <div class="row">
+          <div class="col-auto ms-2 pe-2 pt-1" id="sidebar-controller" data-controller="sidebar">   
+            <%= turbo_frame_tag "sidebar" %>
+          </div>
+          <div class="col ps-0 my-bg-light ">           
+            <div class="container-fluid mx-2 pt-3">
+              <%= render 'layouts/messages' %>             
+                <%= yield %>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    <% else %>
+      <div class="container-fluid pt-0 mt-0">
+        <div class="row justify-content-center">
+          
+          <div class="d-flex align-items-center col-md-8 col-lg-6 col-xl-5 col-xxl-4 vh-100">
+            <%= yield %>
+          </div>
+            
+          </div>
+        </div>
+      </div>
+    <% end %>
+    <%= turbo_frame_tag "modal" %>
+  </body>
+</html>

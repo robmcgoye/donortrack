@@ -1,0 +1,81 @@
+<%# locals: () -%>
+<nav class="main-navbar navbar navbar-expand-md navbar-dark py-1">
+  <div class="container-fluid" data-controller="mnnav" data-mnnav-sidebar-outlet="#sidebar-controller">
+      <div class="d-flex justify-content-center px-2">
+        <button class="btn btn-outline-light" id="toggleSidebar">
+  <i id="sidebarIcon" class="bi bi-chevron-right"></i>
+</button>
+        
+      </div>
+      <%= turbo_frame_tag "sidebar-button" %>
+      <%= render 'layouts/username' %>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" 
+              data-bs-target="#navbarSupportedContent" 
+              aria-controls="navbarSupportedContent" 
+              aria-expanded="false" aria-label="Toggle navigation"
+              data-mnnav-target="navbartoggler">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
+        
+      
+        <ul class="navbar-nav mb-2 mb-lg-0">
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle main-navbar-link" href="#" 
+                id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <i class="bi bi-piggy-bank pe-1"></i>Foundations
+            </a>
+            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+              <li>
+                <%= link_to root_path, target:"_top", class: "dropdown-item main-navbar-dropdown-item" do %>
+                  <i class="bi bi-list-stars pe-2"></i>Foundations
+                <% end %>
+                
+              </li>
+              <li><hr class="dropdown-divider"></li>
+              <%= render "layouts/foundations_list", foundations: @foundations %>
+            </ul>
+          </li>
+          <% if Current.user.admin? %>
+            <li class="nav-item">
+              <%= link_to users_path, class: "nav-link main-navbar-link", :"data-turbo-stream" => true, 
+                :"data-action" => "click->mnnav#view_accounts" do %>
+                <i class="bi bi-people pe-1"></i>Accounts
+              <% end %>
+            </li>
+          <% end %>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle main-navbar-link" href="#" 
+                  id="user_navbar_dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <i class="bi bi-person-circle"></i>
+            </a>
+            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="user_navbar_dropdown">
+              <li>
+                <%= link_to "Change Password", edit_password_path, 
+                      class: "dropdown-item main-navbar-dropdown-item", :"data-turbo-stream" => true,
+                      :"data-action" => "click->mnnav#edit_password" %>
+              </li>
+              <li>
+                <%= link_to "Change Email Address", edit_identity_email_path, 
+                      class: "dropdown-item main-navbar-dropdown-item", :"data-turbo-stream" => true,
+                      :"data-action" => "click->mnnav#edit_email"%>
+              </li>
+              <li>
+                <%= link_to "Sessions", sessions_path, 
+                      class: "dropdown-item main-navbar-dropdown-item", :"data-turbo-stream" => true,
+                      :"data-action" => "click->mnnav#view_sessions" %>
+              </li>
+              <li><hr class="dropdown-divider"></li>
+              <li>
+                <%= button_to Current.session, method: :delete, 
+                      class: "dropdown-item main-navbar-dropdown-item" do %>
+                  Log out<i class="bi bi-box-arrow-in-right ps-1"></i>
+                <% end %>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    
+  </div>
+</nav>

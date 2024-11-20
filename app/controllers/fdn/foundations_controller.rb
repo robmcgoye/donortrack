@@ -8,8 +8,8 @@ class Fdn::FoundationsController < ApplicationController
 
   def dashboard
     render turbo_stream: [
-      turbo_stream.replace("sidebar", partial: "layouts/sidebar", locals: { foundation: @foundation }),
-      turbo_stream.replace("sidebar-button", partial: "layouts/sidebar_button", locals: { name: @foundation.short_name }),
+      turbo_stream.replace("sidebar-frame", partial: "layouts/sidebar", locals: { foundation: @foundation }),
+      # turbo_stream.replace("sidebar-button", partial: "layouts/sidebar_button", locals: { name: @foundation.short_name }),
       turbo_stream.replace("main_content", partial: "dashboard")
     ]
   end
