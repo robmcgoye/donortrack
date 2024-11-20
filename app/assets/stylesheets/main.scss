@@ -1,171 +1,462 @@
-
 /*------------------------------------*\
-  #SETTINGS
+  #colors
 \*------------------------------------*/
+$nav-bg-color:                  #0d1949;
+$sidebar-bg-color:              #152a5b;
+$dropdown-bg-color:             #0b1538;
+$text-white:                    #ffffff;
+$text-grey:                     #ddd;
+$text-primary:                  #ffffff;
+$text-secondary:                #c0c0c0;
+$text-muted:                    #b0bec5;
+$text-black:                    #000000;
+$highlight-success:             #00ff7f;
+$highlight-warning:             #ffc107;
+$highlight-info:                #00eaff;
+$highlight-orange:              #ffa726;
+$hover-bg-color:                #152a5b;
+// $hover-bg-color:                #162d65;
+$button-bg-color:               #152a5b;
+$primary-btn-color:             #152a5b;
+$primary-btn-color-dark: darken($primary-btn-color, 20%);
+$link-blue:                     #006697;
+$border-muted:                  #6c757d;
+$dropdown-secondary-bg:         #1e3a56;
+$dropdown-secondary-hover-bg:   #284d70;
+$dropdown-secondary-text:       #d3e3f1;
 
-$dark-blue-color:    #0d1949;
-$white-color:        #ffffff;
-$blue-color:         #006697;
-$light-blue-color:   #00B6B5;
-$light-purple-color: #ECE7FF;
-$lht-purple2-color:  #F9F7FF;
-$dark-purple-color:  #662A63;
-$my-purple:          #BDBAFA;
-$my-dark-gray:       #464555;
-$my-light-grey:      #eeee;
-$my-light-yellow:    #FFFADE;
-$my-light-green:     #C9FCE9;
-$my-light-contrast:  #E8D5B5;
-$blue-900:           #1e3a8a;
-$light:              #f8f9fa;
-$gray-200:           #e9ecef;
-$black:              #000000;
-$white:              #ffffff;
+$content-background-color:           #E5E5E5;
+$secondary-bg-color:                #E5E5E5;
+// $primary-btn-color:                  #03A9F4;
+$secondary-btn-color:             #C0C0C0;
+// $secondary-button-color:             #F5F5F5;
+$success-btn-color:                 #00ff7f;
+$warning-btn-color:                 #ffc107;
+$light-btn-color: #333;
 
+$card-bg-color:                     #F7F7F7;
+$card-border-color:                  #6C757D;
+$card-header-color: #2f4f7f; /* A darker blue color */
+$card-text-color:                   #333333;
+$card-footer-color: lighten($card-header-color, 10%);
 
-/*------------------------------------*\
-  #UNAUTHENTICATED PAGES
-\*------------------------------------*/
-button > * {
-  pointer-events: none;
+$table-header-color:                #333333;
+// $table-header-color:                #006697;
+$table-row-odd-color:                   #F7F7F7;
+$table-row-even-color:                  #ffffff;
+$table-hover-color:                 #ADD8E6;
+// $table-hover-color:                 #E5E5E5;
+$error-color:                       #FF3737;
+$danger-color:                      #FF0000;
+$warning-color:                     #FFC107;
+$success-color:                        #2196F3;
+
+.h1-content {
+  font-size: 24px;
+  font-weight: bold;
+  color: #333333;
+}
+
+.h2-content {
+  font-size: 20px;
+  font-weight: bold;
+  color: #444444;
+}
+
+.h3-content {
+  font-size: 18px;
+  font-weight: bold;
+  color: #555555;
+}
+
+.alert-danger {
+  background-color: $error-color;
+  border-color: $danger-color;
+  color: $text-white;
+}
+
+.alert-success {
+  background-color: $success-color;
+  border-color: $success-color;
+  color: $text-white;
+}
+
+.form-control:hover {
+  border-color: $primary-btn-color;
+}
+
+.form-control {
+  border: 1px solid $border-muted;
 }
 
 .secondary-main {
-  background-color: $blue-900;
+  background-color: $secondary-bg-color;
 }
-
 .primary-main {
-  background-color: $dark-blue-color;
-  // min-width: 600px;
-  // background-color: $gray-100;
-  // height: 100vh;
-}
-
-.full-height {
+  // background-color: $dark-blue-color;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden; /* Prevent horizontal scrolling */
+  display: flex;
+  flex-direction: row;  
+  flex-direction: column;
   height: 100vh;
+  min-width: 400px; 
 }
 
-.my-bg-light {
-  background-color: $light;
+body.collapsed-sidebar .content {
+  margin-left: 70px; /* Adjusts to collapsed sidebar width */
 }
-
-.my-bg-gray {
-  background-color: $gray-200;
+body.collapsed-sidebar #main-navbar {
+  margin-left: 70px;
+  width: calc(100% - 70px);
 }
-
-.my-header {
-  background-color:rgb(0, 102, 151, 0.1);
-  // background-color: rgb(0, 142, 172, 0.1);
-  // background-color: rgb(0, 200, 147, 0.1);
-  
-  // opacity: 0.3;
-}
-
-.my-hr {
-  height: 2px;
-  border: none;
-}
-/*------------------------------------*\
-  #GENERIC
-\*------------------------------------*/
-
-// .my-bg-lht-purple {
-//   background-color: $lht-purple2-color;
-//   color: $black;
-// }
-.my-disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
-  background-color: #8a8a8a;
-  border-color: #ccc;
-}
-
-.my-bg-primary {
-  background-color: $dark-blue-color;
-}
-
-// .my-bg-lght {
-//   background-color: $my-light-yellow;
+// body.collapsed-sidebar .sidebar {
+//   width: 70px; /* Reduced width when collapsed */
 // }
 
-.my-text-small {
-  font-size: 0.875em;
+.content {
+  flex: 1;
+  // margin-left: 70px;
+  margin-left: 200px;
+  padding: 20px;
+  transition: margin-left 0.3s ease;
+  background-color: $content-background-color;
+  // min-height: calc(100vh - 60px); /* Adjust the value to match the height of your navbar */ 
+  // position: fixed;
+  // height: 100vh;
+  // width: 100%;
 }
 
-.primary-highlight {
-  // color: $dark-blue-color;
-  // color: #7C1924;
-  color: $light-purple-color;
-  font-weight: 550;
+.card {
+  background-color: $card-bg-color;
+  color: $card-text-color;
+  border-color: $card-border-color;
 }
 
-.my-text-bg-secondary {
-  background-color: $light-purple-color;
-  color: $black;
+.card-login {
+  // padding: 20px;
+  border: 2px solid $border-muted;
+  border-radius: 10px;
+  box-shadow: 10px 10px 10px rgba($border-muted, 0.5);
 }
 
-.tb-bg-dark {
-  background-color: $my-light-grey;
+.card-header {
+  background-color: $card-header-color;
+  color: $text-white; /* White text color */
+}
+.card-footer {
+  background-color: $card-footer-color;
+  color: $text-white;
 }
 
-.tb-bg-light {
-  background-color: $white;
-}
+.btn-outline-primary {
+  border: 1px solid $primary-btn-color;
+  background-color: transparent;
+  color: $primary-btn-color;
+  transition: background-color 0.3s ease, color 0.3s ease;
 
-.tb-header {
-  background-color: $my-light-grey;
-  border-bottom: 2px solid $black;
-  border-top: 1px solid $dark-blue-color;
-  // border-left: 1px solid $dark-blue-color;
-  // border-right: 1px solid $light-purple-color;
-  font-weight: bold;
-}
-
-.grid-striped .grid:nth-child(odd) {
-    // background-color: rgba(0,0,0,.05);
-    background-color: $my-light-grey;
+  &:hover {
+    background-color: $primary-btn-color;
+    color: $text-white;
   }
 
-.my-small-text {
-  font-size: small;
-} 
-
-.my-dropdown-toggle::after {
-  content: none;
+  &:focus {
+    box-shadow: 0 0 0 0.2rem rgba($primary-btn-color, 0.5);
+  }
 }
 
-.my-content{
-  min-width: 400px;
+.btn-primary {
+  background-color: $primary-btn-color;
+  color: #ffffff;
+  border: none;
+  outline: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  font-weight: bold;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, outline 0.3s ease;
+
+  &:hover {
+    background-color: darken($primary-btn-color, 10%);
+    color: $text-muted;
+    outline: 1px solid $primary-btn-color; /* Add border on hover */
+  }
+
+  &:focus {
+    box-shadow: 0 0 0 0.2rem rgba($primary-btn-color, 0.5);
+  }
 }
-// .my-table-row {
-//   min-width: 500px;
+
+.btn-secondary {
+  background-color: $secondary-btn-color;
+  color: #333;
+  border: none;
+  outline: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  font-weight: bold;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease, outline 0.3s ease;
+
+  &:hover {
+    background-color: darken($secondary-btn-color, 10%);
+    color: #666; /* Change text color to medium gray on hover */
+    outline: 1px solid $border-muted; /* Add border on hover */
+  }
+
+  &:focus {
+    box-shadow: 0 0 0 0.2rem rgba($secondary-btn-color, 0.5);
+  }
+}
+
+.btn-outline-light {
+  border: 1px solid $text-grey;
+  background-color: transparent;
+  color: $text-grey;
+  transition: background-color 0.3s ease, color 0.3s ease;
+
+  &:hover {
+    background-color: $light-btn-color;
+    color: $text-white;
+  }
+
+  &:focus {
+    box-shadow: 0 0 0 0.2rem rgba($light-btn-color, 0.5);
+  }
+}
+/*------------------------------------*\
+  #NAVBAR
+\*------------------------------------*/
+.navbar {
+  position: fixed;
+  top: 0;
+  // margin-left: 70px;
+  margin-left: 200px;
+  // width: calc(100% - 70px); /* Adjust for sidebar width */
+  width: calc(100% - 200px); /* Adjust for sidebar width */
+  z-index: 1030;
+  transition: width 0.3s ease, margin-left 0.3s ease;
+  background-color: $nav-bg-color;
+}
+
+// .navbar.collapsed {
+//   margin-left: 70px;
+//   width: calc(100% - 70px); /* Adjust for sidebar width */
 // }
 
-.my-table-row:hover{
-  background-color: $light-purple-color;
-  // background-color: $my-light-grey;
+.navbar .navbar-brand,
+.navbar .nav-link {
+  color: $text-primary;
 }
 
-.scroll {
-  max-height: 100px;
-  overflow-y: auto;
+.navbar .nav-link:hover,
+.navbar .nav-link:focus {
+  color: $highlight-warning;
 }
 
-.my-modal {
+.navbar .nav-link.active {
+  background-color: $button-bg-color;
+  color: $text-primary;
+}
+
+.navbar-divider {
+  border-color: $border-muted;
+}
+/*------------------------------------*\
+  #DROPDOWN STYLING
+\*------------------------------------*/
+
+.navbar .dropdown-menu {
+  background-color: $dropdown-bg-color;
+  border: none;
+}
+
+.navbar .dropdown-item {
+  position: relative; /* Needed for the pseudo-element */
+  color: $text-white;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 8px; /* Rounded corners */
+  z-index: 1; /* Ensure content is above pseudo-element */
+  transition: color 0.2s ease;
+}
+
+.navbar .dropdown-item::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 2px solid transparent;
+  border-radius: 8px; /* Match the item's border-radius */
+  z-index: -1; /* Behind the content */
+  transition: border-color 0.2s ease;
+  background-color: transparent;
+}
+
+.navbar .dropdown-item:hover,
+.navbar .dropdown-item:focus {
+  color: $highlight-warning; /* Optionally change text color */
+  background-color: transparent; /* Keep the background transparent */
+}
+
+.navbar .dropdown-item:hover::before,
+.navbar .dropdown-item:focus::before {
+  border-color: $highlight-warning; /* Highlight border on hover */
+}
+
+.navbar .dropdown-divider {
+  border-color: $border-muted;
+}
+
+/* Secondary dropdown item styling */
+.navbar .dropdown-item-secondary {
+  position: relative; /* Needed for the pseudo-element */
+  // background-color: $dropdown-secondary-bg;
+  color: $dropdown-secondary-text;
+  padding: 0.5rem 1rem; /* Matches Bootstrap's default dropdown-item padding */
+  margin: 0; /* Remove any extra margins */
+  width: 100%; /* Ensure the item fills the dropdown menu's width */
+  display: block; /* Forces block-level behavior for full width */
+  border: none; /* No border by default */
+  border-radius: 8px; /* Rounded corners */
+  z-index: 1; /* Ensure content is above pseudo-element */
+  transition: color 0.2s ease;
+}
+
+.navbar .dropdown-item-secondary:hover,
+.navbar .dropdown-item-secondary:focus {
+  color: $highlight-info; /* Optionally change text color */
+}
+
+.navbar .dropdown-item-secondary:hover::before,
+.navbar .dropdown-item-secondary:focus::before {
+  border-color: $highlight-info; /* Highlight border on hover */
+}
+
+/*------------------------------------*\
+  #SIDEBAR
+\*------------------------------------*/
+.sidebar {
   position: fixed;
-  z-index: 2;
-  // padding: 2em;
-  
-  /* Centering */
-  left: 50%;
-  top: 15%;
-  // transform: translate(-50%, -50%);
-
-  overflow: auto;
-  background-color: rgb(0,0,0);
-  background-color: rgba(255, 255, 255, 0.1);
-  border-radius: 5px;
-  /* Add the drop shadow */
-  box-shadow: 0 0 10px 0 rgba(0,0,0,0.2), 0 5px 10px 0 rgba(0,0,0,0.19);
-  // backdrop-filter: blur(15px);
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 200px;
+  background-color: $sidebar-bg-color;
+  color: $text-white;
+  border-right: 1px solid $border-muted;
+  transition: width 0.3s ease;
 }
+
+.sidebar.collapsed {
+  width: 70px; /* Reduced width when collapsed */
+}
+
+.sidebar .btn-toggle:hover {
+  background-color: $hover-bg-color;
+  color: $highlight-warning; /* Highlighted icon color */
+  // border: 1px solid $highlight-warning;
+}
+
+.sidebar .list-group-item-action.active {
+  /* active styles */
+  // background-color: $highlight-info ;
+  color: $highlight-info ;
+}
+
+.sidebar .btn-toggle {
+  width: 40px;
+  height: 40px;
+  background-color: $button-bg-color;
+  color: $text-white;
+  border: none;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 10px; /* Align with the navbar */
+  margin-left: 10px;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.sidebar.collapsed .btn-toggle {
+  margin-left: 10px; /* Center align when sidebar is collapsed */
+}
+
+.sidebar .list-group-item {
+  background-color: transparent; /* Blend with sidebar background */
+  border: none; /* Remove list item borders */
+  color: $text-white;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.sidebar .list-group-item:hover {
+  background-color: $hover-bg-color;
+  color: $highlight-warning; /* Highlighted text */
+}
+
+.sidebar .list-group-item i {
+  font-size: 1.25rem; /* Adjust icon size */
+}
+
+.sidebar.collapsed .text {
+  display: none; /* Hide text when collapsed */
+}
+
+.sidebar.collapsed ~ .content {
+  margin-left: 70px; /* Adjust content margin when sidebar is collapsed */
+}
+
+.sidebar.collapsed ~ .navbar {
+  left: 70px;
+  width: calc(100% - 70px);
+}
+
+@media (max-width: 768px) {
+  .sidebar {
+    width: 70px; /* Collapsed width */
+  }
+  .sidebar .list-group-item {
+    padding: 10px; /* Adjust padding for collapsed state */
+  }
+  .sidebar .list-group-item .text {
+    display: none; /* Hide text in collapsed state */
+  }
+  .content {
+    margin-left: 70px; /* Adjust content margin when sidebar is collapsed */
+  }
+  .navbar {
+    margin-left: 70px; /* Adjust navbar margin when sidebar is collapsed */
+    width: calc(100% - 70px); /* Adjust navbar width when sidebar is collapsed */
+  }
+}
+
+// @media (max-width: 768px) {
+//   .sidebar {
+//     width: 100%;
+//     height: auto;
+//     position: relative;
+//     border-right: none;
+//   }
+
+//   .content {
+//     margin-left: 0;
+//   }
+
+//   .sidebar.collapsed ~ .content {
+//     margin-left: 0;
+//   }
+
+//   .navbar {
+//     left: 0;
+//     width: 100%;
+//   }
+// }

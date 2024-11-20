@@ -2,7 +2,7 @@ import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
   static outlets = [ "sidebar" ]
-  static targets = [ "navbartoggler" ]
+  // static targets = [ "navbartoggler" ]
 
   initialize() {
     this.view_foundations();
@@ -30,18 +30,18 @@ export default class extends Controller {
 
   set_page(title) {
     // console.log(title);
-    const is_toggler_expanded = this.navbartogglerTarget.getAttribute("aria-expanded");
+    // const is_toggler_expanded = this.navbartogglerTarget.getAttribute("aria-expanded");
     document.title = title;
     this.sidebarOutlet.selectedValue = -1;
-    if(is_toggler_expanded == "true"){
-      console.log("hello");
-      this.navbartogglerTarget.click();
-    }
+    // if(is_toggler_expanded == "true"){
+    //   console.log("hello");
+    //   this.navbartogglerTarget.click();
+    // }
   }
 
-  toggle() {
-    const side_bar = document.getElementById("sidebar-controller");
-    side_bar.classList.toggle('active');
- }
+//   toggle() {
+//     const side_bar = document.getElementById("sidebar-controller");
+//     side_bar.classList.toggle('active');
+//  }
  
 }

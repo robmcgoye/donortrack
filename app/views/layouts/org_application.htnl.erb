@@ -3,7 +3,7 @@
   <head>
     <title>DonorTrack: <%= yield(:title) %></title>
     <%# <title><%= content_for(:title) || "Donortrack" ></title> %>
-    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <%# <meta name="turbo-prefetch" content="false"> %>
     <%= csrf_meta_tags %>
@@ -21,26 +21,23 @@
     <%= javascript_include_tag "application", "data-turbo-track": "reload", type: "module", defer: true %>
   </head>
 
-  <body class="<%= Current.user.present? ? "primary-main" : "secondary-main" %>">
+  <body class="<%= Current.user.present? ? "primary-main" : "secondary-main" %>" >
     <% if Current.user.present? %>
-      <div data-controller="sidebar" id="main-sidebar">
-        <div class="sidebar" id="sidebar-controller" data-sidebar-target="sidebar">
-          <button 
-            class="btn-toggle" 
-            data-action="click->sidebar#toggle" 
-            data-sidebar-target="icon"
-          >
-            <i class="bi bi-chevron-double-left"></i> 
-          </button>
-          <%= render "layouts/sidebar", locals: { foundation: nil } %>
+      <div class="container-fluid ps-0">
+        <%= render "layouts/navbar" %>
+        <div class="row">
+          <div class="col-auto ms-2 pe-2 pt-1" id="sidebar-controller" data-controller="sidebar">   
+            <%= turbo_frame_tag "sidebar" %>
+          </div>
+          <div class="col ps-0 my-bg-light ">           
+            <div class="container-fluid mx-2 pt-3">
+              <%= render 'layouts/messages' %>             
+                <%= yield %>
+            </div>
+
+          </div>
         </div>
       </div>
-      <%= render "layouts/navbar" %>
-      <!-- Content -->
-      <div class="content mt-5 pt-3">
-        <%= render 'layouts/messages' %> 
-        <%= yield %>
-      </div> 
     <% else %>
       <div class="container-fluid pt-0 mt-0">
         <div class="row justify-content-center">

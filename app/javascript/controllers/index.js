@@ -25,6 +25,9 @@ application.register("new-contribution", NewContributionController)
 import OptionsController from "./options_controller"
 application.register("options", OptionsController)
 
+import OrgSidebarController from "./org_sidebar_controller"
+application.register("org-sidebar", OrgSidebarController)
+
 import OsearchController from "./osearch_controller"
 application.register("osearch", OsearchController)
 
