@@ -5,7 +5,7 @@
     <% @sessions.each do |session| %>
       <div class="col">
         <div class="card h-100">
-          <div class="card-header pb-0">
+          <div class="card-header py-2">
             <strong>Created at:</strong>
             <%= session.created_at.strftime(" %m/%d/%Y %H:%M:%S")%>
           </div>
@@ -19,8 +19,8 @@
               <%= session.user_agent %>
             </p>
           </div>
-          <div class="card-footer text-center">
-            <%= button_to session, method: :delete, class: "btn btn-sm btn-outline-light" do %>
+          <div class="card-footer p-1 text-center">
+            <%= button_to session, method: :delete, class: "btn btn-sm btn-outline-light text-small" do %>
               Log out<i class="bi bi-box-arrow-in-right ps-1"></i>
             <% end %>
           </div>

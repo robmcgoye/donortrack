@@ -1,8 +1,8 @@
 <%# locals: (user:) -%>
 <%=turbo_frame_tag "user_edit_header_#{user.id}" do %>
   <% if user.admin?%>
-  <div class="card-header bg-primary text-white p-2 rounded"><h6><i class="bi bi-shield-lock"></i>Editing User</h6></div>
+  <div class="card-header bg-primary text-white rounded py-1 pb-0"><h6><i class="bi bi-shield-lock px-2"></i>Editing User -- <%= user.email %></h6></div>
   <% else %>
-  <div class="card-header"><h6>Editing User</h6></div>
+  <div class="card-header rounded py-1 pb-0"><h6>Editing User -- <%= user.email %></h6></div>
   <% end %>
 <% end %>
