@@ -1,8 +1,8 @@
 <%= turbo_frame_tag User.new do %>
-  <div class="row">
-    <div class="col"><h5>Users</h5></div>  
+  <div class="row my-2">
+    <div class="col"><h1 class="h1-content">Users</h1></div>
     <div class="col-auto">
-        <%= link_to new_user_path, class: "btn btn-sm btn-outline-secondary" do %>
+        <%= link_to new_user_path,  :"data-turbo-stream" => true, class: "btn btn-sm btn-primary" do %>
           <i class="bi bi-plus-circle pe-1"></i>New User
         <% end %>
     </div>

@@ -1,37 +1,37 @@
 <%# locals: (user:, index:) -%>
 <%= turbo_frame_tag user do %>
-  <div class="row align-items-center py-1 mt-1 <%= index.odd? ? "tb-bg-dark" : "tb-bg-light" %>">
-    <div class="col"><%= user.email %></div>
-    <div class="col">
+  <div class="row align-items-center p-0 m-0 <%= index.odd? ? "ct-odd" : "ct-even" %>">
+    <div class="col ct-td"><%= user.email %></div>
+    <div class="col ct-td">
       <% user.get_roles.each do |role| %>
-        <span class="mx-1 badge rounded-pill <%= "#{role == "user" ? "bg-secondary" : "bg-primary" }" %>"> 
+        <span class="mx-2 px-3 text-small badge rounded-pill <%= "#{role == "user" ? "text-bg-secondary" : "text-bg-primary" }" %>"> 
           <%= role %>
         </span>
       <% end %>
 
       <% if user.sessions.count > 0 %>
-        <span class="mx-1 badge rounded-pill text-bg-success position-relative">
+        <span class="mx-1 px-3 text-small badge rounded-pill text-bg-success position-relative">
           Active
           <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
             <%= user.sessions.count %>
           </span>
         </span>
       <% else %>
-        <span class="mx-1 badge rounded-pill text-bg-secondary">No Active Sessions</span>
+        <span class="mx-1 px-3 text-small badge rounded-pill text-bg-secondary">No Active Sessions</span>
       <% end %>
 
       <% if user.verified? %>
-        <span class="mx-1 badge rounded-pill text-bg-success">Email Verified</span>
+        <span class="mx-1 px-3 text-small badge rounded-pill text-bg-success">Email Verified</span>
       <% else %>
-        <span class="mx-1 badge rounded-pill text-bg-warning">Email NOT Verified</span>
+        <span class="mx-1 px-3 text-small badge rounded-pill text-bg-warning">Email NOT Verified!</span>
       <% end %>
     </div>
 
-    <div class="col-auto">
+    <div class="col-auto ct-td">
       <div class="dropstart" role="group">
         <button
           type="button"
-          class="btn btn-sm btn-outline-dark my-dropdown-toggle <%= "my-disabled" if Current.user == user %>"
+          class="btn btn-sm p-1 <%= "#{Current.user == user ? "btn-outline-disabled" : "btn-outline-primary" }" %>"
           data-bs-toggle="dropdown"
           aria-expanded="false"
 

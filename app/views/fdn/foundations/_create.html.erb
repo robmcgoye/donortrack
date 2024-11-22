@@ -1,7 +1,7 @@
 <%= turbo_frame_tag Foundation.new do %>
-  <div class="row">
+  <div class="row my-2">
     <div class="col-4 col-sm-3 offset-8 offset-sm-9">
-      <%= link_to new_foundation_path, class: "btn btn-sm btn-outline-secondary" do %>
+      <%= link_to new_foundation_path, :"data-turbo-stream" => true, class: "btn btn-sm btn-primary" do %>
         <i class="bi bi-piggy-bank pe-1"></i>New Foundation
       <% end %>
     </div>

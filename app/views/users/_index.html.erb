@@ -1,8 +1,12 @@
 <div id="main_content" data-controller="pages" 
       data-pages-sbnum-value="-1"
-      data-pages-sidebar-outlet="#main-sidebar">
+      data-pages-sidebar-outlet="#main-sidebar"
+      class="py-2">
 
   <%= render 'new' %>
-  <%= render 'user_list' %>
+  
+  <div class="card-table">
+    <%= render 'user_list' %>
+  </div>
 
 </div>

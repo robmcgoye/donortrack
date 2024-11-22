@@ -4,69 +4,114 @@
 $nav-bg-color:                  #0d1949;
 $sidebar-bg-color:              #152a5b;
 $dropdown-bg-color:             #0b1538;
-$text-white:                    #ffffff;
-$text-grey:                     #ddd;
-$text-primary:                  #ffffff;
-$text-secondary:                #c0c0c0;
-$text-muted:                    #b0bec5;
-$text-black:                    #000000;
-$highlight-success:             #00ff7f;
-$highlight-warning:             #ffc107;
-$highlight-info:                #00eaff;
-$highlight-orange:              #ffa726;
-$hover-bg-color:                #152a5b;
-// $hover-bg-color:                #162d65;
-$button-bg-color:               #152a5b;
-$primary-btn-color:             #152a5b;
-$primary-btn-color-dark: darken($primary-btn-color, 20%);
-$link-blue:                     #006697;
 $border-muted:                  #6c757d;
 $dropdown-secondary-bg:         #1e3a56;
 $dropdown-secondary-hover-bg:   #284d70;
 $dropdown-secondary-text:       #d3e3f1;
 
-$content-background-color:           #E5E5E5;
-$secondary-bg-color:                #E5E5E5;
-// $primary-btn-color:                  #03A9F4;
-$secondary-btn-color:             #C0C0C0;
-// $secondary-button-color:             #F5F5F5;
-$success-btn-color:                 #00ff7f;
-$warning-btn-color:                 #ffc107;
-$light-btn-color: #333;
+$text-white:                    #ffffff;
+$text-grey:                     #ddd;
+$text-darkgrey:                 #666;
+$text-darkergrey:               #444444;
+$text-redgrey:                  #555555;
+$text-primary:                  #ffffff;
+$text-secondary:                #c0c0c0;
+$text-muted:                    #b0bec5;
+$text-black:                    #000000;
+$text-dark:                     #333;
 
-$card-bg-color:                     #F7F7F7;
-$card-border-color:                  #6C757D;
-$card-header-color: #2f4f7f; /* A darker blue color */
-$card-text-color:                   #333333;
+$highlight-success:             #00ff7f;
+$highlight-warning:             #ffc107;
+$highlight-info:                #00eaff;
+$highlight-orange:              #ffa726;
+
+$hover-bg-color:                #152a5b;
+$button-bg-color:               #152a5b;
+$primary-btn-color:             #152a5b;
+$primary-btn-color-dark:          darken($primary-btn-color, 20%);
+$secondary-btn-color:           #C0C0C0;
+$success-btn-color:             #00ff7f;
+$warning-btn-color:             #ffc107;
+$light-btn-color:               #333;
+$link-blue:                     #006697;
+
+$content-background-color:      #E5E5E5;
+$secondary-bg-color:            #E5E5E5;
+
+$card-bg-color:                 #F7F7F7;
+$card-border-color:             #6C757D;
+$card-header-color:             #2f4f7f; /* A darker blue color */
+$card-text-color:               #333333;
 $card-footer-color: lighten($card-header-color, 10%);
 
-$table-header-color:                #333333;
-// $table-header-color:                #006697;
-$table-row-odd-color:                   #F7F7F7;
-$table-row-even-color:                  #ffffff;
-$table-hover-color:                 #ADD8E6;
+$error-color:                   #FF3737;
+$danger-color:                  #FF0000;
+$warning-color:                 #FFC107;
+$success-color:                 #2196F3;
+
+$table-header-color:            #333333;
+// $table-header-color:            #006697;
+$table-border-color:            #6C757D;
+$table-background-color:        #E5E5E5;
+// $table-row-odd-color:           #F2F2F2;
+$table-row-odd-color:           #F7F7F7;
+$table-row-even-color:          #ffffff;
+$table-hover-color:             #ADD8E6;
 // $table-hover-color:                 #E5E5E5;
-$error-color:                       #FF3737;
-$danger-color:                      #FF0000;
-$warning-color:                     #FFC107;
-$success-color:                        #2196F3;
+
+.text-small {
+  font-size: 10px;
+  line-height: 1.1em;
+}
+
+.text-bg-primary {
+  background-color: $primary-btn-color !important; // $link-blue !important;
+  color: $highlight-info !important;
+}
+
+.bg-secondary {
+  background-color: $secondary-bg-color !important;
+}
+
+.bg-danger {
+  background-color: $error-color !important;
+}
+
+.bg-info {
+  background-color: $highlight-info !important;
+}
+
+.text-bg-secondary { 
+  background-color: $secondary-bg-color !important;
+  color: $text-redgrey !important; 
+}
+
+.text-bg-success{
+  background-color: $success-color !important;
+  color: $text-white !important;
+}
+
+.text-bg-warning{
+  background-color: $warning-color !important;
+  color: $text-black !important;
+}
 
 .h1-content {
   font-size: 24px;
   font-weight: bold;
-  color: #333333;
+  color: $text-dark;
 }
 
 .h2-content {
   font-size: 20px;
   font-weight: bold;
-  color: #444444;
+  color: $text-darkergrey;
 }
 
 .h3-content {
   font-size: 18px;
   font-weight: bold;
-  color: #555555;
+  color: $text-redgrey;
 }
 
 .alert-danger {
@@ -92,6 +137,7 @@ $success-color:                        #2196F3;
 .secondary-main {
   background-color: $secondary-bg-color;
 }
+
 .primary-main {
   // background-color: $dark-blue-color;
   margin: 0;
@@ -107,47 +153,164 @@ $success-color:                        #2196F3;
 body.collapsed-sidebar .content {
   margin-left: 70px; /* Adjusts to collapsed sidebar width */
 }
+
 body.collapsed-sidebar #main-navbar {
   margin-left: 70px;
   width: calc(100% - 70px);
 }
-// body.collapsed-sidebar .sidebar {
-//   width: 70px; /* Reduced width when collapsed */
-// }
 
 .content {
   flex: 1;
-  // margin-left: 70px;
   margin-left: 200px;
   padding: 20px;
   transition: margin-left 0.3s ease;
   background-color: $content-background-color;
-  // min-height: calc(100vh - 60px); /* Adjust the value to match the height of your navbar */ 
-  // position: fixed;
-  // height: 100vh;
-  // width: 100%;
-}
-
-.card {
-  background-color: $card-bg-color;
-  color: $card-text-color;
-  border-color: $card-border-color;
 }
 
 .card-login {
-  // padding: 20px;
   border: 2px solid $border-muted;
   border-radius: 10px;
   box-shadow: 10px 10px 10px rgba($border-muted, 0.5);
 }
 
+.card-secondary {
+  background-color: $secondary-bg-color; /* #E5E5E5 */
+  border-color: $border-muted; /* #6c757d */
+  color: $text-darkgrey; /* #666 */
+}
+
+.card-secondary .card-header {
+  color: $text-primary; /* #ffffff */
+  background-color: $dropdown-secondary-bg; /* #1e3a56 */
+}
+
+.card {
+  background-color: $card-bg-color;
+  color: $card-text-color;
+  border: 1px solid $card-border-color; /* Ensure card has a visible border */
+  box-sizing: border-box; /* Ensure dimensions include padding/border */
+}
+
 .card-header {
   background-color: $card-header-color;
   color: $text-white; /* White text color */
+  padding: 0.75rem; /* Add spacing */
+  border-bottom: 1px solid $card-border-color; /* Define a clear bottom border */
 }
+
 .card-footer {
   background-color: $card-footer-color;
   color: $text-white;
+  padding: 0.75rem;
+  border-top: 1px solid $card-border-color;
+}
+
+.card-table {
+  background-color: transparent; /* No background color */
+  padding: 1rem; /* Add some inner spacing */
+  box-sizing: border-box; /* Ensure padding fits inside the container */
+}
+
+.card-table table, 
+.card-table .ct-table {
+  width: 100%; /* Ensures table fits inside the card */
+  border-collapse: separate;
+  border-spacing: 0;
+  border: 1px solid $table-border-color; /* Define the table's border */
+  // background-color: $text-white;
+  background-color: $table-background-color;
+  color: inherit; /* Inherit text color from .card */
+  border-radius: 8px; /* Adjust to your desired corner radius */
+  table-layout: auto;  
+}
+
+.card-table table th,
+.card-table table td, 
+.card-table .ct-th,
+.card-table .ct-td {
+  padding: 4px;
+  padding-left: 10px;
+  padding-right: 6px;
+  text-align: left;
+}
+
+.card-table table th, 
+.card-table .ct-th {
+  background-color: $table-header-color;
+  // background-color: #2f4f7f;
+  color: $text-white;
+  // border-bottom: 2px solid #6c757d;
+}
+
+
+.card-table table tbody tr:nth-child(odd), 
+.card-table .ct-odd  {
+  background-color: $table-row-odd-color;
+  // background-color: #F2F2F2;
+}
+
+.card-table table tbody tr:nth-child(even), 
+.card-table .ct-even {
+  background-color: $table-row-even-color; /* White for even rows */
+  // background-color: #ffffff; /* White for even rows */
+}
+
+.card-table table tbody td.auto-width {
+  white-space: nowrap;
+  width: auto;
+  text-align: right;
+}
+// .card-table table tbody tr:hover {
+//   background-color: $highlight-info; /* Light highlight on hover */
+// }
+
+.btn-outline-light {
+  border: 1px solid $text-grey;
+  background-color: transparent;
+  color: $text-grey;
+  transition: background-color 0.3s ease, color 0.3s ease;
+
+  &:hover {
+    background-color: $light-btn-color;
+    color: $text-white;
+  }
+
+  &:focus {
+    box-shadow: 0 0 0 0.2rem rgba($light-btn-color, 0.5);
+  }
+}
+
+.btn-outline-disabled {
+  border: 1px solid $dropdown-bg-color;
+  opacity: 0.5;
+  cursor: not-allowed;
+  background-color: $border-muted;
+  color: $dropdown-bg-color;
+
+  &:hover {
+    background-color: $border-muted;
+    color: $dropdown-bg-color;
+  }
+
+  &:focus {
+    box-shadow: 0 0 0 0.2rem rgba($light-btn-color, 0.5);
+  }
+}
+
+.btn-outline-danger {
+  border: 1px solid $danger-color;
+  background-color: transparent;
+  color: $danger-color;
+  transition: background-color 0.3s ease, color 0.3s ease;
+
+  &:hover {
+    background-color: $danger-color;
+    color: $text-white;
+  }
+
+  &:focus {
+    box-shadow: 0 0 0 0.2rem rgba($danger-color, 0.5);
+  }
 }
 
 .btn-outline-primary {
@@ -168,12 +331,11 @@ body.collapsed-sidebar #main-navbar {
 
 .btn-primary {
   background-color: $primary-btn-color;
-  color: #ffffff;
+  color: $text-white;
   border: none;
   outline: none;
-  padding: 10px 20px;
-  font-size: 16px;
-  font-weight: bold;
+  padding: 5px 20px;
+  font-weight: 550;
   border-radius: 5px;
   cursor: pointer;
   transition: background-color 0.3s ease, outline 0.3s ease;
@@ -191,19 +353,19 @@ body.collapsed-sidebar #main-navbar {
 
 .btn-secondary {
   background-color: $secondary-btn-color;
-  color: #333;
+  color: $text-dark;
   border: none;
   outline: none;
-  padding: 10px 20px;
-  font-size: 16px;
-  font-weight: bold;
+  padding: 5px 20px;
+  // font-size: 16px;
+  font-weight: 550;
   border-radius: 5px;
   cursor: pointer;
   transition: background-color 0.3s ease, color 0.3s ease, outline 0.3s ease;
 
   &:hover {
     background-color: darken($secondary-btn-color, 10%);
-    color: #666; /* Change text color to medium gray on hover */
+    color: $text-darkgrey; /* Change text color to medium gray on hover */
     outline: 1px solid $border-muted; /* Add border on hover */
   }
 
@@ -212,40 +374,23 @@ body.collapsed-sidebar #main-navbar {
   }
 }
 
-.btn-outline-light {
-  border: 1px solid $text-grey;
-  background-color: transparent;
-  color: $text-grey;
-  transition: background-color 0.3s ease, color 0.3s ease;
-
-  &:hover {
-    background-color: $light-btn-color;
-    color: $text-white;
-  }
-
-  &:focus {
-    box-shadow: 0 0 0 0.2rem rgba($light-btn-color, 0.5);
-  }
+.btn-foundation {
+  width: 75px;  
+  text-align: left;
 }
+
 /*------------------------------------*\
   #NAVBAR
 \*------------------------------------*/
 .navbar {
   position: fixed;
   top: 0;
-  // margin-left: 70px;
   margin-left: 200px;
-  // width: calc(100% - 70px); /* Adjust for sidebar width */
   width: calc(100% - 200px); /* Adjust for sidebar width */
   z-index: 1030;
   transition: width 0.3s ease, margin-left 0.3s ease;
   background-color: $nav-bg-color;
 }
-
-// .navbar.collapsed {
-//   margin-left: 70px;
-//   width: calc(100% - 70px); /* Adjust for sidebar width */
-// }
 
 .navbar .navbar-brand,
 .navbar .nav-link {
@@ -357,16 +502,14 @@ body.collapsed-sidebar #main-navbar {
   width: 70px; /* Reduced width when collapsed */
 }
 
+.sidebar .list-group-item-action.active {
+  color: $highlight-info ;
+}
+
 .sidebar .btn-toggle:hover {
   background-color: $hover-bg-color;
   color: $highlight-warning; /* Highlighted icon color */
   // border: 1px solid $highlight-warning;
-}
-
-.sidebar .list-group-item-action.active {
-  /* active styles */
-  // background-color: $highlight-info ;
-  color: $highlight-info ;
 }
 
 .sidebar .btn-toggle {
@@ -438,25 +581,3 @@ body.collapsed-sidebar #main-navbar {
     width: calc(100% - 70px); /* Adjust navbar width when sidebar is collapsed */
   }
 }
-
-// @media (max-width: 768px) {
-//   .sidebar {
-//     width: 100%;
-//     height: auto;
-//     position: relative;
-//     border-right: none;
-//   }
-
-//   .content {
-//     margin-left: 0;
-//   }
-
-//   .sidebar.collapsed ~ .content {
-//     margin-left: 0;
-//   }
-
-//   .navbar {
-//     left: 0;
-//     width: 100%;
-//   }
-// }
