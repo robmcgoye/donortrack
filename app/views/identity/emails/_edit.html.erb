@@ -1,25 +1,27 @@
   <div class="container" id="main_content">
+
+    <%= render 'shared/error_messages', resource: @user %>
     
     <% if !Current.user.verified? %>
       <div class="card mb-3">
-        <div class="card-header pb-0">
-          <h5>Verify your email</h5>
+        <div class="card-header">
+          Verify your email
         </div>
         <div class="card-body">
           We sent a verification email to <i><%= Current.user.email %></i>. Check that email and follow 
           those instructions to confirm it's your email address.
           <p>
-            <%= button_to identity_email_verification_path, class: "btn btn-sm btn-outline-secondary" do %>
+            <%= button_to identity_email_verification_path, class: "btn btn-sm btn-outline-primary" do %>
               <i class="bi bi-arrow-repeat pe-1"></i>Re-send verification email
             <% end %>
           </p>
         </div>
       </div>
     <% end %>
-    <%= render 'shared/error_messages', resource: @user %>
+
     <div class="card">
-      <div class="card-header pb-0">
-        <h5>Change your email</h5>
+      <div class="card-header">
+        Change your email
       </div>
       <div class="card-body">
         <%= form_with(url: identity_email_path, method: :patch) do |form| %>

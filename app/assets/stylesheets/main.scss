@@ -64,6 +64,10 @@ $table-hover-color:             #ADD8E6;
   line-height: 1.1em;
 }
 
+.text-medium {
+  font-size: 14px;
+}
+
 .text-bg-primary {
   background-color: $primary-btn-color !important; // $link-blue !important;
   color: $highlight-info !important;
@@ -189,13 +193,17 @@ body.collapsed-sidebar #main-navbar {
   color: $card-text-color;
   border: 1px solid $card-border-color; /* Ensure card has a visible border */
   box-sizing: border-box; /* Ensure dimensions include padding/border */
+  border-radius: 8px;
 }
 
 .card-header {
   background-color: $card-header-color;
   color: $text-white; /* White text color */
-  padding: 0.75rem; /* Add spacing */
+  // padding: 0.75rem; /* Add spacing */
   border-bottom: 1px solid $card-border-color; /* Define a clear bottom border */
+  border-radius: 7px !important;
+  font-size: 18px;
+  font-weight: 550;
 }
 
 .card-footer {
@@ -239,6 +247,7 @@ body.collapsed-sidebar #main-navbar {
   background-color: $table-header-color;
   // background-color: #2f4f7f;
   color: $text-white;
+  border-radius: 7px;
   // border-bottom: 2px solid #6c757d;
 }
 
@@ -246,12 +255,14 @@ body.collapsed-sidebar #main-navbar {
 .card-table table tbody tr:nth-child(odd), 
 .card-table .ct-odd  {
   background-color: $table-row-odd-color;
+  border-radius: 7px;
   // background-color: #F2F2F2;
 }
 
 .card-table table tbody tr:nth-child(even), 
 .card-table .ct-even {
   background-color: $table-row-even-color; /* White for even rows */
+  border-radius: 7px;
   // background-color: #ffffff; /* White for even rows */
 }
 
@@ -379,6 +390,51 @@ body.collapsed-sidebar #main-navbar {
   text-align: left;
 }
 
+ .dropdown-menu-prime {
+  background-color: #1e3a56;
+  border-color: #6c757d;
+}
+
+.dropdown-menu-prime .dropdown-item {
+  position: relative; /* Needed for the pseudo-element */
+  color: $text-white;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 8px; /* Rounded corners */
+  z-index: 1; /* Ensure content is above pseudo-element */
+  transition: color 0.2s ease;
+}
+
+.dropdown-menu-prime .dropdown-item::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 2px solid transparent;
+  border-radius: 8px; /* Match the item's border-radius */
+  z-index: -1; /* Behind the content */
+  transition: border-color 0.2s ease;
+  background-color: transparent;
+}
+
+.dropdown-menu-prime .dropdown-item:hover,
+.dropdown-menu-prime .dropdown-item:focus {
+  color: $highlight-warning; /* Optionally change text color */
+  background-color: transparent; /* Keep the background transparent */
+}
+
+.dropdown-menu-prime .dropdown-item:hover::before,
+.dropdown-menu-prime .dropdown-item:focus::before {
+  border-color: $highlight-warning; /* Highlight border on hover */
+  // border-color: #284d70; /* Highlight border on hover */
+}
+
+.dropdown-menu-prime .dropdown-divider {
+  border-color: $border-muted;
+}
+
 /*------------------------------------*\
   #NAVBAR
 \*------------------------------------*/
@@ -413,7 +469,6 @@ body.collapsed-sidebar #main-navbar {
 /*------------------------------------*\
   #DROPDOWN STYLING
 \*------------------------------------*/
-
 .navbar .dropdown-menu {
   background-color: $dropdown-bg-color;
   border: none;

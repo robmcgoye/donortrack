@@ -3,8 +3,8 @@
   <%= render 'shared/error_messages', resource: @user %>
 
   <div class="card w-100">
-    <div class="card-header pb-0">
-      <h4>Change your password</h4>
+    <div class="card-header ">
+      Change your password
     </div>
     <div class="card-body">
       <%= form_with(url: password_path, method: :patch) do |form| %>

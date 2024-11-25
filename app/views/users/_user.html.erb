@@ -34,20 +34,17 @@
           class="btn btn-sm p-1 <%= "#{Current.user == user ? "btn-outline-disabled" : "btn-outline-primary" }" %>"
           data-bs-toggle="dropdown"
           aria-expanded="false"
-
           <% if Current.user == user %>
-            <%# disabled %>
-  data-bs-tooltip="You can't edit your account here"
-  title="Edit your account in your profile"
-
+            data-bs-tooltip="You can't edit your account here"
+            title="Edit your account in your profile"
           <% end %>
         >
           <i class="bi bi-three-dots-vertical"></i>
         </button>
         <% if Current.user != user %>
-        <ul class="dropdown-menu dropdown-menu-dark">
+        <ul class="dropdown-menu dropdown-menu-prime">
           <li>
-            <%= link_to edit_user_path(user, index: index), class: "dropdown-item" do %>
+            <%= link_to edit_user_path(user, index: index), :"data-turbo-stream" => true, class: "dropdown-item" do %>
               <i class="bi bi-pencil-square pe-1"></i>Edit
             <% end %>
           </li>
