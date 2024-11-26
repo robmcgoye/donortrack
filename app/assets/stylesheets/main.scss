@@ -59,6 +59,14 @@ $table-row-even-color:          #ffffff;
 $table-hover-color:             #ADD8E6;
 // $table-hover-color:                 #E5E5E5;
 
+.text-success {
+  color: $highlight-success !important;
+}
+
+.text-info {
+  color: $highlight-info !important;
+}
+
 .text-small {
   font-size: 10px;
   line-height: 1.1em;
@@ -435,6 +443,35 @@ body.collapsed-sidebar #main-navbar {
   border-color: $border-muted;
 }
 
+.card-header .nav.nav-underline {
+  background-color: #2f4f7f;
+  color: #ffffff;
+}
+
+.card-header .nav.nav-underline .nav-link {
+  text-decoration: none;
+  color: #f8f9fa;
+  padding: 1px 16px; /* adjust the padding as needed */
+  border-radius: 8px; /* adjust the border radius as needed */
+  outline: none; /* remove the default outline */
+}
+
+.card-header .nav.nav-underline .nav-link.active {
+  background-color: #284d70; /* a darker blue color */
+  color: #ffffff;
+  outline: 2px solid #006697; /* add an outline on active state */
+
+}
+
+.card-header .nav.nav-underline .nav-link:hover {
+  background-color: lighten(#2f4f7f, 10%); /* a lighter version of the card-header color */
+  text-decoration: underline;
+  text-decoration-color: #006697;
+color: $text-white;
+  outline: 2px solid #006697; /* add an outline on hover state */
+
+}
+
 /*------------------------------------*\
   #NAVBAR
 \*------------------------------------*/
@@ -446,6 +483,29 @@ body.collapsed-sidebar #main-navbar {
   z-index: 1030;
   transition: width 0.3s ease, margin-left 0.3s ease;
   background-color: $nav-bg-color;
+}
+
+.navbar .welcome-message {
+  font-size: 14px;
+  color: $text-muted;
+  padding: 8px 16px;
+  border-radius: 4px;
+}
+
+.navbar .welcome-message .username {
+  font-weight: bold;
+  color: $text-white;
+  padding-left: 3px;
+  padding-right: 1rem;
+  font-style: italic;
+}
+
+.navbar .welcome-message .current-fdn {
+  color: $text-muted;
+}
+
+.navbar .welcome-message .current-subpage {
+  color: $text-white;
 }
 
 .navbar .navbar-brand,
@@ -558,7 +618,8 @@ body.collapsed-sidebar #main-navbar {
 }
 
 .sidebar .list-group-item-action.active {
-  color: $highlight-info ;
+  color: $highlight-warning;
+  // color: $highlight-info;
 }
 
 .sidebar .btn-toggle:hover {

@@ -1,7 +1,11 @@
 <!-- Navbar -->
 <nav id="main-navbar" class="navbar navbar-expand-md navbar-dark">
   <div class="container-fluid justify-content-end" data-controller="mnnav" data-mnnav-sidebar-outlet="#main-sidebar">
-   <%= render 'layouts/username' %>
+   <div class="welcome-message">
+    <%= render 'layouts/username' %>
+    <%= render 'layouts/current_foundation', locals: { name: nil } %>
+    <%= render 'layouts/current_subpage', locals: { sidebar_name: nil } %>
+   </div>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>

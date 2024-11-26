@@ -1,0 +1,9 @@
+<%# locals: name -%>
+<%= turbo_frame_tag "current-foundation" do %>
+  <% if defined?(name) %>
+    <span class="current-fdn">
+      <i class="bi bi-piggy-bank px-1"></i>
+      <%= name %> |
+    </span>
+  <% end %>
+<% end %>

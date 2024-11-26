@@ -1,12 +1,13 @@
 <div id="main_content" data-controller="pages" 
       data-pages-sbnum-value="0"
-      data-pages-sidebar-outlet="#main-sidebar">
+      data-pages-sidebar-outlet="#main-sidebar"
+      class="pt-4">
   
   <div class="card">
-    <div class="card-header my-header py-1">
+    <div class="card-header">
     <div class="row align-items-end">
       <div class="col-auto pe-0"><%= image_tag(@foundation.resize_image_logo(50,50)) if @foundation.image_logo.attached? %></div>
-      <div class="col pb-1"><h4 class="mb-0"><%= @foundation.long_name %></h4></div>
+      <div class="col pb-1"><%= @foundation.long_name %></div>
     </div>
     </div>
     <div class="card-body">

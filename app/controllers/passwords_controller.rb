@@ -30,6 +30,7 @@ class PasswordsController < ApplicationController
     def goto_edit_password
       render turbo_stream: [
         turbo_stream.replace("messages", partial: "layouts/messages"),
+        turbo_stream.replace("current-subpage", partial: "layouts/current_subpage", locals: { subpage_name: "Change Password" }),
         turbo_stream.replace("main_content", partial: "passwords/edit")
       ]
     end

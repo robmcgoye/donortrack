@@ -99,8 +99,9 @@ class UsersController < ApplicationController
 
     def render_index_stream
       render turbo_stream: [
+        turbo_stream.replace("current-subpage", partial: "layouts/current_subpage", locals: { subpage_name: "Accounts" }),
         turbo_stream.replace("messages", partial: "layouts/messages"),
-        turbo_stream.replace("main_content", partial: "users/index")
+      turbo_stream.replace("main_content", partial: "users/index")
       ]
     end
 

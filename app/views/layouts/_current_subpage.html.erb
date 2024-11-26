@@ -1,0 +1,8 @@
+<%# locals: subpage_name -%>
+<%= turbo_frame_tag "current-subpage" do %>
+  <% if defined?(subpage_name) %>
+    <span class="current-subpage">
+      <%= subpage_name %> |
+    </span>
+  <% end%>
+<% end %>

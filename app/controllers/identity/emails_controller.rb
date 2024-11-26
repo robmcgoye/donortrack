@@ -43,6 +43,7 @@ class Identity::EmailsController < ApplicationController
     def goto_edit_email
       render turbo_stream: [
         turbo_stream.replace("messages", partial: "layouts/messages"),
+        turbo_stream.replace("current-subpage", partial: "layouts/current_subpage", locals: { subpage_name: "Change Email" }),
         turbo_stream.replace("main_content", partial: "identity/emails/edit")
       ]
     end

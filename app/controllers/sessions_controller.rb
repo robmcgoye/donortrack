@@ -54,6 +54,7 @@ class SessionsController < ApplicationController
       @sessions = Current.user.sessions.order(created_at: :desc)
       render turbo_stream: [
         turbo_stream.replace("messages", partial: "layouts/messages"),
+        turbo_stream.replace("current-subpage", partial: "layouts/current_subpage", locals: { subpage_name: "User Sessions" }),
         turbo_stream.replace("main_content", partial: "sessions/index")
       ]
     end
