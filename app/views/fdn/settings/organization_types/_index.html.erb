@@ -1,30 +1,38 @@
 <div id="main_content" data-controller="pages" 
       data-pages-sbnum-value="5"
-      data-pages-sidebar-outlet="#main-sidebar">
+      data-pages-sidebar-outlet="#main-sidebar"
+      class="pt-4">
 
   <div class="card">
-    <div class="card-header my-header">
+    <div class="card-header">
       <%= render "fdn/settings/nav" %>
     </div>
 
     <div class="container-fluid py-3">
       <div class="row text-center">
-        <div class="col"><h5>Organization Types list</h5></div>
+        <div class="col"><h1 class="h1-content">Organization Types list</h1></div>
       </div>
 
-      <div class="container-fluid mt-3 px-0">
+      <div class="card-table">
+       <div class="ct-table">
        
-        <%# Table Header %>
-        <div class="row tb-header pt-1">
-          <div class="col-4">Code</div>
-          <div class="col-6">Description</div>
-          <div class="d-none d-sm-block col-sm-2 text-center">Actions</div>
-        </div>
         <%= turbo_frame_tag "new-organization-type-form", src: new_foundation_settings_organization_type_path(@foundation) %>
+
+        <%# Table Header %>
+        <div class="row ct-th">
+          <div class="col-4 ct-td">Code</div>
+          <div class="col-6 ct-td">Description</div>
+          <div class="ct-td col-sm-2 text-center">Actions</div>
+        </div>
+
         <%# Table Content %>
         <div id="organization_types">
-          <%= render @organization_types %>
+          <%#= render @organization_types %>
+          <% @organization_types.each_with_index do |organization_type, index| %>
+            <%= render partial: 'organization_type', locals: { organization_type: organization_type, organization_type_counter: index } %>
+          <% end %>
         </div>
+      </div>
       </div>
 
     </div>

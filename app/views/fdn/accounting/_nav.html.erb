@@ -3,11 +3,13 @@
   <ul class="nav nav-tabs">
     <li class="nav-item">
       <%= link_to "Deposits (not cleared)", foundation_bank_account_checks_path(@foundation, @bank_account), 
-          class: "#{request.path == foundation_bank_account_checks_path(@foundation, @bank_account)  ? "nav-link active" : "nav-link"}" %>
+          class: "#{request.path == foundation_bank_account_checks_path(@foundation, @bank_account)  ? "nav-link active" : "nav-link"}",
+          :"data-turbo-stream" => true %>
     </li>
     <li class="nav-item">
       <%= link_to "Reconcilations", foundation_bank_account_reconciliations_path(@foundation, @bank_account), 
-          class: "#{request.path == foundation_bank_account_reconciliations_path(@foundation, @bank_account)  ? "nav-link active" : "nav-link"}" %>
+          class: "#{request.path == foundation_bank_account_reconciliations_path(@foundation, @bank_account)  ? "nav-link active" : "nav-link"}",
+          :"data-turbo-stream" => true %>
     </li>
   </ul>
 </div>

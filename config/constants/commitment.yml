@@ -1,0 +1,12 @@
+commitment:
+  show:
+    no: 0
+    yes: 1
+  sort:
+    start_date: 0
+    end_date: 1
+    payment: 2
+    organization: 3
+  sort_direction:
+    up: 1
+    down: 2

@@ -90,7 +90,8 @@ class Fdn::OrganizationsController < Fdn::BaseController
     def render_main
       @pagy, @organizations = pagy(Organization.none)
       render turbo_stream: [
-        turbo_stream.replace("main_content", partial: "index", locals: { page: @page, by: @by, dir: @dir, query: @query })
+        turbo_stream.replace("main_content", partial: "index", locals: { page: @page, by: @by, dir: @dir, query: @query }),
+        turbo_stream.replace("current-subpage", partial: "layouts/current_subpage", locals: { subpage_name: "Organizations" })
       ]
     end
 

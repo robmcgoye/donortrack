@@ -8,7 +8,8 @@ class Fdn::Donations::CommitmentsController < Fdn::BaseController
   def index
     @pagy, @commitments = pagy(Commitment.none)
     render turbo_stream: [
-      turbo_stream.replace("main_content", partial: "index")
+      turbo_stream.replace("main_content", partial: "index"),
+      turbo_stream.replace("current-subpage", partial: "layouts/current_subpage", locals: { subpage_name: "Contributions/Commitments" })
     ]
   end
 

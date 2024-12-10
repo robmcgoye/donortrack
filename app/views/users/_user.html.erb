@@ -1,6 +1,6 @@
 <%# locals: (user:, index:) -%>
 <%= turbo_frame_tag user do %>
-  <div class="row align-items-center p-0 m-0 <%= index.odd? ? "ct-odd" : "ct-even" %>">
+  <div class="row align-items-center <%= index.odd? ? "ct-odd" : "ct-even" %>">
     <div class="col ct-td"><%= user.email %></div>
     <div class="col ct-td">
       <% user.get_roles.each do |role| %>

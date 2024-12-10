@@ -1,31 +1,37 @@
 <div id="main_content" data-controller="pages" 
       data-pages-sbnum-value="5"
-      data-pages-sidebar-outlet="#main-sidebar">
+      data-pages-sidebar-outlet="#main-sidebar" 
+      class="pt-4">
 
   <div class="card">
-    <div class="card-header my-header">
+    <div class="card-header">
       <%= render "fdn/settings/nav" %>
     </div>
 
     <div class="container-fluid py-3">
       <div class="row text-center">
-        <div class="col"><h5>Funding Sources list</h5></div>
+        <div class="col"><h1 class="h1-content">Funding Sources list</h1></div>
       </div>
 
-      <div class="container-fluid mt-3 px-0">
-       
-        <%# Table Header %>
-        <div class="row tb-header pt-1 align-items-center">
-          <div class="col-4 col-sm-2">Code</div>
-          <div class="d-none d-sm-block col-sm-3">Short Name</div>
-          <div class="col-7 col-sm-5">Full Name</div>
-          <div class="d-none d-sm-block col-sm-2 text-center">Actions</div>
-        </div>
+      <div class="card-table">
+       <div class="ct-table">       
         <%= turbo_frame_tag "new-funding-source-form", src: new_foundation_settings_funding_source_path(@foundation) %>
+
+        <%# Table Header %>
+        <div class="row ct-th">
+          <div class="ct-td col-4 col-sm-2">Code</div>
+          <div class="ct-td col-sm-3">Short Name</div>
+          <div class="ct-td col-7 col-sm-5">Full Name</div>
+          <div class="ct-td col-sm-2 text-center">Actions</div>
+        </div>
         <%# Table Content %>
         <div id="funding_sources">
           <%= render @foundation.funding_sources %>
+          <% @foundation.funding_sources.each_with_index do |funding_source, index| %>
+            <%= render partial: 'funding_source', locals: { funding_source: funding_source, funding_source_counter: index } %>
+          <% end %>          
         </div>
+      </div>
       </div>
 
     </div>

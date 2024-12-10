@@ -1,9 +1,11 @@
 <%= turbo_frame_tag "bank-account-sub" do %>
-  <%= render "fdn/accounting/nav" %>
+  
+  <div class="card-table">
+    <%= render "fdn/accounting/nav" %>
+    <div class="ct-table">
 
-  <div class="border border-top-0">
-    <div class="container-fluid px-0 pt-4 pb-2">
       <%= render "reconciliations_list" %>
+
     </div>
   </div>
 <% end %>

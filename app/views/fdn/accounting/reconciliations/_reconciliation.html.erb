@@ -1,17 +1,21 @@
+<%# locals: (reconciliation:, reconciliation_counter: 0) -%>
+
 <%#= turbo_frame_tag reconciliation do %>
-  <div class="row my-table-row mx-0">
-    <div class="col-4 col-sm-2 px-1 pt-1 my-0 border border-secondary-subtle border-end-0 border-start-0">
+  <div class="row  <%= reconciliation_counter.odd? ? "ct-odd" : "ct-even" %>">
+    <div class="col-4 col-sm-2 ct-td">
       <%= reconciliation.started_at.strftime("%m/%d/%Y") %>
     </div>
-    <div class="d-none d-sm-block col-sm-4 ps-1 pe-3 pt-1 my-0 border border-secondary-subtle border-end-0 border-start-0 text-end">
+    <div class="d-none d-sm-block col-sm-4 ct-td text-end">
       <%= reconciliation.starting_balance.format %>
     </div>
-    <div class="col-4 ps-1 pe-3 pt-1 my-0 border border-secondary-subtle border-end-0 border-start-0 text-end">
+    <div class="col-4 ct-td text-end">
       <%= reconciliation.ending_balance.format %>
     </div>
-    <div class="col-2 px-1 my-0 text-center">
+    <div class="col-2 ct-td text-center">
       <div class="btn-group">
-        <%= link_to reconciliation_path(reconciliation), class: "btn btn-sm btn-outline-secondary" do %>
+        <%= link_to reconciliation_path(reconciliation), 
+            :"data-turbo-stream" => true, 
+            class: "btn btn-sm btn-outline-primary" do %>
           <i class="bi bi-binoculars pe-1"></i>
         <% end %>
         <%= button_to reconciliation_path(reconciliation), method: :delete, class: "btn btn-sm btn-outline-danger", 

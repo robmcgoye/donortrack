@@ -5,7 +5,8 @@ class Fdn::Accounting::BankAccountsController < Fdn::BaseController
     @bank_accounts = @foundation.bank_accounts
     @primary_account = @bank_accounts.where(primary: true).take
     render turbo_stream: [
-      turbo_stream.replace("main_content", partial: "index")
+      turbo_stream.replace("main_content", partial: "index"),
+      turbo_stream.replace("current-subpage", partial: "layouts/current_subpage", locals: { subpage_name: "Accounting" })
     ]
   end
 

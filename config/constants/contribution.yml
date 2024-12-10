@@ -1,0 +1,13 @@
+contribution:
+  show:
+    no: 0
+    yes: 1
+  sort:
+    date: 0
+    type: 1
+    amount: 2
+    organization: 3
+    donor: 4
+  sort_direction:
+    up: 1
+    down: 2

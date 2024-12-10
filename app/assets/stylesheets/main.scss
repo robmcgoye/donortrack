@@ -20,6 +20,11 @@ $text-muted:                    #b0bec5;
 $text-black:                    #000000;
 $text-dark:                     #333;
 
+$bg-palesilver:                 #F2F2F2;
+$bg-limegreen:                  #2ecc71;
+$bg-midnightblue:               #0d1949;
+$border-slategray:              #4f5d64;
+
 $highlight-success:             #00ff7f;
 $highlight-warning:             #ffc107;
 $highlight-info:                #00eaff;
@@ -59,12 +64,23 @@ $table-row-even-color:          #ffffff;
 $table-hover-color:             #ADD8E6;
 // $table-hover-color:                 #E5E5E5;
 
+hr {
+  border-color: $border-slategray; /* or #b0bec5, #455a64, or #6c757d */
+  border-style: solid;
+  border-width: 1px;
+  margin: 10px;
+}
+
 .text-success {
   color: $highlight-success !important;
 }
 
 .text-info {
   color: $highlight-info !important;
+}
+
+.text-danger {
+  color: $error-color !important;
 }
 
 .text-small {
@@ -76,6 +92,12 @@ $table-hover-color:             #ADD8E6;
   font-size: 14px;
 }
 
+.text-bg-dark {
+  // background-image: linear-gradient(to bottom, #0d1949, #1a1d23);
+  background-color: $bg-midnightblue !important;
+  color: $text-secondary;  
+}
+
 .text-bg-primary {
   background-color: $primary-btn-color !important; // $link-blue !important;
   color: $highlight-info !important;
@@ -85,12 +107,27 @@ $table-hover-color:             #ADD8E6;
   background-color: $secondary-bg-color !important;
 }
 
+.border-danger {
+  border-color: $error-color !important;
+}
+
 .bg-danger {
   background-color: $error-color !important;
 }
 
+.text-bg-green {
+  background-color: $bg-limegreen !important;
+  color: $text-black !important;
+  outline : 1px solid $border-muted !important;
+}
+
 .bg-info {
   background-color: $highlight-info !important;
+}
+
+.text-bg-light {
+  background-color: $border-muted !important;
+  color: $text-white !important;
 }
 
 .text-bg-secondary { 
@@ -144,6 +181,8 @@ $table-hover-color:             #ADD8E6;
 
 .form-control {
   border: 1px solid $border-muted;
+  margin-left: 5px;
+  margin-right: 3px;
 }
 
 .secondary-main {
@@ -185,15 +224,36 @@ body.collapsed-sidebar #main-navbar {
   box-shadow: 10px 10px 10px rgba($border-muted, 0.5);
 }
 
+.card-primary {
+  background-color: $bg-palesilver;
+  border: 1px solid $border-muted;
+  // border-radius: 4px;
+  // padding: 16px;  
+  box-shadow: 0 2px 4px rgba($text-black, 0.1);
+  transition: box-shadow 0.2s ease-in-out;
+}
+
 .card-secondary {
   background-color: $secondary-bg-color; /* #E5E5E5 */
   border-color: $border-muted; /* #6c757d */
   color: $text-darkgrey; /* #666 */
+  // border: 4px solid $border-muted;
+}
+
+.drop-shadow {
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .card-secondary .card-header {
   color: $text-primary; /* #ffffff */
   background-color: $dropdown-secondary-bg; /* #1e3a56 */
+  // border-radius: 5px !important;
+}
+.card.card-secondary .card-header-dark {
+ padding-left: 10px; 
+ padding-top: 2px;
+ padding-bottom: 4px;
+
 }
 
 .card {
@@ -219,6 +279,14 @@ body.collapsed-sidebar #main-navbar {
   color: $text-white;
   padding: 0.75rem;
   border-top: 1px solid $card-border-color;
+}
+
+.card-bordered {
+  background-color: #D3D3D3; /* No background color */
+  padding: 1rem; /* Add some inner spacing */
+  box-sizing: border-box; /* Ensure padding fits inside the container */  
+  border: 1px solid $bg-midnightblue;
+  border-radius: 20px !important;
 }
 
 .card-table {
@@ -250,6 +318,7 @@ body.collapsed-sidebar #main-navbar {
   text-align: left;
 }
 
+.card.card-secondary .card-header-dark ,
 .card-table table th, 
 .card-table .ct-th {
   background-color: $table-header-color;
@@ -259,6 +328,42 @@ body.collapsed-sidebar #main-navbar {
   // border-bottom: 2px solid #6c757d;
 }
 
+.card-table .ct-th .btn-light, 
+.card.card-secondary .card-header-dark .btn-light {
+  background-color: #666 !important; // dark gray
+  color: #fff !important;
+  // padding: 0px 16px;
+  // border-radius: 8px;  
+  border: 1px solid #444 !important; // darker gray border
+  // transition: background-color 0.2s ease-in-out;
+
+  &:hover {
+      background-color: #555 !important; // lighter gray on hover
+      border: 1px solid $text-secondary !important;
+  }
+}
+
+.card-table .ct-th .btn, 
+.card.card-secondary .card-header-dark .btn {
+  background-color: $bg-limegreen; /* or #2ecc71, #f1c40f, or a darker shade of the table header background color */
+  color: $text-black;
+  border: 1px solid #1a7f4b;
+  // border: none;
+  padding: 0px 16px;
+  border-radius: 8px;
+  &:hover {
+    background-color: #29b866 ;
+    border: 1px solid $text-black 
+    // #148f5c ;
+  }
+}
+
+.card-table .ct-odd, 
+.card-table .ct-even, 
+.card-table .ct-th{
+  margin: 0;
+  padding: 0;
+}
 
 .card-table table tbody tr:nth-child(odd), 
 .card-table .ct-odd  {
@@ -282,6 +387,46 @@ body.collapsed-sidebar #main-navbar {
 // .card-table table tbody tr:hover {
 //   background-color: $highlight-info; /* Light highlight on hover */
 // }
+
+.card-table .nav-tabs {
+  // background-color: #f2f2f2; /* or #0d1949 */
+  // border-bottom: 1px solid #ddd;
+  background-color: transparent;
+  border-bottom: none;  
+}
+
+.card-table .nav-tabs .nav-link {
+  color: #333; /* or #0d1949 */
+  background-color: $bg-palesilver; /* or #0d1949 */
+  border: 1px solid #aaa;
+  // border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 4px 16px;
+  border-bottom: transparent;
+}
+
+.card-table .nav-tabs .nav-link.active {
+  background-color: #333; /* or a slightly darker shade of the background color */
+  // $bg-midnightblue
+  color: $text-white; /* or a contrasting color */
+  // border: 1px solid #333;
+  border-bottom: 1px solid #333;
+  border-top: 1px solid $text-black;
+  border-right: 1px solid $text-black;
+  border-left: 1px solid $text-black;
+  // border-bottom: none;
+}
+
+.card-table .nav-tabs .nav-link.active:hover {
+  color: $text-grey; /* or a contrasting color */
+  border: 1px solid #cccccc;
+}
+
+.nav-tabs .nav-link:hover {
+  background-color: #cccccc;
+  border: 1px solid #333;
+  color: #000;
+}
 
 .btn-outline-light {
   border: 1px solid $text-grey;
@@ -316,6 +461,22 @@ body.collapsed-sidebar #main-navbar {
   }
 }
 
+.btn-outline-success {
+  border: 1px solid $success-color;
+  background-color: transparent;
+  color: $success-color;
+  transition: background-color 0.3s ease, color 0.3s ease;
+
+  &:hover {
+    background-color: $success-color;
+    color: $text-white;
+  }
+
+  &:focus {
+    box-shadow: 0 0 0 0.2rem rgba($success-color, 0.5);
+  }
+}
+
 .btn-outline-danger {
   border: 1px solid $danger-color;
   background-color: transparent;
@@ -330,6 +491,18 @@ body.collapsed-sidebar #main-navbar {
   &:focus {
     box-shadow: 0 0 0 0.2rem rgba($danger-color, 0.5);
   }
+}
+
+.border-top-primary {
+  border-top: 1px solid $primary-btn-color;
+}
+
+.border-bottom-primary {
+  border-bottom: 1px solid $primary-btn-color;
+}
+
+.border-end-primary {
+  border-right: 1px solid $primary-btn-color;
 }
 
 .btn-outline-primary {
@@ -400,7 +573,7 @@ body.collapsed-sidebar #main-navbar {
 
  .dropdown-menu-prime {
   background-color: #1e3a56;
-  border-color: #6c757d;
+  border-color: $border-muted;
 }
 
 .dropdown-menu-prime .dropdown-item {
@@ -486,7 +659,7 @@ color: $text-white;
 }
 
 .navbar .welcome-message {
-  font-size: 14px;
+  font-size: 16px;
   color: $text-muted;
   padding: 8px 16px;
   border-radius: 4px;

@@ -38,7 +38,7 @@
       </div>
     </div>
 
-    <div class="col-auto border-start border-primary d-flex align-items-center">
+    <div class="col-auto d-flex align-items-center">
 
       <div class="btn-group-vertical">
         <%= form.button class: "btn btn-sm btn-outline-primary text-start" do %>
@@ -49,7 +49,10 @@
           <% end %>
         <% end %>
 
-        <%= link_to cancel_foundation_bank_account_path(@foundation, get_id(bank_account)), class: "btn btn-sm btn-outline-primary text-start" do %>
+        <%= link_to cancel_foundation_bank_account_path(@foundation, get_id(bank_account)),
+              :"data-turbo-stream" => true,
+              class: "btn btn-sm btn-outline-secondary text-start" do %>
+
           <i class="bi bi-x-square pe-1"></i>Cancel
         <% end %>        
       </div>

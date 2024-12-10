@@ -1,0 +1,11 @@
+organization:
+  show:
+    no: 0
+    yes: 1
+  sort:
+    name: 0
+    contact: 1
+    type: 2
+  sort_direction:
+    up: 1
+    down: 2

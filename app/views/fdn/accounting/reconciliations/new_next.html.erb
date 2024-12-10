@@ -1,34 +1,7 @@
 <%= turbo_frame_tag "reconciliation-main" do %>
-  <div class="card bg-info bg-opacity-10 border-info p-2" data-controller="reconciliation" 
+
+  <div class="card card-secondary" data-controller="reconciliation" 
               data-reconciliation-reconciliationbalance-value="<%= @reconciliation.ending_balance_cents - @reconciliation.starting_balance_cents  %>" >
-    <div class="row align-items-center">
-      <div class="col-auto">
-        <span class="badge rounded-pill bg-info">Statement Date : </span>
-      </div>
-      <div class="col">
-        <%= "#{@reconciliation.started_at.strftime("%m/%d/%Y")} - #{@reconciliation.ended_at.strftime("%m/%d/%Y")}" %>
-      </div>
-    </div>
-    <div class="row align-items-center pb-2">
-      <div class="col-md-2">
-        <span class="badge rounded-pill bg-info">Starting Balance : </span>
-      </div>
-      <div class="col-md-2 text-center">
-        <%= @reconciliation.starting_balance.format %>
-      </div>
-      <div class="col-md-2">
-        <span class="badge rounded-pill bg-info">Ending Balance : </span>
-      </div>
-      <div class="col-md-2 text-center">
-        <%= @reconciliation.ending_balance.format %>
-      </div>
-      <div class="col-md-2">
-        <span class="badge rounded-pill bg-info">Balance : </span>
-      </div>
-      <div class="col-md-2 text-center">
-        <span data-reconciliation-target="balance"></span>
-      </div>
-    </div>
     <%= form_with model: @reconciliation, url: foundation_bank_account_reconciliations_path(@foundation, @bank_account), 
           id: dom_id(@reconciliation, "form"), class: "pb-1 ps-1" do |f| %>
       <%= f.hidden_field :bank_account_id, value: @reconciliation.bank_account_id %>
@@ -38,59 +11,100 @@
       <%= f.hidden_field :ending_balance, value: @reconciliation.ending_balance %>
       <%= f.hidden_field :journal_entry, value: "", data: { :"reconciliation-target" => "journal" } %>
 
-      <div class="row gx-5 pb-2">
-        <div class="col-auto">
-          <div class="card bg-info bg-opacity-10 border-info h-100">
-            <div class="card-header py-0 text-center">Deposits</div>
-            <div class="card-body p-2">           
-              <% @checks.each do |check| %>
-                <% if check.credit? %>
-                  <div class="form-check px-1">
-                    <%= f.check_box :check_ids, { multiple: true, data: { value: "#{check.amount_cents}", action: "click->reconciliation#update_balance" } }, 
-                    check.id, nil %>
-                    <label for="reconciliation_check_ids<%= "_#{check.id}" %>">
-                      <%= "#{check.transaction_at.strftime("%m/%d/%Y")} #{check.amount.format}" %>
-                    </label>
-                    
-                  </div>
-                <% end %>
+
+      <div class="card-header-dark">
+
+
+
+        <div class="row">
+          <div class="col-8">
+            <span class="badge text-bg-light mb-1">Statement Date : </span>
+            <%= "#{@reconciliation.started_at.strftime("%m/%d/%Y")} - #{@reconciliation.ended_at.strftime("%m/%d/%Y")}" %>
+            <i> - New Reconciliation</i>
+          </div>
+          <div class="col-4 text-end pe-3">
+            <div class="btn-group">
+              <%= link_to foundation_bank_account_reconciliations_cancel_path(@foundation, @bank_account), 
+                    :"data-turbo-stream" => true, class: "btn btn-light btn-sm" do %>
+                <i class="bi calendar2-plus pe-1"></i>Cancel
+              <% end %> 
+
+              <%= f.button class: "btn btn-sm text-start", data: { action: "reconciliation#reconcile" } do %>
+                  <i class="bi bi-plus-circle pe-1"></i>Reconcile
               <% end %>
+
             </div>
           </div>
         </div>
-        <div class="col">
-          <div class="card bg-info bg-opacity-10 border-info h-100">
-            <div class="card-header py-0 text-center">Contributions</div>
-            <div class="card-body p-2">
-              <% @checks.each do |check| %>
-                <% if check.debit? %>
-                  <div class="form-check px-1">
-                    <%= f.check_box :check_ids, { multiple: true, data: { value: "-#{check.amount_cents}", action: "click->reconciliation#update_balance" } }, check.id, nil %>
-                    <label for="reconciliation_check_ids<%= "_#{check.id}" %>">
-                      <%= "#{check.transaction_at.strftime("%m/%d/%Y")} #{check.check_number} #{check.amount.format}" %>
-                    </label>
-                    
-                  </div>
-                <% end %>
-              <% end %>
-            </div>
-          </div>
-        </div>
+
       </div>
 
-      <div class="row border-top border-info mx-0 py-1">
-        <div class="col-sm-4 text-start">
-          <%= link_to foundation_bank_account_reconciliations_cancel_path(@foundation, @bank_account), class: "btn btn-outline-info btn-sm" do %>
-            <i class="bi calendar2-plus pe-1"></i>Cancel
-          <% end %> 
+      <div class="card-body">
+        <div class="row align-items-center mb-3">
+          <div class="col-md-2 text-end border-end-primary">
+            <span class="badge text-bg-dark">Starting Balance : </span>
+          </div>
+          <div class="col-md-2 text-center border-bottom-primary">
+            <%= @reconciliation.starting_balance.format %>
+          </div>
+          <div class="col-md-2 text-end border-end-primary">
+            <span class="badge text-bg-dark">Ending Balance : </span>
+          </div>
+          <div class="col-md-2 text-center border-bottom-primary">
+            <%= @reconciliation.ending_balance.format %>
+          </div>
+          <div class="col-md-2 text-end border-end-primary">
+            <span class="badge text-bg-dark">Balance : </span>
+          </div>
+          <div class="col-md-2 text-center border-bottom-primary">
+            <span data-reconciliation-target="balance"></span>
+          </div>
         </div>
-        <div class="col-sm-4 offset-4 text-end">
-          <%= f.button class: "btn btn-sm btn-outline-info text-start", data: { action: "reconciliation#reconcile" } do %>
-              <i class="bi bi-plus-circle pe-1"></i>Reconcile
-          <% end %>
+
+
+        <div class="row gx-5 pb-2">
+          <div class="col-auto">
+            <div class="card h-100">
+              <div class="card-header py-0 text-center">Deposits</div>
+              <div class="card-body p-2">           
+                <% @checks.each do |check| %>
+                  <% if check.credit? %>
+                    <div class="form-check px-1">
+                      <%= f.check_box :check_ids, { multiple: true, data: { value: "#{check.amount_cents}", action: "click->reconciliation#update_balance" } }, 
+                      check.id, nil %>
+                      <label for="reconciliation_check_ids<%= "_#{check.id}" %>">
+                        <%= "#{check.transaction_at.strftime("%m/%d/%Y")} #{check.amount.format}" %>
+                      </label>
+                      
+                    </div>
+                  <% end %>
+                <% end %>
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="card h-100">
+              <div class="card-header py-0 text-center">Contributions</div>
+              <div class="card-body p-2">
+                <% @checks.each do |check| %>
+                  <% if check.debit? %>
+                    <div class="form-check px-1">
+                      <%= f.check_box :check_ids, { multiple: true, data: { value: "-#{check.amount_cents}", action: "click->reconciliation#update_balance" } }, check.id, nil %>
+                      <label for="reconciliation_check_ids<%= "_#{check.id}" %>">
+                        <%= "#{check.transaction_at.strftime("%m/%d/%Y")} #{check.check_number} #{check.amount.format}" %>
+                      </label>
+                      
+                    </div>
+                  <% end %>
+                <% end %>
+              </div>
+            </div>
+          </div>
         </div>
+
+
+
       </div>
     <% end %>
-
   </div>
 <% end %>

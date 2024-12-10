@@ -1,7 +1,16 @@
 <%= turbo_frame_tag @bank_account do %>
-  <div class="card bg-primary bg-opacity-10 border-primary mx-1">
-    <div class="card-body py-1">
+  <%# <div class="card bg-primary bg-opacity-10 border-primary mx-1"> %>
+    <%# <div class="card-body py-1"> %>
+      <%#= render "form", bank_account: @bank_account, form_url: foundation_bank_account_path(@foundation, @bank_account) %>
+    <%# </div> %>
+  <%# </div> %>
+
+  <div class="card card-secondary m-3">
+    <div class="card-header text-center">
+      Editing Bank Account -- <%= @bank_account.full_name %>
+    </div>
+    <div class="card-body">
       <%= render "form", bank_account: @bank_account, form_url: foundation_bank_account_path(@foundation, @bank_account) %>
     </div>
   </div>
-<% end %>
+  <% end %>

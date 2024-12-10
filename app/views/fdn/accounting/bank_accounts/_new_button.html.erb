@@ -3,32 +3,43 @@
 
   <div class="row">
 
-    <div class="col-12 col-sm-6 pb-1 text-center">
-      <%= link_to new_foundation_bank_account_path(@foundation), class: "btn btn-outline-secondary py-1" do %>
-        <i class="bi bi-plus-circle pe-1"></i>New Bank Account
-      <% end %>
+    <div class="col">
+      <h1 class="h1-content">Bank Accounts</h1>
+
     </div>
 
-    <div class="col-12 col-sm-6 text-center">
-      <% if bank_accounts.present? %>
+    <div class="col-auto">
+
         <div class="dropdown">
-          <a class="btn btn-outline-secondary dropdown-toggle py-1" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          <a class="btn btn-primary dropdown-toggle py-1" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             Select an Account...
           </a>
-          <ul class="dropdown-menu">
+          <ul class="dropdown-menu dropdown-menu-prime">
+            <li>
+                <%= link_to new_foundation_bank_account_path(@foundation), 
+                      :"data-turbo-stream" => true,
+                      class: "dropdown-item" do %>
+                  <i class="bi bi-plus-circle pe-1"></i>New Bank Account
+                <% end %>
+            </li>
+      <% if bank_accounts.present? %>
+            <li><hr class="dropdown-divider"></li>
             <% bank_accounts.each do |bank_account| %>
               <li>
                 <%#= link_to bank_account.full_name, foundation_bank_account_path(@foundation, bank_account), 
                     class: "dropdown-item #{"text-bg-success" if bank_account.primary }" %>
-                <%= link_to foundation_bank_account_path(@foundation, bank_account), class: "dropdown-item" do %>
+                <%= link_to foundation_bank_account_path(@foundation, bank_account),
+                      :"data-turbo-stream" => true,
+                      class: "dropdown-item" do %>
                   <%= bank_account.full_name %>
                   <%== '<i class="bi bi-check2-circle ps-1"></i>' if bank_account.primary %>
                 <% end %>
               </li>
             <% end %>
+      <% end %>
+
           </ul>
         </div> 
-      <% end %>
     </div>
 
   </div>

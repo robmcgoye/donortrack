@@ -1,18 +1,21 @@
 <%# locals: (check:, check_counter: 0, check_iteration: 1) -%>
 <%= turbo_frame_tag check do %>
-  <div class="row my-table-row mx-0">
-    <div class="col-4 col-md-2 px-0 pt-1 my-0 border border-secondary-subtle border-end-0 border-start-0">
+  <div class="row <%= check_counter.odd? ? "ct-odd" : "ct-even" %>">
+    <div class="col-4 col-md-2 ct-td">
       <%= check.transaction_at.strftime("%m/%d/%Y") %>
     </div>
-    <div class="d-none d-md-block col-md-4 px-1 pt-1 my-0 border border-secondary-subtle border-end-0 border-start-0">
+    <div class="d-none d-md-block col-md-4 ct-td">
       <%= check.description %>
     </div>
-    <div class="col-5 col-md-4 px-1 pt-1 my-0 border border-secondary-subtle border-end-0 border-start-0 text-end">
+    <div class="col-5 col-md-4 ct-td text-end pe-2">
       <%= check.amount.format %>
     </div>
-    <div class="col-3 col-md-2 px-1 my-0 text-center">
+    <div class="col-3 col-md-2 ct-td">
       <div class="btn-group">
-        <%= link_to edit_check_path(check), class: "btn btn-sm btn-outline-secondary" do %>
+        <%= link_to edit_check_path(check),
+            class: "btn btn-sm btn-outline-primary",
+            data: { turbo_frame: "edit_check" },
+            :"data-turbo-stream" => true do %>
           <i class="bi bi-pencil-square pe-1"></i>
         <% end %>
         <%= button_to check_path(check), method: :delete, class: "btn btn-sm btn-outline-danger", 

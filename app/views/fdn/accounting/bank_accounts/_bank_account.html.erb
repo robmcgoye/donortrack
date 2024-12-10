@@ -2,23 +2,24 @@
 <%= turbo_frame_tag bank_account do %>  
   <div class="row align-items-center mx-1">
     <div class="col-9 col-md-10 pe-0">
-      <div class="card border bg-success bg-opacity-10 border-success ps-1 py-2 position-relative">
+      <div class="card card-primary ps-1 py-2 position-relative">
+        <%# border bg-success bg-opacity-10 border-success %>
         <div class="row align-items-center">
           <div class="col-3 col-md-2">
-            <span class="badge rounded-pill bg-success">Bank : </span>
+            <span class="badge text-bg-dark">Bank : </span>
           </div>
-          <div class="col-9 col-md-4 text-center">
+          <div class="col-9 col-md-4 text-start">
             <%= bank_account.full_name %>
           </div>
           <div class="col-3 col-md-2">
-            <span class="badge rounded-pill bg-success">Balance : </span>
+            <span class="badge text-bg-dark">Balance : </span>
           </div>
-          <div class="col-9 col-md-4 text-center">
+          <div class="col-9 col-md-4 text-start">
             <%= bank_account.balance.format %>
           </div>
         </div>
         <% if bank_account.primary %>
-          <span class="position-absolute top-0 start-0 translate-middle badge rounded-pill bg-success">
+          <span class="position-absolute top-0 start-0 translate-middle badge rounded-pill text-bg-green">
             <i class="bi bi-check2-circle"></i>
           </span>
         <% end %>
@@ -26,11 +27,11 @@
     </div>
     <div class="col-2">
       <div class="btn-group flex-wrap">
-        <%= button_to edit_foundation_bank_account_path(@foundation, bank_account), method: :get, class: "btn btn-sm btn-outline-secondary" do %>
+        <%= button_to edit_foundation_bank_account_path(@foundation, bank_account), method: :get, class: "btn btn-sm btn-primary px-2" do %>
           <i class="bi bi-pencil-square"></i>
         <% end %>
         <%= button_to foundation_bank_account_path(@foundation, bank_account), method: :delete, 
-              class: "btn btn-sm btn-outline-danger #{ "disabled" if bank_account.checks.size > 0 }", 
+              class: "btn btn-sm btn-danger #{ "disabled" if bank_account.checks.size > 0 }", 
               form: {data: {turbo_confirm: 'Are you sure?'}} do %>
           <i class="bi bi-trash"></i>
         <% end %>        

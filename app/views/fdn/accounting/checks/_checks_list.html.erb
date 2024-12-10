@@ -1,5 +1,11 @@
 <%# locals: (checks:) -%>
-<div class="mx-2 pb-4" id="bank-deposits">
+<div id="bank-deposits">
   <%= turbo_frame_tag Check.new %>
-  <%= (checks.size > 0) ? (render checks) : "No Deposits" %>
+  <% if checks.size >0 %>
+    <% checks.each_with_index do |check, index| %>
+      <%= render partial: 'check', locals: { check: check, check_counter: index } %>
+    <% end %>
+  <% else %>
+    No Deposits
+  <% end %>
 </div>

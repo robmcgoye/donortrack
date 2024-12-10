@@ -16,7 +16,7 @@
       <%= form.text_field :description, class: "form-control form-control-sm" %>
     </div>
     <div class="col-sm-2 px-1 my-1 text-center">
-      <%= form.button class: "btn btn-sm text-start #{organization_type.id.nil? ? "btn-outline-success" : "btn-outline-primary"}" do %>
+      <%= form.button class: "btn btn-sm text-start #{organization_type.id.nil? ? "btn-outline-primary" : "btn-outline-primary"}" do %>
         <% if organization_type.id.nil? %>
           <i class="bi bi-plus-circle pe-1"></i>New
         <% else %>

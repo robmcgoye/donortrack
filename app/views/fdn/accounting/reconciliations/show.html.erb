@@ -1,12 +1,20 @@
 <%= turbo_frame_tag "reconciliation-main" do %>
-  <div class="card bg-info bg-opacity-10 border-info mx-1">
-    <div class="card-header bg-info bg-opacity-25 px-1">
+  <div class="card card-secondary">
+    <div class="card-header-dark">
       <div class="row align-items-center mx-0">
         <div class="col-auto px-1">
-          <span class="badge rounded-pill bg-info">Statement : </span>
+          <span class="badge text-bg-light mb-1">Statement : </span>
         </div>
         <div class="col px-1">
           <%= "#{@reconciliation.started_at.strftime("%m/%d/%Y")} - #{@reconciliation.ended_at.strftime("%m/%d/%Y")}" %>
+        </div>
+        <div class="col-2 text-end pe-3">
+          <div class="btn-group">
+            <%= link_to foundation_bank_account_reconciliations_cancel_path(@foundation, @bank_account),
+                  :"data-turbo-stream" => true, class: "btn btn-sm " do %>
+              <i class="bi bi-x-square pe-1"></i>Close
+            <% end %> 
+          </div>
         </div>
       </div>
     </div>
@@ -14,20 +22,20 @@
 
       <div class="row align-items-center pb-2 mx-0">
         <div class="col-5 col-md-2">
-          <span class="badge rounded-pill bg-info">Starting Balance : </span>
+          <span class="badge text-bg-dark">Starting Balance : </span>
         </div>
         <div class="col-6 col-md-4 text-center">
           <%= @reconciliation.starting_balance.format %>
         </div>
         <div class="col-5 col-md-2">
-          <span class="badge rounded-pill bg-info">Ending Balance : </span>
+          <span class="badge text-bg-dark">Ending Balance : </span>
         </div>
         <div class="col-6 col-md-4 text-center">
           <%= @reconciliation.ending_balance.format %>
         </div>
       </div>
 
-      <div class="card bg-info bg-opacity-10 border-info">
+      <div class="card">
         <div class="card-header py-0 text-center">Transactions</div>
         <div class="card-body px-0 py-2">           
           <% @reconciliation.checks.each do |check| %>

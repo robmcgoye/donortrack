@@ -1,31 +1,36 @@
 <div id="main_content" data-controller="pages" 
       data-pages-sbnum-value="5"
-      data-pages-sidebar-outlet="#main-sidebar">
+      data-pages-sidebar-outlet="#main-sidebar" 
+      class="pt-4">
 
   <div class="card">
-    <div class="card-header my-header">
+    <div class="card-header">
       <%= render "fdn/settings/nav" %>
     </div>
     <div class="container-fluid py-3">
       <div class="row text-center">
-        <div class="col"><h5>Donors list</h5></div>
+        <div class="col"><h1 class="h1-content">Donors list</h1></div>
       </div>
 
-      <div class="container-fluid mt-3 px-0">
-       
-        <%# Table Header %>
-        <div class="row tb-header pt-1">
-          <div class="col-4">Code</div>
-          <div class="col-6">Name</div>
-          <div class="d-none d-sm-block col-2 text-center">Actions</div>
-        </div>
+      <div class="card-table">
+       <div class="ct-table">
         <%= turbo_frame_tag "new-donor-form", src: new_foundation_settings_donor_path(@foundation) %>
+
+        <%# Table Header %>
+        <div class="row ct-th">
+          <div class="col-4 ct-td">Code</div>
+          <div class="col-6 ct-td">Name</div>
+          <div class="col-2 ct-td text-center">Actions</div>
+        </div>
         <%# Table Content %>
         <div id="donors">
-          <%= render @foundation.donors.sort_full_name_up %>
+          <%# render @foundation.donors.sort_full_name_up %>
+          <% @foundation.donors.sort_full_name_up.each_with_index do |donor, index| %>
+            <%= render partial: 'donor', locals: { donor: donor, donor_counter: index } %>
+          <% end %>
         </div>
       </div>
-
+ </div>
     </div>
 
   </div>

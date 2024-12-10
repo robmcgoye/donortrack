@@ -1,7 +1,8 @@
 class Fdn::Reporting::ReportsController < Fdn::BaseController
   def dashboard
     render turbo_stream: [
-      turbo_stream.replace("main_content", partial: "dashboard")
+      turbo_stream.replace("main_content", partial: "dashboard"),
+      turbo_stream.replace("current-subpage", partial: "layouts/current_subpage", locals: { subpage_name: "Reports" })
     ]
   end
 

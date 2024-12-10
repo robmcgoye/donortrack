@@ -10,7 +10,7 @@
     </div>
   </div>
 
-  <div class="row pb-1">
+  <div class="row pb-1 px-3">
     <div class="col-sm-3">
       <%= f.label :started_at, "Start" %>
     </div>
@@ -25,7 +25,7 @@
     </div>
   </div>
   
-  <div class="row pt-1 pb-2">
+  <div class="row pt-1 pb-2 px-3">
     <div class="col-sm-3">
       <%= f.label :starting_balance %>
     </div>
@@ -40,14 +40,15 @@
     </div>
   </div>
 
-  <div class="row border-top border-info mx-0 py-1">
+  <div class="row border-top mx-0 py-1">
     <div class="col-4 text-start">
-      <%= link_to foundation_bank_account_reconciliations_cancel_path(@foundation, @bank_account), class: "btn btn-outline-info btn-sm" do %>
+      <%= link_to foundation_bank_account_reconciliations_cancel_path(@foundation, @bank_account),
+            :"data-turbo-stream" => true, class: "btn btn-outline-secondary btn-sm" do %>
         <i class="bi calendar2-plus pe-1"></i>Cancel
       <% end %> 
     </div>
     <div class="col-5 offset-3 text-end">
-      <%= f.button class: "btn btn-sm btn-outline-info text-start" do %>
+      <%= f.button class: "btn btn-sm btn-outline-primary text-start" do %>
           <i class="bi bi-plus-circle pe-1"></i>Next
       <% end %>
     </div>

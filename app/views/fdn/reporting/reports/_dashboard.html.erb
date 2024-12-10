@@ -1,9 +1,10 @@
 <div id="main_content" data-controller="pages" 
       data-pages-sbnum-value="4"
-      data-pages-sidebar-outlet="#main-sidebar">
+      data-pages-sidebar-outlet="#main-sidebar"
+      class="pt-4">
 
   <div class="card">
-    <div class="card-header text-center my-header">
+    <div class="card-header text-center">
       <div class="row">
         <div class="col-auto"><%= image_tag(@foundation.resize_image_logo(25,25)) if @foundation.image_logo.attached? %></div>
         <div class="col text-center"><h5 class="mb-0">Reports</h5></div>
@@ -14,7 +15,7 @@
       <div class="row">
         <div class="col-auto">
           <div class="btn-group-vertical">
-            <%= link_to foundation_reporting_commitment_path(@foundation), class: "btn btn-sm btn-outline-secondary",  
+            <%= link_to foundation_reporting_commitment_path(@foundation), class: "btn btn-sm btn-outline-primary",  
                   data: { turbo_frame: 'report_form' },
                   "data-action": "click->reports#toggle",
                   "data-reports-target": "btn" do %>
@@ -22,7 +23,7 @@
               Commitments
             <% end %>
 
-            <%= link_to foundation_reporting_contribution_path(@foundation), class: "btn btn-sm btn-outline-secondary",  
+            <%= link_to foundation_reporting_contribution_path(@foundation), class: "btn btn-sm btn-outline-primary",  
                   data: { turbo_frame: 'report_form' },
                   "data-action": "click->reports#toggle",
                   "data-reports-target": "btn" do %>

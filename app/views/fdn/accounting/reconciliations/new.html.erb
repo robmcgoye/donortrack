@@ -1,5 +1,70 @@
 <%= turbo_frame_tag "reconciliation-main" do %>
-  <div class="card bg-info bg-opacity-10 border-info px-2 mx-1">
-      <%= render "form", reconciliation: @reconciliation, form_url: foundation_bank_account_reconciliations_new_next_path(@foundation, @bank_account) %>
-  </div>
+  <%= form_with model: @reconciliation, 
+        url: foundation_bank_account_reconciliations_new_next_path(@foundation, @bank_account), 
+        id: dom_id(@reconciliation, "form") do |f| %>
+
+    <%= f.hidden_field :bank_account_id, value: @bank_account.id %>
+
+    <div class="card card-secondary">
+      <div class="card-header-dark">
+        <div class="row">
+          <div class="col-8">New Reconciliation</div>
+          <div class="col-4 text-end pe-3">
+            <div class="btn-group">
+              <%= link_to foundation_bank_account_reconciliations_cancel_path(@foundation, @bank_account),
+                  :"data-turbo-stream" => true, class: "btn btn-sm btn-light" do %>
+                <i class="bi bi-x-square pe-1"></i>Cancel
+              <% end %> 
+
+              <%= f.button class: "btn btn-sm text-start" do %>
+                <i class="bi bi-plus-circle pe-1"></i>Next
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+        <%#= render "form", reconciliation: @reconciliation, form_url: foundation_bank_account_reconciliations_new_next_path(@foundation, @bank_account) %>
+
+
+
+      <div class="container pt-2">
+        <div class="row justify-content-center">
+          <div class="col-md-9">
+            <%= render 'shared/error_messages', resource: @reconciliation %>
+          </div>
+        </div>
+      </div>
+
+      <div class="row pb-1 px-3">
+        <div class="col-sm-3">
+          <%= f.label :started_at, "Start" %>
+        </div>
+        <div class="col-sm-3">
+          <%= f.date_field :started_at, class: "form-control form-control-sm" %>  
+        </div>
+        <div class="col-sm-3">
+          <%= f.label :ended_at, "End" %>
+        </div>
+        <div class="col-sm-3">
+          <%= f.date_field :ended_at, class: "form-control form-control-sm" %>  
+        </div>
+      </div>
+
+      <div class="row pt-1 pb-2 px-3">
+        <div class="col-sm-3">
+          <%= f.label :starting_balance %>
+        </div>
+        <div class="col-sm-3">
+          <%= f.text_field :starting_balance, class: "form-control form-control-sm text-end" %>  
+        </div>
+        <div class="col-sm-3">
+          <%= f.label :ending_balance %>
+        </div>
+        <div class="col-sm-3">
+          <%= f.text_field :ending_balance, class: "form-control form-control-sm text-end" %>
+        </div>
+      </div>
+
+    </div>
+  <% end %>
 <% end %>
