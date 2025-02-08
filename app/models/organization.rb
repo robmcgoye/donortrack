@@ -17,7 +17,7 @@ class Organization < ApplicationRecord
   if Rails.env.production?
     scope :filter_by_name, ->(query) { where("name ILIKE ?", "%#{sanitize_sql_like(query)}%") }
   else
-    scope :filter_by_name, ->(query) { where("name LIKE ?", "%#{sanitize_sql_like(query)}%") }
+    scope :filter_by_name, ->(query) { where("name ILIKE ?", "%#{sanitize_sql_like(query)}%") }
   end
   scope :sort_type_up, -> { includes(:organization_type).order("organization_types.code") }
   scope :sort_type_down, -> { includes(:organization_type).order("organization_types.code desc") }

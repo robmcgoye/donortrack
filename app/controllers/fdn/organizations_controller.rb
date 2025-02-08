@@ -40,7 +40,15 @@ class Fdn::OrganizationsController < Fdn::BaseController
   end
 
   def new
-    @organization = Organization.new
+    if @foundation.organization_types.present?
+      @organization = Organization.new
+    else
+      flash.now[:notice] = "Organization must have at least one organization type."
+      render turbo_stream: [
+        turbo_stream.replace("messages", partial: "layouts/messages"),
+        turbo_stream.replace(Organization.new, partial: "new_placeholder")
+      ]
+    end
   end
 
   def edit

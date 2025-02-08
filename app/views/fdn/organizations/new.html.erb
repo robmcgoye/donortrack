@@ -1,8 +1,12 @@
 <%= turbo_frame_tag Organization.new do %>
-  <div class="card mb-2 border-primary ">
-    <div class="card-header py-1 border-primary bg-primary bg-opacity-25">New Organization</div>
-    <div class="card-body pb-2 bg-primary bg-opacity-10">
+
+  <div class="card card-secondary m-2">
+    <div class="card-header text-center">
+      New Organization
+    </div>
+    <div class="card-body">
       <%= render "form", organization: @organization, form_url: foundation_organizations_path(@foundation), page: 1, show: 0 %>
     </div>
   </div>
+
 <% end %>

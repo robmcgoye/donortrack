@@ -6,7 +6,7 @@ module ApplicationHelper
       |p| [ "#{p.code} - #{truncate(p.description, 9)}", p.id ]
     }
     results.unshift([ "ALL Types", 0 ]) if include_all
-    # return results
+    results
   end
 
   def get_select_options_for_donors(foundation, include_all = false)
@@ -14,7 +14,7 @@ module ApplicationHelper
       |p| [ p.full_name, p.id ]
     }
     results.unshift([ "ALL Donors", 0 ]) if include_all
-    # return results
+    results
   end
 
   def get_select_options_for_funding_sources(foundation, include_all = false)
@@ -22,7 +22,7 @@ module ApplicationHelper
       |p| [ "#{p.code} - #{truncate(p.short_name, 8)}", p.id ]
     }
     results.unshift([ "ALL Funds", 0 ]) if include_all
-    # return results
+    results
   end
 
   def truncate(string, max)

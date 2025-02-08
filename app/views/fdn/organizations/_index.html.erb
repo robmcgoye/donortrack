@@ -3,6 +3,8 @@
       data-pages-sidebar-outlet="#main-sidebar"
       class="pt-4">
   
+  <%= render "new_placeholder" %>
+
   <div class="card">
     <div class="card-header text-center my-header">
       <div class="row">
@@ -16,41 +18,50 @@
             data-sortmgmt-dir-value="<%= dir %>" 
             data-sortmgmt-query-value="<%= query %>" 
             data-sortmgmt-selected-value="<%= by %>">
-        <%= render "new_placeholder" %>
+        
 
         <%= render "search", create: false %>
-        <div class="row tb-header py-1 align-items-center">
-          <div class="col-10 col-sm-5">
-            <a href="#" data-action="sortmgmt#sort" 
-                data-value="<%= APP_CONSTANTS.organization.sort.name %>" 
-                data-url="<%= foundation_organizations_sort_path(@foundation, by: APP_CONSTANTS.organization.sort.name) %>" 
-                class="link-dark link-underline link-underline-opacity-0 link-underline-opacity-100-hover">
-              Name<i class="ps-1 bi" data-sortmgmt-target="sort_icon"></i>
-            </a>
-          </div>
-          <div class="d-none d-sm-block col-sm-3">
-            <a href="#" data-action="sortmgmt#sort" 
-                data-value="<%= APP_CONSTANTS.organization.sort.contact %>" 
-                data-url="<%= foundation_organizations_sort_path(@foundation, by: APP_CONSTANTS.organization.sort.contact) %>" 
-                class="link-dark link-underline link-underline-opacity-0 link-underline-opacity-100-hover">
-              Contact<i class="ps-1 bi" data-sortmgmt-target="sort_icon"></i>
-            </a>
-          </div>
-          <div class="d-none d-sm-block col-sm-3">
-            <a href="#" data-action="sortmgmt#sort" 
-                data-value="<%= APP_CONSTANTS.organization.sort.type %>" 
-                data-url="<%= foundation_organizations_sort_path(@foundation, by: APP_CONSTANTS.organization.sort.type) %>" 
-                class="link-dark link-underline link-underline-opacity-0 link-underline-opacity-100-hover">
-              Type<i class="ps-1 bi" data-sortmgmt-target="sort_icon"></i>
-            </a>
-          </div>
-          <div class="col-1 px-0">
-            <%= link_to new_foundation_organization_path(@foundation), class: "btn btn-sm btn-outline-success py-0", data: { turbo_frame: "new_organization" } do %>
-              New
-            <% end %>
+
+        <div class="card-table px-0">
+          <div class=" ct-table">
+            <div class="row ct-th align-items-center">
+              <div class="col-10 col-sm-5 ct-td">
+                <a href="#" data-action="sortmgmt#sort" 
+                    data-value="<%= APP_CONSTANTS.organization.sort.name %>" 
+                    data-url="<%= foundation_organizations_sort_path(@foundation, by: APP_CONSTANTS.organization.sort.name) %>" 
+                    class="link-light link-underline link-underline-opacity-0 link-underline-opacity-100-hover">
+                  Name<i class="ps-1 bi" data-sortmgmt-target="sort_icon"></i>
+                </a>
+              </div>
+              <div class="d-none d-sm-block col-sm-3 ct-td">
+                <a href="#" data-action="sortmgmt#sort" 
+                    data-value="<%= APP_CONSTANTS.organization.sort.contact %>" 
+                    data-url="<%= foundation_organizations_sort_path(@foundation, by: APP_CONSTANTS.organization.sort.contact) %>" 
+                    class="link-light link-underline link-underline-opacity-0 link-underline-opacity-100-hover">
+                  Contact<i class="ps-1 bi" data-sortmgmt-target="sort_icon"></i>
+                </a>
+              </div>
+              <div class="d-none d-sm-block col-sm-3 ct-td">
+                <a href="#" data-action="sortmgmt#sort" 
+                    data-value="<%= APP_CONSTANTS.organization.sort.type %>" 
+                    data-url="<%= foundation_organizations_sort_path(@foundation, by: APP_CONSTANTS.organization.sort.type) %>" 
+                    class="link-light link-underline link-underline-opacity-0 link-underline-opacity-100-hover">
+                  Type<i class="ps-1 bi" data-sortmgmt-target="sort_icon"></i>
+                </a>
+              </div>
+              <div class="col-1 px-0 ct-td">
+                <%= link_to new_foundation_organization_path(@foundation), 
+                      class: "btn btn-sm", 
+                      :"data-turbo-stream" => true,
+                      data: { turbo_frame: "new_organization" } do %>
+                  New
+                <% end %>
+              </div>
+            </div>
+            <%= render "organizations_list", organizations: @organizations %>
           </div>
         </div>
-        <%= render "organizations_list", organizations: @organizations %>
+
       </div>
     </div>
   </div>

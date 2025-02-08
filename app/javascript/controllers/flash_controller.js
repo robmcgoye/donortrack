@@ -10,18 +10,23 @@ export default class extends Controller {
     //     node.innerHTML="";
     //   });
     // });
-    // setTimeout(() => {
-    //   this.animateCSS("zoomOut").then(() => {
-    //     // node.style.visibility = "hidden";
-    //     node.innerHTML="";
-    //   });
-    //   // this.animateCSS("rubberBand").then(() => {
-    //   //   this.animateCSS("zoomOut").then(() => {
-    //   //     // node.style.visibility = "hidden";
-    //   //     node.innerHTML="";
-    //   //   });
-    //   // });
-    // }, 4000);
+    // this.animateCSS("zoomOut").then(() => {
+    //   // node.style.visibility = "hidden";
+    //   node.innerHTML="";
+    // });
+
+    setTimeout(() => {
+      this.animateCSS("zoomOut").then(() => {
+        // node.style.visibility = "hidden";
+        node.innerHTML="";
+      });
+      // this.animateCSS("rubberBand").then(() => {
+      //   this.animateCSS("zoomOut").then(() => {
+      //     // node.style.visibility = "hidden";
+      //     node.innerHTML="";
+      //   });
+      // });
+    }, 4000);
   }
 
   animateCSS(animation) {
