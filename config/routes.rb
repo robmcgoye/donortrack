@@ -71,6 +71,13 @@ Rails.application.routes.draw do
         end
       end
       scope module: "donations" do
+        get "donations/new_organization", to: "donations#new_organization"
+        post "donations/create_organization", to: "donations#create_organization"
+        get "donations/existing_organization", to: "donations#existing_organization"
+        # get "contributions/new_organization", to: "contributions#new_organization"
+        # get "contributions/existing_organization", to: "contributions#existing_organization"
+        get "donations/filter_organizations", to: "donations#filter_organizations"
+
         get "contributions/new_next", to: "contributions#new_next"
         get "commitments/new_next", to: "commitments#new_next"
         get "contributions/sort", to: "contributions#sort"

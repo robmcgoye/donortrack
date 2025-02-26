@@ -2,10 +2,11 @@ class Fdn::Donations::CommitmentsController < Fdn::BaseController
   # index, cancel, sort, new_contribution, new_next, show, new, edit, edit_contribution, create_contribution, create,
   # update, update_contribution, destroy, destroy_contribution
 
-  before_action :set_commitment, except: %i[ index, cancel, sort, new_next, new, create ]
+  before_action :set_commitment, except: [ :index, :cancel, :sort, :new_next, :new, :create ]
   before_action :set_contribution, only: [ :edit_contribution, :update_contribution, :destroy_contribution ]
 
   def index
+    # binding.break
     @pagy, @commitments = pagy(Commitment.none)
     render turbo_stream: [
       turbo_stream.replace("main_content", partial: "index"),

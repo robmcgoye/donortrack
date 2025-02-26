@@ -1,0 +1,7 @@
+<%= turbo_frame_tag "contribution_organization_choice" do %>
+  <div class="alert alert-warning m-4">
+    An organization type must be created first in the settings.
+    <%= link_to "Organization Types", foundation_settings_organization_types_path(@foundation), 
+              class: "btn btn-sm btn-warning",  :"data-turbo-stream" => true %>
+  </div>
+<% end %>

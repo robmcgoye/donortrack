@@ -48,6 +48,7 @@ $card-border-color:             #6C757D;
 $card-header-color:             #2f4f7f; /* A darker blue color */
 $card-text-color:               #333333;
 $card-footer-color: lighten($card-header-color, 10%);
+$card-footer-dark-color: lighten(#333, 20%);
 
 $error-color:                   #FF3737;
 $danger-color:                  #FF0000;
@@ -59,7 +60,8 @@ $table-header-color:            #333333;
 $table-border-color:            #6C757D;
 $table-background-color:        #E5E5E5;
 // $table-row-odd-color:           #F2F2F2;
-$table-row-odd-color:           #F7F7F7;
+$table-row-odd-color:           #CECECE;
+// $table-row-odd-color:           #F7F7F7;
 $table-row-even-color:          #ffffff;
 $table-hover-color:             #ADD8E6;
 // $table-hover-color:                 #E5E5E5;
@@ -75,6 +77,19 @@ hr {
   border-style: solid;
   border-width: 1px;
   margin: 10px;
+}
+
+.label-grey {
+  font-style: italic;
+  background-color: #ccc;
+  color: #333;
+  border-radius: 10px;
+  padding: 2px 20px;
+
+}
+
+.text-green {
+  color: $bg-limegreen;
 }
 
 .text-success {
@@ -181,6 +196,20 @@ hr {
   color: $text-white;
 }
 
+.form-check-input {
+  border: 1px solid black;
+}
+
+.form-check-input:checked {
+  background-color: #333;
+  border-color: black;
+}
+
+.form-control:focus, 
+.form-check-input:focus {
+  box-shadow: 0 0 0 0.1rem #ADD8E6;
+}
+
 .form-control:hover {
   border-color: $primary-btn-color;
 }
@@ -255,6 +284,37 @@ body.collapsed-sidebar #main-navbar {
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
+.form-check-label {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.form-check-radio-input {
+  margin-left: 10px !important;
+}
+
+.card-radio-label-text {
+  display: block
+}
+
+.card-radiobtn.selected {
+  background-color: #cfcfcfd3;
+  font-weight: bold;
+}
+
+.card-radiobtn {
+  cursor: pointer;
+}
+
+.card-radiobtn:hover {
+  background-color: #cfcfcfd3;
+}
+
+// .clickable-card input[type="radio"]:checked + label {
+//   font-weight: bold;
+// }
+
 .card-secondary .card-header {
   color: $text-primary; /* #ffffff */
   background-color: $dropdown-secondary-bg; /* #1e3a56 */
@@ -290,6 +350,14 @@ body.collapsed-sidebar #main-navbar {
   color: $text-white;
   padding: 0.75rem;
   border-top: 1px solid $card-border-color;
+}
+
+.card-footer-dark-secondary, 
+.card-footer-dark {
+  background-color: $card-footer-dark-color;
+  color: $text-white;
+  padding: 0.75rem;
+  border-top: 1px solid #333;
 }
 
 .card-bordered {
@@ -355,7 +423,8 @@ body.collapsed-sidebar #main-navbar {
 }
 
 .card-table .ct-th .btn, 
-.card.card-secondary .card-header-dark .btn {
+.card.card-secondary .card-header-dark .btn,
+.card.card-secondary .card-footer-dark .btn  {
   background-color: $bg-limegreen; /* or #2ecc71, #f1c40f, or a darker shade of the table header background color */
   color: $text-black;
   border: 1px solid #1a7f4b;
@@ -433,11 +502,77 @@ body.collapsed-sidebar #main-navbar {
   border: 1px solid #cccccc;
 }
 
+// .verticaltabs {
+//   // border: 1px !important;
+// }
+
+.verticaltabs .nav-link {
+  text-decoration: none;
+  // background-color: #666;
+  color: black;
+  // outline: 1px solid black;
+}
+
+.verticaltabs .nav-link:hover {
+  background-color: #cccccc;
+  // outline: 1px solid #333;
+  color: #000;
+}
+
+.verticaltabs .nav-link.active {
+  background-color: #2ecc71;
+  color: #333;
+  // outline: 1px solid #2ecc71;
+}
+
 .nav-tabs .nav-link:hover {
   background-color: #cccccc;
   border: 1px solid #333;
   color: #000;
 }
+
+.radio-button {
+  // @extend .fs-5;
+  background-color: #ddd;
+  border: 1px solid #1b1b1b;
+  // padding: 10px;
+  border-radius: 10px;
+  padding: 1px 20px;
+  // cursor: pointer;
+  font-size: .875rem;
+  &:hover {
+    background-color: #333;
+    color: $text-white;
+  }
+
+}
+
+.radio-button.active {
+  background-color: #2ecc71;
+  border-color: #333;
+  font-weight: bold;
+  color: #333;
+}
+
+// .btn-outline-radio {
+//   border-color: #2ecc71;
+//   color: #2ecc71;
+// }
+
+// .btn-outline-radio:hover {
+//   background-color: #f7f7f7;
+//   border-color: #666;
+// }
+
+// .btn-outline-radio:focus {
+//   box-shadow: 0 0 0 0.25rem #666;
+// }
+
+// .btn-outline-radio:checked {
+//   background-color: #2ecc71 !important;
+//   border-color: #2ecc71;
+//   color: #fff;
+// }
 
 .btn-outline-light {
   border: 1px solid $text-grey;
@@ -630,6 +765,10 @@ body.collapsed-sidebar #main-navbar {
 .card-header-dark .nav.nav-underline {
   background-color: #333;
   color: #ffffff;
+}
+
+.border-dark {
+  border-color: #333;
 }
 
 .card-header .nav.nav-underline {

@@ -1,11 +1,11 @@
 <%= turbo_frame_tag "foundation_list" do %>
-  <table >
+  <table>
     <thead>
       <tr>
         <th colspan="2">Foundations</th>
       </tr>
     </thead>
-    <tbody >
+    <tbody>
       <% @foundations.each do |foundation| %>
         <tr>
           <td><%=foundation.long_name %></td>

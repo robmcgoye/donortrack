@@ -3,11 +3,13 @@
   <div class="col d-flex justify-content-center">
     <ul class="nav nav-underline">
       <li class="nav-item">
-        <%= link_to "Contributions", foundation_contributions_path(@foundation), 
+        <%= link_to "Contributions", foundation_contributions_path(@foundation),
+            :"data-turbo-stream" => true,
             class: "#{request.path == foundation_contributions_path(@foundation)  ? "nav-link active" : "nav-link"}" %>
       </li>
       <li class="nav-item">
         <%= link_to "Commitments", foundation_commitments_path(@foundation), 
+            :"data-turbo-stream" => true,
             class: "#{request.path == foundation_commitments_path(@foundation)  ? "nav-link active" : "nav-link"}" %>
       </li>
     </ul>  

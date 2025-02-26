@@ -13,7 +13,7 @@ export default class extends Controller {
     radiobtn.checked = true;
     this.frm = document.getElementById("set_contribution_type");
     this.frm.value = radiobtn.value;
-    console.log(this.frm.value);
+    // console.log(this.frm.value);
   }
 
   radio_clicked(e) {

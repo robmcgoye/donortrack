@@ -1,0 +1,41 @@
+<%= turbo_frame_tag "contribution_organization_choice" do %>
+<div class="container">
+
+
+<div class="row mx-2">
+  <div class="col">Choose an Organization</div>
+</div>
+
+<div class="row mx-2 my-1">
+  <div class="col">
+    <%= form_tag filter_url, method: :get, data: { turbo: true, turbo_frame: "organizations-filter", action: "turbo:submit-end->organization-select#filter" } do |f| %>
+      <div class="input-group">
+        <%= text_field_tag "query", nil, placeholder: "Search ...", class: "form-control" %>
+        <%= submit_tag "Filter", class: "btn btn-outline-primary" %>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+<div class="row m-0">
+  <div class="col px-0">
+
+    <div class="card-table">
+      <%# px-0 container-fluid %>
+      <div class="mx-0 row ct-th">
+        <div class="col-11 col-sm-5 offset-1">Name</div>
+        <div class="d-none d-sm-block col-sm-4">Contact</div>
+        <div class="d-none d-sm-block col-sm-2">Type</div>
+      </div>
+      <%# <div class="container-fluid scroll"> %>
+        
+          <%= render "fdn/donations/organizations_filter",  organizations: @organizations %>
+        
+      <%# </div> %>
+    </div>
+
+  </div>
+</div>
+
+</div>
+<% end %>

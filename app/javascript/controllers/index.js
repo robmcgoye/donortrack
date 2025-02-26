@@ -7,6 +7,9 @@ import { application } from "./application"
 import AdminController from "./admin_controller"
 application.register("admin", AdminController)
 
+import CardRadioButtonController from "./card_radio_button_controller"
+application.register("card-radio-button", CardRadioButtonController)
+
 import FlashController from "./flash_controller"
 application.register("flash", FlashController)
 
@@ -28,11 +31,20 @@ application.register("options", OptionsController)
 import OrgSidebarController from "./org_sidebar_controller"
 application.register("org-sidebar", OrgSidebarController)
 
+import OrganizationController from "./organization_controller"
+application.register("organization", OrganizationController)
+
+import OrganizationSelectController from "./organization_select_controller"
+application.register("organization-select", OrganizationSelectController)
+
 import OsearchController from "./osearch_controller"
 application.register("osearch", OsearchController)
 
 import PagesController from "./pages_controller"
 application.register("pages", PagesController)
+
+import RadioButtonsController from "./radio_buttons_controller"
+application.register("radio-buttons", RadioButtonsController)
 
 import ReconciliationController from "./reconciliation_controller"
 application.register("reconciliation", ReconciliationController)

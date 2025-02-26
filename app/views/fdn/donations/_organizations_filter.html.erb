@@ -1,17 +1,30 @@
-
-<% if organizations.present? %>
-  <% organizations.each do |organization| %>
-    <div class="row mb-2 my-table-row">
-      <div class="col-1"><%= radio_button_tag(:organization_id, organization.id, false, class: "form-check-input" ) %></div>
-      <div class="col-10 col-sm-5"><%= label_tag("organization_id_#{organization.id.to_s}", organization.name, class: "form-check-label") %></div>
-      <div class="d-none d-sm-block col-sm-4"><%= label_tag("organization_id_#{organization.id.to_s}", organization.contact, class: "form-check-label") %></div>
-      <div class="d-none d-sm-block col-sm-2"><%= label_tag("organization_id_#{organization.id.to_s}", organization.organization_type.code, class: "form-check-label") %></div>
+<%= turbo_frame_tag "organizations-filter" do %>
+  <% if organizations.present? %>
+    <% organizations.each_with_index do |organization, index| %>
+      <div class="row mb-2<%= index.odd? ? ' ct-odd' : ' ct-even' %>" 
+            data-controller="organization" 
+            data-organization-organization-id-value="<%= organization.id %>" 
+            data-organization-organization-name-value="<%= organization.name %>"
+            data-organization-organization-select-outlet="#organization-select">
+        <div class="col-1">
+          <%= radio_button_tag(:organization_id, organization.id, false, class: "form-check-input", data: { action: "click->organization#setOrganization" }) %>
+        </div>
+        <div class="col-10 col-sm-5">
+          <%= label_tag("organization_id_#{organization.id.to_s}", organization.name, class: "form-check-label") %>
+        </div>
+        <div class="d-none d-sm-block col-sm-4">
+          <%= label_tag("organization_id_#{organization.id.to_s}", organization.contact, class: "form-check-label") %>
+        </div>
+        <div class="d-none d-sm-block col-sm-2">
+          <%= label_tag("organization_id_#{organization.id.to_s}", organization.organization_type.code, class: "form-check-label") %>
+        </div>
+      </div>
+    <% end %>
+  <% else %>
+    <div class="row">
+      <div class="col mb-5">
+        Enter name to find in the filter above or name not found.
+      </div>
     </div>
   <% end %>
-<% else %>
-  <div class="row">
-    <div class="col mb-5">
-      Enter name to find in the filter above or name not found.
-    </div>
-  </div>
 <% end %>

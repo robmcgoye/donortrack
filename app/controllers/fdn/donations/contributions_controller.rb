@@ -60,7 +60,16 @@ class Fdn::Donations::ContributionsController < Fdn::BaseController
   end
 
   def new
-    params[:query].blank? ?  @organizations = Organization.none : @organizations = @foundation.organizations.filter_by_name(params[:query]).sort_name_up
+    @errors = []
+    unless @foundation.donors.exists?
+      @errors << "You must create a donor before creating a contribution."
+    end
+    unless @foundation.funding_sources.exists?
+      @errors << "You must create a funding source before creating a contribution."
+    end
+    unless @foundation.bank_accounts.exists?
+      @errors << "You must create a bank account before creating a contribution."
+    end
   end
 
   def edit
