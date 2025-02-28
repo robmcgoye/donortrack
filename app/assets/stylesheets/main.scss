@@ -88,6 +88,11 @@ hr {
 
 }
 
+.scroll {
+  max-height: 100px;
+  overflow-y: auto;
+}
+
 .text-green {
   color: $bg-limegreen;
 }

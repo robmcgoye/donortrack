@@ -1,0 +1,38 @@
+<%# locals: (organization:) -%>
+<div class="card-body">
+  <div class="row">
+
+    <div class="col">
+      <div class="row">
+        <div class="col">
+          <b><%= organization.name %></b> <br/>
+          <span class="my-text-small">
+            <%= organization.address_1 %><br>
+            <% if !organization.address_2.blank? %>
+              <%= organization.address_2 %><br>
+              <% end %>
+            <%= "#{organization.city}, #{organization.state} #{organization.zip}" if organization.city.present? && organization.state.present? && organization.zip.present? %>
+            <br>
+            <%= organization.country %>
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <div class="col">
+      <div class="row">
+        <div class="text-end col-12 col-sm-3"><span class="badge badge-dark">Tax #</span></div>
+        <div class="col-12 col-sm-9"><%= organization.tax_number %></div>
+      </div>  
+      <div class="row">
+        <div class="text-end col-12 col-sm-3"><span class="badge badge-dark">Type</span></div>
+        <div class="col-12 col-sm-9"><%= organization.organization_type.code %></div>
+      </div>
+      <div class="row">
+        <div class="text-end col-12 col-sm-3"><span class="badge badge-dark">Contact</span></div>
+        <div class="col-12 col-sm-9"><%= organization.contact %></div>
+      </div>
+    </div>
+
+  </div>
+</div>

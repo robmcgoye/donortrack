@@ -7,7 +7,7 @@
       <%= render "form", 
             organization: @organization, 
             form_url: foundation_organization_path(@foundation, @organization, page: params[:page], show: params[:show]), 
-            page: params[:page], show: params[:show] %>
+            page: params[:page], show: params[:show], new_donation: false %>
     </div>
   </div>
 <% end %>

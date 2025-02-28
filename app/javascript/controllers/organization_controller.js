@@ -4,11 +4,19 @@ import { Controller } from "@hotwired/stimulus"
 export default class extends Controller {
   static values = {
     organizationId: Number,
-    organizationName: String
+    organizationName: String, 
+    autoExecute: Boolean
   }
   static outlets = [ "organization-select" ]
 
+  connect() {
+    console.log("Organization controller connected.");
+    if (this.hasAutoExecuteValue && this.autoExecuteValue) {
+      this.setOrganization();
+    }
+  }
   setOrganization(e) {
+    console.log("Setting organization...");
     // e.preventDefault();
     if (this.hasOrganizationSelectOutlet) {
       this.organizationSelectOutlet.showCardFooter();

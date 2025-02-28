@@ -1,0 +1,12 @@
+<%= turbo_frame_tag "contribution_organization_choice" do %>
+  <div class="container pb-2">
+    <div class="card" 
+            data-controller="organization" 
+            data-organization-auto-execute-value ="true"
+            data-organization-organization-id-value="<%= @organization.id %>" 
+            data-organization-organization-name-value="<%= @organization.name %>"
+            data-organization-organization-select-outlet="#organization-select">
+      <%= render "fdn/organizations/show_organization_card", organization: @organization %>
+    </div>
+  </div>
+<% end %>
