@@ -1,30 +1,27 @@
 <%= turbo_frame_tag Contribution.new do %>
-  <div class="card mb-2 border-primary">
-    <div class="card-header border-primary bg-primary bg-opacity-10">
+  <div class="card card-secondary mb-2 ">
+    <div class="card-header-dark">
       <div class="row">
         <div class="col">
-          <b>New Contribution Wizard for : </b><span class="text-primary"><%= @contribution.organization.name %></span>
+          <b>New Contribution Wizard : </b>
+          <span class="fst-italic">
+            <% if @contribution.agreement_type == "InKind" %>
+              IN KIND
+            <% elsif @contribution.agreement_type == "FundsTransfer" %>
+              FUNDS TRANSFER
+            <% else %>
+              CHECK
+            <% end %>
+          </span>
         </div>
-        <div class="col-auto fst-italic text-primary fw-bold">
-    <% if @contribution.agreement_type == "InKind" %>
-      IN KIND
-    <% elsif @contribution.agreement_type == "FundsTransfer" %>
-      FUNDS TRANSFER
-    <% else %>
-    CHECK
-    <% end %>
+        <div class="col text-end">
+          <%= link_to cancel_foundation_contribution_path(@foundation, get_id(@contribution)), :"data-turbo-stream" => true, class: "btn btn-sm me-2" do %>
+            <i class="bi bi-x-square pe-1"></i>Cancel
+          <% end %>
         </div>
       </div>
-      
     </div>
-    <%# if @contribution.agreement_type == "InKind" %>
-      <%# IN KIND %>
-    <%# elsif @contribution.agreement_type == "FundsTransfer" %>
-      <%# FUNDS TRANSFER %>
-    <%# else %>
     <%= render "form", contribution: @contribution, form_url: foundation_contributions_path(@foundation), show: "-1" %>
-    <%# end %>
-
   </div>
 <% end %>
 

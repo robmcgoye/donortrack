@@ -1,11 +1,13 @@
 <%=turbo_frame_tag "contribution-list" do %>
-  <div class="border-bottom">
     <% if contributions.blank? %>
       No records found...
     <% else %>
-      <%= render contributions, page: @pagy.page %>
+      <% @contributions.each_with_index do |contribution, index| %>
+        <%= render partial: 'contribution', locals: { contribution: contribution, contribution_counter: index, page: @pagy.page } %>
+      <% end %>
+
+      <%#= render contributions, page: @pagy.page %>
     <% end %>
-  </div>
   <% if @pagy.pages > 1 %>
     <div class="pt-2">
       <%== render partial: 'pagy/bootstrap_nav', locals: {pagy: @pagy} %>

@@ -1,29 +1,29 @@
 <%# locals: (funds_transfer_builder:) %>
  
 <div class="row mb-2 align-items-center">
-  <div class="col-sm-3 px-0">
+  <div class="col-sm-3">
     <%= funds_transfer_builder.date_field :transaction_at, class: "form-control form-control-sm" %>
   </div>
 
-  <div class="col-sm-2 col-md-1">
-    <%= funds_transfer_builder.label :funding_source_id, "Funding", class: "badge text-bg-primary" %>
+  <div class="col-sm-2 col-md-1 pe-1">
+    <%= funds_transfer_builder.label :funding_source_id, "Funding", class: "badge badge-dark" %>
   </div>
-  <div class="col-sm 3 col-md-4 px-0">
+  <div class="col-sm 3 col-md-4 ps-0">
     <%= funds_transfer_builder.collection_select :funding_source_id, @foundation.funding_sources, :id, :code,  
       {include_blank: 'Choose...'}, {class: "form-select form-select-sm"}  %>
   </div>
 
-  <div class="col-sm-1 text-end">
-    <%= funds_transfer_builder.label :amount, "Amt", class: "badge text-bg-primary" %>
+  <div class="col-sm-1 text-end pe-1">
+    <%= funds_transfer_builder.label :amount, "Amt", class: "badge badge-dark" %>
   </div>
-  <div class="col-sm 3 px-0">
+  <div class="col-sm 3 ps-0">
     <%= funds_transfer_builder.text_field :amount, class: "text-end form-control form-control-sm" %>
   </div>
 </div>
 
 <div class="row">
   <div class="col">
-    <%= funds_transfer_builder.label :description, class: "badge text-bg-primary mb-1" %><br />
+    <%= funds_transfer_builder.label :description, class: "badge badge-dark mb-1" %><br />
     <%= funds_transfer_builder.text_area :description, class: "form-control", rows: 3 %>          
   </div>
 </div>

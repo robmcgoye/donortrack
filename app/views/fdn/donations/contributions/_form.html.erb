@@ -8,22 +8,22 @@
 
     <div class="card-body pt-1 pb-2">
       
-      <div class="row mb-2 border-bottom border-3 border-primary align-items-center">
-        <div class="col-sm-8 border-end border-3 border-primary">
+      <div class="row mb-2 border-bottom border-3 align-items-end">
+        <div class="col-sm-8 border-end border-3">
           <div class="row">
             <div class="col fw-semibold"><%= contribution.organization.name %></div>
           </div>
           <div class="row">
             <div class="col fst-italic"><%= contribution.organization.contact %></div>
             <div class="col">
-              <span class="badge text-bg-primary mb-1">TYPE:</span> <%= contribution.organization.organization_type.code %>
+              <span class="badge badge-dark mb-1">TYPE:</span> <%= contribution.organization.organization_type.code %>
             </div>
           </div>
         </div>
         <div class="col-sm-4">
-          <div class="row mb-2">
+          <div class="row">
             <div class="col-5 col-md-4 col-lg-3 px-1">
-              <%= f.label :donor_id, "Donor", class: "badge text-bg-primary" %>
+              <%= f.label :donor_id, "Donor", class: "badge badge-dark" %>
             </div>
             <div class="col-7 col-md-8 col-lg-9 px-0">
               <%= f.collection_select :donor_id, @foundation.donors.sort_full_name_up, :id, :full_name,  
@@ -42,11 +42,13 @@
         <% end %>
       <% end %>
     </div>
-    <div class="card-footer border-primary bg-primary bg-opacity-10 py-1">
+    <div class="card-footer-dark py-1">
       <div class="row">
         <div class="col text-start">
+          <% if get_id(contribution) != -1 %>
           <%= link_to cancel_foundation_contribution_path(@foundation, get_id(contribution), :show => show), class: "py-1 btn btn-sm btn-outline-primary text-start" do %>
             <i class="bi bi-x-square pe-1"></i>Cancel
+          <% end %>
           <% end %>
         </div>
         <div class="col text-end"> 

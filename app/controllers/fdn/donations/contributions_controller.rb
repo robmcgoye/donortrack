@@ -15,7 +15,7 @@ class Fdn::Donations::ContributionsController < Fdn::BaseController
       set_contribution
       render turbo_stream: [
         params[:show].to_i ==  ContributionConstants::SHOW_OFF ?
-        turbo_stream.replace(@contribution, partial: "contribution", locals: { contribution: @contribution }) : turbo_stream.replace(@contribution, partial: "show")
+        turbo_stream.replace(@contribution, partial: "contribution", locals: { contribution: @contribution, contribution_counter: 1, page: 1 }) : turbo_stream.replace(@contribution, partial: "show")
       ]
     else
       flash.now[:notice] = "New Contribution Wizard canceled."

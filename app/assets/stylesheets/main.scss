@@ -69,7 +69,23 @@ $table-hover-color:             #ADD8E6;
 .badge-dark {
   background-color: #333333;
   color: #ffffff;
-  width: 75px;
+  width: max-content;
+  padding-inline: 20px;
+}
+
+.badge-green {
+  background-color: $bg-limegreen;
+  color: #333;
+  width: max-content;
+  padding-inline: 20px;
+}
+
+.badge-orange {
+  background-color: $highlight-orange;
+  color: #333;
+  width: max-content;
+  padding-inline: 20px;
+  border: 1px solid #333;
 }
 
 hr {
@@ -97,6 +113,10 @@ hr {
   color: $bg-limegreen;
 }
 
+.text-burntorange {
+  color: #7d4406;;
+}
+
 .text-success {
   color: $highlight-success !important;
 }
@@ -110,12 +130,21 @@ hr {
 }
 
 .text-small {
-  font-size: 10px;
-  line-height: 1.1em;
+  font-size: .85em;
+  line-height: 1.2em;
+}
+
+.text-xsmall {
+  font-size: .75em;
+  line-height: 1.2em;
 }
 
 .text-medium {
   font-size: 14px;
+}
+.text-bg-lightgreen {
+  background-color: #e5ffe5;
+  color: $text-black;
 }
 
 .text-bg-dark {
@@ -269,6 +298,69 @@ body.collapsed-sidebar #main-navbar {
   box-shadow: 10px 10px 10px rgba($border-muted, 0.5);
 }
 
+.card-donation {
+  background-color: #fff9e5;
+  // #dde7ec
+  // background-color: $bg-palesilver;
+  border: 1px solid $border-muted;
+  border-radius: 8px;
+  color: #0d1949;
+  // padding: 16px;  
+  // box-shadow: 0 2px 4px rgba($text-black, 0.1);
+  // transition: box-shadow 0.2s ease-in-out;  
+}
+
+.card-donation .card{
+  background-color: #f9eabb;
+  border: 1px solid #ecddaf;
+  border-radius: 8px;
+  color: black;
+}
+
+.card-donation .card-header {
+  color: $text-primary; /* #ffffff */
+  background-color: #444444; /* #1e3a56 */
+  // border-radius: 5px !important;
+}
+
+.card-donation .card-footer {
+  color: #444444; /* #ffffff */
+  background-color: #e0d1a2; /* #1e3a56 */
+  // #e0d1a2  #eadbac
+  border-radius: 5px;
+  border-top: 1px solid #e0d1a2;
+}
+
+.card-donation .card-footer .btn-nav  {
+  background-color: #f9eabb; /* or #2ecc71, #f1c40f, or a darker shade of the table header background color */
+  color: #333;
+  border: 1px solid #c49d71;;
+  // border: none;
+  padding: 4px 16px;
+  border-radius: 8px;
+  &:hover {
+    background-color: #444444 ;
+    border: 1px solid #ffffff;
+    color: #ffffff;
+    // #148f5c ;
+  }
+}
+
+.card-donation .card-footer .btn-nav-danger  {
+  background-color: #f9eabb; /* or #2ecc71, #f1c40f, or a darker shade of the table header background color */
+  color: #cc1313;
+  border: 1px solid #c49d71;;
+  // border: none;
+  padding: 4px 16px;
+  border-radius: 8px;
+  &:hover {
+    background-color: #cc1313 ;
+    border: 1px solid #ffffff;
+    color: #ffffff;
+    // #148f5c ;
+  }
+}
+
 .card-primary {
   background-color: $bg-palesilver;
   border: 1px solid $border-muted;
@@ -325,6 +417,7 @@ body.collapsed-sidebar #main-navbar {
   background-color: $dropdown-secondary-bg; /* #1e3a56 */
   // border-radius: 5px !important;
 }
+
 .card.card-secondary .card-header-dark {
  padding-left: 10px; 
  padding-top: 2px;

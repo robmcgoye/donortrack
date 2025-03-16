@@ -26,10 +26,9 @@
         </div>
         <%# Table Content %>
         <div id="funding_sources">
-          <%= render @foundation.funding_sources %>
           <% @foundation.funding_sources.each_with_index do |funding_source, index| %>
             <%= render partial: 'funding_source', locals: { funding_source: funding_source, funding_source_counter: index } %>
-          <% end %>          
+          <% end %>
         </div>
       </div>
       </div>

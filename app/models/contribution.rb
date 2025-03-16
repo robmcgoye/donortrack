@@ -68,11 +68,11 @@ class Contribution < ApplicationRecord
   # def self.transactions_during(starting_at, ending_at)
   # end
 
-  def formatted_amount
+  def formatted_amount(dollarsign = true)
     if agreement_type == "InKind"
-      agreement.value.format
+      agreement.value.format(symbol: dollarsign)
     else
-      agreement.amount.format
+      agreement.amount.format(symbol: dollarsign)
     end
   end
 
