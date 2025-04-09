@@ -1,43 +1,91 @@
 <%# locals: (check_builder:) %>
 
 <div class="row mb-2 align-items-center">
-  <div class="col-4 col-md-3">
-    <%= check_builder.date_field :transaction_at, class: "form-control form-control-sm" %>
+  <div class="col">
+    <div class="card">
+      <div class="row m-1">
+        <div class="col-auto">
+          <i class="bi bi-bank pe-1"></i>
+        </div>
+        <div class="col ps-0 mb-1">
+          <div class="row">
+            <div class="col fw-semibold text-xsmall">Funding Source</div>
+            </div>
+          <div class="row mb-1">
+            <div class="col">
+              <%= check_builder.collection_select :funding_source_id, @foundation.funding_sources, :id, :code,  
+                {include_blank: 'Choose...'}, {class: "form-select form-select-sm form-select-input"}  %>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col fw-semibold text-xsmall">Bank Account</div>
+            </div>
+          <div class="row">
+            <div class="col">
+              <%= check_builder.collection_select :bank_account_id, @foundation.bank_accounts, :id, :full_name,  
+                {include_blank: 'Choose...'}, {class: "form-select form-select-sm form-select-input"}  %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
   </div>
-  <div class="col-3 col-md-2 text-end pe-1">
-    <%= check_builder.label :check_number, "Check #", class: "badge badge-dark" %>
+
+  <div class="col">
+
+    <div class="row">
+      <div class="col-5 offset-1 fw-semibold text-xsmall">
+        Date
+      </div>
+      <div class="col-5 offset-1 fw-semibold text-xsmall">
+        Check Number
+      </div>
+    </div>
+    <div class="row mb-3 align-items-center">
+      <!-- Date Icon -->
+      <div class="col-auto pe-1 text-end">
+        <i class="bi bi-calendar-date" data-controller="tooltip" data-tooltip-target="tooltip" title="Date"></i>
+      </div>
+      <!-- Date Input -->
+      <div class="col ps-0">
+        <%= check_builder.date_field :transaction_at, class: "form-control form-control-sm" %>
+      </div>
+
+      <!-- Check Number Icon -->
+      <div class="col-auto pe-1 text-end">
+        <i class="bi bi-cash" data-controller="tooltip" data-tooltip-target="tooltip" title="Check #"></i>
+      </div>
+      <!-- Check Number Input -->
+      <div class="col ps-0">
+        <%= check_builder.text_field :check_number, class: "form-control form-control-sm" %>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-auto pe-1">
+        <i class="bi bi-currency-dollar pe-1" data-controller="tooltip" data-tooltip-target="tooltip" title="Amount"></i>
+      </div>
+      <div class="col ps-0">
+        <%= check_builder.text_field :amount, class: "form-control form-control-sm" %>
+      </div>
+    </div>
   </div>
-  <div class="col-5 col-md-3 ps-0">
-    <%= check_builder.text_field :check_number, class: "form-control form-control-sm" %>
-  </div>
-  <div class="col-4 col-md-1 text-end pe-1">
-    <%= check_builder.label :amount, "Amt", class: "badge badge-dark" %>
-  </div>
-  <div class="col-7 col-md-3 ps-0">
-    <%= check_builder.text_field :amount, class: "text-end form-control form-control-sm" %>
-  </div>
+
 </div>
 
-<div class="row mb-2 align-items-center">
-  <div class="col-auto">
-    <%= check_builder.label :funding_source_id, "Funding", class: "badge badge-dark" %>
-  </div>
-  <div class="col-sm 4 px-0">
-    <%= check_builder.collection_select :funding_source_id, @foundation.funding_sources, :id, :code,  
-      {include_blank: 'Choose...'}, {class: "form-select form-select-sm"}  %>
-  </div>
-  <div class="col-sm-2 text-end">
-    <%= check_builder.label :bank_account_id, "Account", class: "badge badge-dark" %>
-  </div>
-  <div class="col-sm 4">
-    <%= check_builder.collection_select :bank_account_id, @foundation.bank_accounts, :id, :full_name,  
-      {include_blank: 'Choose...'}, {class: "form-select form-select-sm"}  %>
-  </div>          
-</div>
 
 <div class="row">
   <div class="col">
-    <%= check_builder.label :description, class: "badge badge-dark mb-1" %><br />
-    <%= check_builder.text_area :description, class: "form-control", rows: 3 %>
+    <div class="row">
+      <div class="col-auto pe-1">
+        <i class="bi bi-journal-text text-big pe-1" data-controller="tooltip" data-tooltip-target="tooltip" title="Description"></i>
+      </div>
+      <div class="col ps-0">    
+        <%= check_builder.text_area :description, class: "form-control", rows: 3 %>
+      </div>
+    </div>
   </div>
 </div>

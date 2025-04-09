@@ -15,7 +15,7 @@ class Fdn::Donations::ContributionsController < Fdn::BaseController
       set_contribution
       render turbo_stream: [
         params[:show].to_i ==  ContributionConstants::SHOW_OFF ?
-        turbo_stream.replace(@contribution, partial: "contribution", locals: { contribution: @contribution, contribution_counter: 1, page: 1 }) : turbo_stream.replace(@contribution, partial: "show")
+        turbo_stream.replace(@contribution, partial: "contribution", locals: { contribution: @contribution, contribution_counter: params[:index].to_i, page: 1 }) : turbo_stream.replace(@contribution, partial: "show")
       ]
     else
       flash.now[:notice] = "New Contribution Wizard canceled."
@@ -74,6 +74,7 @@ class Fdn::Donations::ContributionsController < Fdn::BaseController
 
   def edit
     @param_show = params[:show].to_i
+    @param_index = params[:index].to_i
   end
 
   def create
@@ -98,7 +99,7 @@ class Fdn::Donations::ContributionsController < Fdn::BaseController
       render turbo_stream: [
         turbo_stream.replace("messages", partial: "layouts/messages"),
         params[:contribution][:show].to_i ==  ContributionConstants::SHOW_ON ?
-        turbo_stream.replace(@contribution, partial: "show") : turbo_stream.replace(@contribution, partial: "contribution", locals: { contribution: @contribution })
+        turbo_stream.replace(@contribution, partial: "show") : turbo_stream.replace(@contribution, partial: "contribution", locals: { contribution: @contribution, contribution_counter: params[:contribution][:index].to_i, page: 1 })
       ]
     else
       render :edit, status: :unprocessable_entity

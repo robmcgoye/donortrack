@@ -1,0 +1,49 @@
+<%# locals: (contribution:, form:) %>
+
+<div class="row mb-2 align-items-center">
+  <div class="col-sm-8">
+    <div class="card">
+      <div class="row ps-2">
+        <div class="col-auto pe-2 ">
+          <i class="bi bi-buildings"></i>
+        </div>
+        <div class="col">
+          <div class="row">
+            <div class="col fw-semibold"><%= contribution.organization.name %></div>
+          </div>
+          <div class="row">
+            <div class="col fst-italic"><%= contribution.organization.contact %></div>
+            <div class="col">
+              <%# <span class="badge badge-dark mb-1">TYPE:</span> %>
+              <i class="bi bi-gear pe-1" data-controller="tooltip" data-tooltip-target="tooltip" title="Organization Type"></i>
+              <%= contribution.organization.organization_type.code %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-4">
+    <div class="row align-items-center">
+      <%# <div class="col-5 col-md-4 col-lg-3 px-1"> %>
+       <div class="col-1 px-1">
+     <i class="bi bi-person-circle pe-1" data-controller="tooltip" data-tooltip-target="tooltip" title="Donor"></i>
+        <%#= form.label :donor_id, "Donor", class: "badge badge-dark" %>
+      </div>
+      <%# <div class="col-7 col-md-8 col-lg-9 px-0"> %>
+      <div class="col-11 px-0">
+        <%= form.collection_select :donor_id, @foundation.donors.sort_full_name_up, :id, :full_name,  
+          {include_blank: 'Choose...'}, {class: "form-select form-select-sm form-select-input"}  %>
+      </div>
+    </div>
+  </div>
+</div>
+<%= form.fields_for :agreement do |sub_form| %>
+  <% if contribution.agreement_type == "FundsTransfer" %>
+    <%= render "funds_transfer_form", funds_transfer_builder: sub_form %>
+  <% elsif contribution.agreement_type == "InKind" %>
+    <%= render "in_kind_form", in_kind_builder: sub_form %>
+  <% else %>
+    <%= render "check_form", check_builder: sub_form %>
+  <% end %>
+<% end %>

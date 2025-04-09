@@ -20,8 +20,10 @@
           <% end %>
         </div>
       </div>
+    </div> 
+    <div class="card-new">
+      <%= render "form", contribution: @contribution, form_url: foundation_contributions_path(@foundation), show: "-1" %>
     </div>
-    <%= render "form", contribution: @contribution, form_url: foundation_contributions_path(@foundation), show: "-1" %>
   </div>
 <% end %>
 

@@ -1,10 +1,17 @@
 <%= turbo_frame_tag @contribution do %>
-  <div class="card">
+  <div class="card-edit">
     <div class="card-header">
+        <% if @contribution.agreement_type == "FundsTransfer" %>
+          <i class="bi bi-arrow-right"></i>
+        <% elsif @contribution.agreement_type == "InKind" %>
+          <i class="bi bi-gift pe-1"></i>
+        <% else %>
+          <i class="bi bi-cash pe-1"></i>
+        <% end %>
       <%= @contribution.agreement_type.titleize %>
     </div>
 
-      <%= render "form", contribution: @contribution, form_url: foundation_contribution_path(@foundation, @contribution), show: @param_show %>
+      <%= render "form", contribution: @contribution, form_url: foundation_contribution_path(@foundation, @contribution), show: @param_show, index: @param_index %>
 
   </div>
 <% end %>

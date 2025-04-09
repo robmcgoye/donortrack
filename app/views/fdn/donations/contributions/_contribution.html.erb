@@ -34,14 +34,14 @@
                 <% end %>
               </li>
               <li>
-                <%= link_to edit_foundation_contribution_path(@foundation, contribution, show: "0"), :"data-turbo-stream" => true, class: "dropdown-item" do %>
+                <%= link_to edit_foundation_contribution_path(@foundation, contribution, show: "0", index: contribution_counter, page: page), :"data-turbo-stream" => true, class: "dropdown-item" do %>
                   <i class="bi bi-pencil-square pe-1"></i>Edit
                 <% end %>
               </li>
               <li>
                 <%= button_to foundation_contribution_path(@foundation, contribution), method: :delete, class: "dropdown-item", form: {data: {turbo_confirm: 'Are you sure?'}} do %>
                   <i class="bi bi-trash pe-1"></i>Delete
-                <% end %>          
+                <% end %>
               </li>
             </ul>
           </div>  

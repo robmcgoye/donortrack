@@ -60,3 +60,6 @@ application.register("sortmgmt", SortmgmtController)
 
 import ToggleController from "./toggle_controller"
 application.register("toggle", ToggleController)
+
+import TooltipController from "./tooltip_controller"
+application.register("tooltip", TooltipController)

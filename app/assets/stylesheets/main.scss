@@ -142,6 +142,11 @@ hr {
 .text-medium {
   font-size: 14px;
 }
+
+.text-big {
+  font-size: 2rem;
+}
+
 .text-bg-lightgreen {
   background-color: #e5ffe5;
   color: $text-black;
@@ -229,6 +234,9 @@ hr {
   border-color: $success-color;
   color: $text-white;
 }
+.form-select-input {
+  border-color: $border-muted;
+}
 
 .form-check-input {
   border: 1px solid black;
@@ -240,7 +248,8 @@ hr {
 }
 
 .form-control:focus, 
-.form-check-input:focus {
+.form-check-input:focus, 
+.form-select-input:focus {
   box-shadow: 0 0 0 0.1rem #ADD8E6;
 }
 
@@ -296,6 +305,60 @@ body.collapsed-sidebar #main-navbar {
   border: 2px solid $border-muted;
   border-radius: 10px;
   box-shadow: 10px 10px 10px rgba($border-muted, 0.5);
+}
+
+.card-edit {
+  background-color: #ADD8E6;
+  // #dde7ec
+  // background-color: $bg-palesilver;
+  border: 2px solid #ffa726;;
+  border-radius: 8px;
+  color: #0d1949;  
+  margin-bottom: 2px;
+  margin-top: 2px;
+}
+
+.card-edit .card-header {
+  color: $text-primary; /* #ffffff */
+  background-color: #4682B4; /* #1e3a56 */
+  // border-radius: 5px !important;
+}
+
+.card-edit .card-footer {
+  color: $text-primary; /* #ffffff */
+  background-color: #4682B4; /* #1e3a56 */
+  // #e0d1a2  #eadbac
+  border-radius: 5px;
+  // border-top: 1px solid #e0d1a2;
+}
+
+.card-new .card {
+  background-color: #E5E5E5;
+  border: 1px solid #333;
+  border-radius: 8px;
+  color: black;  
+}
+
+.card-edit .card{
+  background-color: #E5E5E5;
+  border: 1px solid #4682B4;
+  border-radius: 8px;
+  color: black;
+}
+
+.card-edit .btn-nav  {
+  background-color: #2F4F7F; 
+  color: #ffffff;
+  border: 1px solid #87CEEB;;
+  // border: none;
+  padding: 4px 16px;
+  border-radius: 8px;
+  &:hover {
+    background-color: #87CEEB ;
+    border: 1px solid #2F4F7F;
+    color: #2F4F7F;
+    // #148f5c ;
+  }
 }
 
 .card-donation {

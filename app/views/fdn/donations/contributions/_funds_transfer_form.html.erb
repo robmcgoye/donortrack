@@ -5,16 +5,18 @@
     <%= funds_transfer_builder.date_field :transaction_at, class: "form-control form-control-sm" %>
   </div>
 
-  <div class="col-sm-2 col-md-1 pe-1">
-    <%= funds_transfer_builder.label :funding_source_id, "Funding", class: "badge badge-dark" %>
+  <div class="col-auto pe-1 text-end">
+    <i class="bi bi-bank2 pe-1" data-controller="tooltip" data-tooltip-target="tooltip" title="Funding"></i>
+    <%#= funds_transfer_builder.label :funding_source_id, "Funding", class: "badge badge-dark" %>
   </div>
-  <div class="col-sm 3 col-md-4 ps-0">
+  <div class="col-4 ps-0">
     <%= funds_transfer_builder.collection_select :funding_source_id, @foundation.funding_sources, :id, :code,  
-      {include_blank: 'Choose...'}, {class: "form-select form-select-sm"}  %>
+      {include_blank: 'Choose...'}, {class: "form-select form-select-sm form-select-input"}  %>
   </div>
 
-  <div class="col-sm-1 text-end pe-1">
-    <%= funds_transfer_builder.label :amount, "Amt", class: "badge badge-dark" %>
+  <div class="col-auto text-end pe-1">
+    <i class="bi bi-currency-dollar pe-1" data-controller="tooltip" data-tooltip-target="tooltip" title="Amount"></i>
+    <%#= funds_transfer_builder.label :amount, "Amt", class: "badge badge-dark" %>
   </div>
   <div class="col-sm 3 ps-0">
     <%= funds_transfer_builder.text_field :amount, class: "text-end form-control form-control-sm" %>
@@ -23,7 +25,14 @@
 
 <div class="row">
   <div class="col">
-    <%= funds_transfer_builder.label :description, class: "badge badge-dark mb-1" %><br />
-    <%= funds_transfer_builder.text_area :description, class: "form-control", rows: 3 %>          
+    <div class="row">
+      <div class="col-auto pe-1">
+        <i class="bi bi-journal-text text-big pe-1" data-controller="tooltip" data-tooltip-target="tooltip" title="Description"></i>
+      </div>
+      <div class="col ps-0">
+        <%= funds_transfer_builder.text_area :description, class: "form-control", rows: 3 %>          
+      </div>
+    </div>
+    <%#= funds_transfer_builder.label :description, class: "badge badge-dark mb-1" %><br />
   </div>
 </div>

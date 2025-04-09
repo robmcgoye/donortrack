@@ -46,7 +46,8 @@
                 <div class="col ps-0 offset-1">
                   <%= @contribution.donor.full_name %>
                 </div>
-                <div class="col"><span class="badge badge-dark me-3">CODE</span><%= @contribution.donor.code %></div>
+                <%# <span class="badge badge-dark me-3">CODE</span> %>
+                <div class="col"><i class="bi bi-card-text pe-1" data-controller="tooltip" data-tooltip-target="tooltip" title="Code"></i><%= @contribution.donor.code %></div>
               </div>
               <div class="row fw-bold mt-3">
                 <div class="col-1">
@@ -209,7 +210,7 @@
               <% end %>         
           </div>
           <div class="col text-end">
-            <%= link_to edit_foundation_contribution_path(@foundation, @contribution, show: "1"), class: "btn btn-nav", :"data-turbo-stream" => true do %>
+            <%= link_to edit_foundation_contribution_path(@foundation, @contribution, show: "1", index: "-1"), class: "btn btn-nav", :"data-turbo-stream" => true do %>
               <div class="row text-center px-2">
                   <div class="col-auto px-1"><i class="bi bi-pencil"></i></div>
                   <div class="d-none d-md-block col ps-0">Edit</div>
