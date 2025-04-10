@@ -1,6 +1,6 @@
 class Fdn::Donations::ContributionsController < Fdn::BaseController
   before_action :set_contribution, only: %i[ show edit update destroy ]
-  before_action :set_filter_params, only: %i[ cancel sort]
+  before_action :set_filter_params, only: %i[ cancel sort destroy]
 
   def index
     @pagy, @contributions = pagy(Contribution.none)
@@ -109,6 +109,7 @@ class Fdn::Donations::ContributionsController < Fdn::BaseController
   def destroy
     if @contribution.destroy
       @pagy, @contributions = pagy(Contribution.organization_contributions(@foundation.organization_ids).open_contributions.sort_date_up)
+      @pagy, @contributions = pagy(ContributionsFilter.new.process_request(Contribution.organization_contributions(@foundation.organization_ids), @by, @dir))
       flash.now[:notice] = "Contribution was successfully destroyed."
       render turbo_stream: [
         turbo_stream.replace("messages", partial: "layouts/messages"),
