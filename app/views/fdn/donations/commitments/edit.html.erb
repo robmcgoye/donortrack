@@ -1,5 +1,12 @@
 <%= turbo_frame_tag @commitment do %>
-  <div class="card">
-      <%= render "form", commitment: @commitment, form_url: foundation_commitment_path(@foundation, @commitment), show: @param_show %>
+  <div class="card-edit">
+    <div class="card-header">
+      <i class="bi bi-arrow-up-right-circle pe-1"></i>
+      Future Commitment to : <span class="text-yellow fw-semibold fst-italic"><%= @commitment.organization.name %></span>
+    </div>
+
+      <%= render "form", commitment: @commitment, form_url: foundation_commitment_path(@foundation, @commitment), show: @param_show, index: @param_index %>
+
   </div>
+
 <% end %>

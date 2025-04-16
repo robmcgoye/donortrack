@@ -36,6 +36,10 @@ class Commitment < ApplicationRecord
     total_commitment - payments
   end
 
+  def percentage_paid
+    ((contributions.count.to_f / number_payments).round(2) * 100).to_i
+  end
+
   private
 
     def commitment_total

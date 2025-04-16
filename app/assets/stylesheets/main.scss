@@ -109,8 +109,16 @@ hr {
   overflow-y: auto;
 }
 
+.text-darkgrey {
+  color: $text-darkergrey;
+}
+
 .text-green {
   color: $bg-limegreen;
+}
+
+.text-yellow {
+  color: #FFD700;
 }
 
 .text-burntorange {
@@ -141,6 +149,10 @@ hr {
 
 .text-medium {
   font-size: 14px;
+}
+
+.text-medlarge {
+  font-size: 1.2rem;
 }
 
 .text-big {
@@ -399,6 +411,37 @@ body.collapsed-sidebar #main-navbar {
   // #e0d1a2  #eadbac
   border-radius: 5px;
   border-top: 1px solid #e0d1a2;
+}
+
+
+.card-donation .card-header .btn-nav  {
+  background-color: #2ecc71; /* or #2ecc71, #f1c40f, or a darker shade of the table header background color */
+  color: #222222;
+  border: 1px solid #27ae60;;
+  // border: none;
+  padding: 2px 18px;
+  border-radius: 8px;
+  &:hover {
+    background-color: #27ae60 ;
+    border: 1px solid #14532d;
+    color: #e2e2e2;
+    // #148f5c ;
+  }
+}
+
+.card-donation .card-header .btn-nav-danger  {
+  background-color: #FFB2B2; /* or #2ecc71, #f1c40f, or a darker shade of the table header background color */
+  color: #660000;
+  border: 1px solid #CC6666;;
+  // border: none;
+  padding: 2px 18px;
+  border-radius: 8px;
+  &:hover {
+    background-color: #E68A8A ;
+    border: 1px solid #993333;
+    color: #ffffff;
+    // #148f5c ;
+  }
 }
 
 .card-donation .card-footer .btn-nav  {

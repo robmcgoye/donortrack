@@ -66,6 +66,7 @@
       <div class="col ">
         To: <span class="label-grey ms-2" id="organization_placeholder"></span>
       </div>
+      <% if type == "contribution" %>
       <div class="col">
         <div class="row">
           <div class="col-auto pe-1">Type of Contribution :</div>
@@ -77,6 +78,7 @@
           </div>
         </div>
       </div>
+      <% end %>
       <div class="col-auto text-end"> 
         <%= button_tag class: "py-0 btn btn-sm btn-secondary text-start" do %>
           Next<i class="bi bi-arrow-right-circle ps-1"></i>

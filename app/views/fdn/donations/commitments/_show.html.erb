@@ -1,65 +1,33 @@
 <div id="commitments-main" class="container py-3">
 
+  <%= render "show_commitment" %>
+
   
-    <div class="card">
-      <div class="card-header">
-        <div class="row">
-          <div class="col text-start">Commitment</div>
-          <div class="col text-end">
-            <div class="btn-group">
-              <%= link_to foundation_commitments_path(@foundation), class: "btn btn-sm btn-outline-secondary" do %>
-              <div class="row text-center px-2">
-                  <div class="col-auto px-1"><i class="bi bi-box-arrow-left"></i></div>
-                  <div class="d-none d-md-block col ps-0">Back</div>
-              </div>
-              <% end %>
-              <%= button_to foundation_commitment_path(@foundation, @commitment, :show => "1"), method: :delete, class: "btn btn-sm btn-outline-danger", form: {data: {turbo_confirm: 'Are you sure?'}} do %>
-                <div class="row text-center px-2">
-                    <div class="col-auto px-1"><i class="bi bi-trash"></i></div>
-                    <div class="d-none d-md-block col ps-0">Delete</div>
-                </div>
-              <% end %>
-              <%= link_to edit_foundation_commitment_path(@foundation, @commitment, :show => "1"), 
-                          class: "btn btn-sm btn-outline-secondary", 
-                          data: { turbo_frame: dom_id(@commitment) }  do %>
-                <div class="row text-center px-2">
-                  <div class="col-auto px-1"><i class="bi bi-pencil"></i></div>
-                  <div class="d-none d-md-block col ps-0">Edit</div>
-              </div>
-              <% end %>
-
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="card-body">
-        <%= render "show_commitment" %>
-      </div>
-    </div>
-
-  <div class="card border-primary mt-2">
-    <div class="card-header border-primary bg-primary bg-opacity-10 px-3 py-1">Payments</div>
-    <div class="card-body px-0">
-      <%= render "new_contribution_placeholder" %>
-      <div class="row mx-0 tb-header py-1">
-        <div class="col-5 col-sm-2">
+  <%= render "new_contribution_placeholder" %>
+  <div class="card-table">
+    <div class=" ct-table">
+      <div class="row ct-th">
+        <div class="col-5 col-sm-2 ct-td">
           Date
         </div>
-        <div class="d-none d-sm-block col-sm-2">
+        <div class="d-none d-sm-block col-sm-2 ct-td">
           Check #
         </div>
-        <div class="col-5 col-sm-2">
+        <div class="col-5 col-sm-2 ct-td">
           Amt
         </div>
-        <div class="d-none d-sm-block col-sm-2">
+        <div class="d-none d-sm-block col-sm-2 ct-td">
           Fund
         </div>
-        <div class="d-none d-sm-block col-sm-3">
+        <div class="d-none d-sm-block col-sm-3 ct-td">
           Bank
         </div>
-        <div class="col-2 col-sm-1 ps-0 pe-1">
-          <%= link_to foundation_commitment_contribution_new_path(@foundation, @commitment), class: "py-0 btn btn-sm btn-outline-success", data: { turbo_frame: dom_id(Contribution.new, :commitment) } do %>
-            New
+        <div class="col-2 col-sm-1 ps-0 pe-1 ct-td">
+          <%= link_to foundation_commitment_contribution_new_path(@foundation, @commitment), 
+                    class: "py-0 btn btn-sm btn-outline-success", 
+                    :"data-turbo-stream" => true, 
+                    data: { turbo_frame: dom_id(Contribution.new, :commitment) } do %>
+            New Payment
           <% end %>
         </div>
       </div>

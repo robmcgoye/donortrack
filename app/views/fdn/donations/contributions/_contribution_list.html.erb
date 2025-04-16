@@ -9,7 +9,7 @@
       <%#= render contributions, page: @pagy.page %>
     <% end %>
   <% if @pagy.pages > 1 %>
-    <div class="pt-2">
+    <div class="card-pagy pt-1">
       <%== render partial: 'pagy/bootstrap_nav', locals: {pagy: @pagy} %>
     </div>
   <% end %>

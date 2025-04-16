@@ -30,8 +30,9 @@ class Fdn::Donations::CommitmentsController < Fdn::BaseController
     else
       if params[:id].to_i != -1
         # @commitment.reload
+        set_commitment
         render turbo_stream: [
-          params[:show].to_i == 0 ? turbo_stream.replace(@commitment, partial: "commitment", locals: { commitment: @commitment }) : turbo_stream.replace(@commitment, partial: "show_commitment")
+          params[:show].to_i == 0 ? turbo_stream.replace(@commitment, partial: "commitment", locals: { commitment: @commitment, commitment_counter: params[:index].to_i, page: 1 }) : turbo_stream.replace(@commitment, partial: "show_commitment")
         ]
       else
         flash.now[:notice] = "New Commitment Wizard canceled."
@@ -80,11 +81,22 @@ class Fdn::Donations::CommitmentsController < Fdn::BaseController
   end
 
   def new
-    params[:query].blank? ?  @organizations = Organization.none : @organizations = @foundation.organizations.filter_by_name(params[:query]).sort_name_up
+    @errors = []
+    unless @foundation.donors.exists?
+      @errors << "You must create a donor before creating a commitment."
+    end
+    unless @foundation.funding_sources.exists?
+      @errors << "You must create a funding source before creating a commitment."
+    end
+    unless @foundation.bank_accounts.exists?
+      @errors << "You must create a bank account before creating a commitment."
+    end
+    # params[:query].blank? ?  @organizations = Organization.none : @organizations = @foundation.organizations.filter_by_name(params[:query]).sort_name_up
   end
 
   def edit
     @param_show = params[:show].to_i
+    @param_index = params[:index].to_i
   end
 
   def edit_contribution

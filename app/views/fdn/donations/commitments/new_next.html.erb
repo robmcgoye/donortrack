@@ -1,8 +1,23 @@
 <%= turbo_frame_tag Commitment.new do %>
-  <div class="card mb-2 border-primary">
-    <div class="card-header border-primary bg-primary bg-opacity-10">
-      New Commitment Wizard for <span class="text-primary"><%= @commitment.organization.name %></span>
+
+  <div class="card card-secondary mb-2 ">
+    <div class="card-header-dark">
+      <div class="row">
+        <div class="col">
+          <b>New Commitment Wizard : </b>
+          <span class="fst-italic">
+            <%= @commitment.organization.name %>
+          </span>
+        </div>
+        <div class="col text-end">
+          <%= link_to cancel_foundation_commitment_path(@foundation, get_id(@commitment)), :"data-turbo-stream" => true, class: "btn btn-sm me-2" do %>
+            <i class="bi bi-x-square pe-1"></i>Cancel
+          <% end %>
+        </div>
+      </div>
+    </div> 
+    <div class="card-new">
+      <%= render "form", commitment: @commitment, form_url: foundation_commitments_path(@foundation), show: "-1", index: "-1" %>
     </div>
-    <%= render "form", commitment: @commitment, form_url: foundation_commitments_path(@foundation), show: "-1" %>
-  </div>
+  </div>  
 <% end %>

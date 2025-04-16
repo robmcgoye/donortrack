@@ -11,11 +11,11 @@
           <div class="col-auto">
             <span class="badge badge-orange mx-2">
               <% if @contribution.agreement_type == "Check" %>
-                Check
+                <i class="bi bi-cash pe-1"></i>Check
               <% elsif @contribution.agreement_type == "FundsTransfer" %>
-                Funds Transfer
+                <i class="bi bi-arrow-right pe-1"></i>Funds Transfer
               <% elsif @contribution.agreement_type == "InKind" %>
-                In Kind
+                <i class="bi bi-gift pe-1"></i>In Kind
               <% end %>
               </span>
           </div>
