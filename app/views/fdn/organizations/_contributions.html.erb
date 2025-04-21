@@ -24,14 +24,14 @@
           <div class="row">
             <div class="col-6 col-sm-3 text-nowrap">
               <%#== "<i class='bi bi-check2-circle pe-2'></i>" if contribution.check.cleared? %>
-              <i class="bi bi-<%= contribution.check.cleared? ? "check2-circle" : "circle" %> pe-1"></i>
-              <%= contribution.check.transaction_at.strftime("%m/%d/%Y") %>
+              <i class="bi bi-<%#= contribution.check.cleared? ? "check2-circle" : "circle" %> pe-1"></i>
+              <%= contribution.agreement.transaction_at.strftime("%m/%d/%Y") %>
             </div>
             <div class="d-none d-sm-block col-sm-3">
-              <%= contribution.check.check_number %>
+              <%= contribution.agreement_type %>
             </div>
             <div class="col-6 col-sm-3">
-              <%= contribution.check.amount.format %>
+              <%= contribution.agreement.amount.format %>
             </div>
             <div class="d-none d-sm-block col-sm-3">
               <%= contribution.donor.code %>

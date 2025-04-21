@@ -1,11 +1,15 @@
 <%=turbo_frame_tag "organizations_list" do %>
-  <div class="p-2">
-    <% if organizations.blank? %>
-      No records found...
-    <% else %>
-      <%= render organizations, page: @pagy.page %>
+  <% if organizations.blank? %>
+    <div class="row mb-1">
+      <div class="col text-center text-muted ct-td">
+      No organizations...
+      </div>
+    </div>
+  <% else %>
+    <% organizations.each_with_index do |organization, index| %>
+      <%= render partial: 'organization', locals: { organization: organization, organization_counter: index, page: @pagy.page } %>
     <% end %>
-  </div>
+  <% end %>
   <% if @pagy.pages > 1 %>
     <div class="card-pagy pt-1">
       <%#== pagy_nav(@pagy) %>

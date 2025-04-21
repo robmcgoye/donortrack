@@ -164,6 +164,12 @@ hr {
   color: $text-black;
 }
 
+.accordin-body-bg {
+  background-color: #e6e6e6;
+  color: $text-black;
+  border-bottom: 1px solid #aaa;
+}
+
 .text-bg-dark {
   // background-image: linear-gradient(to bottom, #0d1949, #1a1d23);
   background-color: $bg-midnightblue !important;
@@ -330,11 +336,14 @@ body.collapsed-sidebar #main-navbar {
   background-color: #ADD8E6;
   // #dde7ec
   // background-color: $bg-palesilver;
-  border: 2px solid #ffa726;;
   border-radius: 8px;
   color: #0d1949;  
   margin-bottom: 2px;
   margin-top: 2px;
+}
+
+.card-edit.active {
+  border: 2px solid #ffa726;
 }
 
 .card-edit .card-header {

@@ -1,17 +1,17 @@
 <%= turbo_frame_tag organization do %>
-  <div class="row my-1 my-table-row align-items-center">
-    <div class="col-10 col-sm-5">
+  <div class="row <%= organization_counter.odd? ? "ct-odd" : "ct-even" %> align-items-center ">
+    <div class="col-10 col-sm-5 ct-td">
       <%= organization.name %>
     </div>
-    <div class="d-none d-sm-block col-sm-3">
+    <div class="d-none d-sm-block col-sm-3 ct-td">
       <%= organization.contact %>
     </div>
-    <div class="d-none d-sm-block col-sm-3">
+    <div class="d-none d-sm-block col-sm-3 ct-td">
       <%= organization.organization_type.code %>
     </div>
-    <div class="col-1">
+    <div class="col-1 ct-td">
       <div class="dropstart" role="group">
-        <button type="button" class="px-1 btn btn-sm btn-outline-dark my-dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+        <button type="button" class="px-1 btn btn-sm btn-outline-dark" data-bs-toggle="dropdown" aria-expanded="false">
           <i class="bi bi-three-dots-vertical"></i>
         </button>
         <ul class="dropdown-menu dropdown-menu-dark">

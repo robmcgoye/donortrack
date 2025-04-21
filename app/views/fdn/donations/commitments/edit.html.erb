@@ -1,5 +1,5 @@
 <%= turbo_frame_tag @commitment do %>
-  <div class="card-edit">
+  <div class="card-edit <%= " active" if @param_show == 0 %>">
     <div class="card-header">
       <i class="bi bi-arrow-up-right-circle pe-1"></i>
       Future Commitment to : <span class="text-yellow fw-semibold fst-italic"><%= @commitment.organization.name %></span>

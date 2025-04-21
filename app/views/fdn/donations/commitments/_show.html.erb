@@ -6,23 +6,11 @@
   <%= render "new_contribution_placeholder" %>
   <div class="card-table">
     <div class=" ct-table">
-      <div class="row ct-th">
-        <div class="col-5 col-sm-2 ct-td">
-          Date
+      <div class="row ct-th ">
+        <div class="col ct-td">
+     Payments
         </div>
-        <div class="d-none d-sm-block col-sm-2 ct-td">
-          Check #
-        </div>
-        <div class="col-5 col-sm-2 ct-td">
-          Amt
-        </div>
-        <div class="d-none d-sm-block col-sm-2 ct-td">
-          Fund
-        </div>
-        <div class="d-none d-sm-block col-sm-3 ct-td">
-          Bank
-        </div>
-        <div class="col-2 col-sm-1 ps-0 pe-1 ct-td">
+        <div class="col ps-0 pe-1 text-end ct-td">
           <%= link_to foundation_commitment_contribution_new_path(@foundation, @commitment), 
                     class: "py-0 btn btn-sm btn-outline-success", 
                     :"data-turbo-stream" => true, 

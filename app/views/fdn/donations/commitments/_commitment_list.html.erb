@@ -1,13 +1,15 @@
 <%# locals: (commitments:) -%>
 <%=turbo_frame_tag "commitment-list" do %>
     <% if commitments.blank? %>
-      No records found...
+    <div class="row mb-1">
+      <div class="col text-center text-muted ct-td">
+      No commitments...
+      </div>
+    </div>
     <% else %>
       <% commitments.each_with_index do |commitment, index| %>
         <%= render partial: 'commitment', locals: { commitment: commitment, commitment_counter: index, page: @pagy.page } %>
       <% end %>
-
-      <%#= render contributions, page: @pagy.page %>
     <% end %>
   <% if @pagy.pages > 1 %>
     <div class="card-pagy pt-1">

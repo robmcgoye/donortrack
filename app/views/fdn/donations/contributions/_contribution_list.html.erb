@@ -1,6 +1,10 @@
 <%=turbo_frame_tag "contribution-list" do %>
     <% if contributions.blank? %>
-      No records found...
+    <div class="row mb-1">
+      <div class="col text-center text-muted ct-td">
+      No contributions...
+      </div>
+    </div>
     <% else %>
       <% @contributions.each_with_index do |contribution, index| %>
         <%= render partial: 'contribution', locals: { contribution: contribution, contribution_counter: index, page: @pagy.page } %>

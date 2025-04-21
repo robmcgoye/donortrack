@@ -1,69 +1,93 @@
 <%= turbo_frame_tag dom_id(contribution, :commitment) do %>
-  <div class="row my-1 my-table-row ps-1">
-    <div class="row align-items-center mx-0">
-      <div class="col-5 col-sm-2 px-0">
-        <% if contribution.agreement_type == "check" %>
-                <% if contribution.agreement.cleared? %>
-                  <i class="bi bi-check2-circle"></i>
-                <% else %>
-                  <i class="bi bi-circle"></i>
-                <% end %>
-                <% end %>
-        <%= contribution.agreement.transaction_at.strftime("%m/%d/%Y") %>
-      </div>
-      <div class="d-none d-sm-block col-sm-2">
-        <%= contribution.agreement.check_number %>
-      </div>
-      <div class="col-6 col-sm-2 pe-3 text-end">
-        <%= contribution.agreement.amount.format %>
-      </div>
-      <div class="d-none d-sm-block col-sm-2">
-        <%= contribution.agreement.funding_source.code %>
-      </div>
-      <div class="d-none d-sm-block col-sm-3">
-        <%= contribution.agreement.bank_account.full_name %>
-      </div>
-      <div class="d-none d-sm-block col-sm-1">
-        <button class="btn btn-outline-secondary py-0 px-1 bi-chevron-left" type="button" 
-                data-bs-toggle="collapse" 
-                data-controller="toggle"
-                data-action="toggle#update"
-                data-bs-target="#<%= dom_id(contribution, :collapse) %>" 
-                aria-expanded="false">
-        </button>
-      </div>
-    </div>
+  <div class="accordion-item">
+    <h2 class="accordion-header">
+      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#<%= dom_id(contribution, :collapse) %>" aria-expanded="false" aria-controls="<%= dom_id(contribution, :collapse) %>">
+        <div class="row align-items-center w-100">
+          <div class="col"><i class="bi bi-calendar pe-2"></i><%= contribution.agreement.transaction_at.strftime("%m/%d/%Y") %></div>
+          <div class="col"><i class="bi bi-person pe-2"></i><%= contribution.donor.code %></div>
+          <div class="col text-end pe-5"><%= contribution.agreement.amount.format %></div>
+        </div>
+      </button>
+    </h2>
+    <div id="<%= dom_id(contribution, :collapse) %>" class="accordion-collapse collapse " data-bs-parent="#contribution-accordion">
+      <div class="accordion-body accordin-body-bg">
+        <div class="row">
+          <div class="col">
+            <div class="row mb-2">
+              <div class="col">
+                <div class="card mb-2">
+                  <div class="row align-items-center">
+                    <div class="col-auto ms-2 pe-1"><i class="bi bi-bank2"></i></div>
+                    <div class="col my-1 text-start">
+                      <div class="row">
+                        <div class="col fw-bold text-xsmall">Funding Source</div>
+                      </div>
+                      <div class="row">
+                        <div class="col text-xsmall"><%= contribution.agreement.funding_source.full_name %></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col">
+                <div class="card mb-2">
+                  <div class="row align-items-center">
+                    <div class="col-auto ms-2 pe-1"><i class="bi bi-bank"></i></div>
+                    <div class="col my-1 text-start">
+                      <div class="row">
+                        <div class="col fw-bold text-xsmall">Bank Account</div>
+                      </div>
+                      <div class="row">
+                        <div class="col text-xsmall"><%= contribution.agreement.bank_account.full_name %></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
 
-    <div class="collapse" id="<%= dom_id(contribution, :collapse) %>">
-      <div class="row border-primary border-start border-end border-bottom m-1 p-1">
-        <div class="col-sm-4">
-          <table>
-            <tr>
-              <td class="border-primary border-end pe-1"><span class="badge text-bg-primary">Donor</span></td>
-              <td class="ps-1"><%= contribution.donor.code %></td>
-            </tr>
-          </table>
-        </div>
-        <div class="col-sm-6">
-          <table>
-            <tr>
-              <td class="border-primary border-end pe-1"><span class="badge text-bg-primary">Desc</span></td>
-              <td class="ps-1"><%= contribution.agreement.description %></td>
-            </tr>
-          </table>
-        </div>
-        <div class="col-sm-2 text-end">
-          <%# if !contribution.check.cleared? %>
-          <div class="btn-group">
-            <%= link_to foundation_commitment_contribution_path(@foundation, contribution.commitment, contribution), class: "btn btn-sm btn-outline-secondary" do %>
-              <i class="bi bi-pencil-square pe-1"></i>
-            <% end %>
-            <%= button_to foundation_commitment_contribution_path(@foundation, contribution.commitment, contribution), method: :delete, class: "btn btn-sm btn-outline-danger", 
-                form: {data: {turbo_confirm: 'Are you sure?'}} do %>
-              <i class="bi bi-trash pe-1"></i>
-            <% end %>        
-          </div>  
-          <%# end %>      
+            <div class="row">
+              <div class="col-4">
+                <div class="row align-items-center">
+                  <div class="col-auto ms-2 pe-1"><i class="bi bi-cash"></i></div>
+                  <div class="col my-1 text-start">
+                    <div class="row">
+                      <div class="col fw-bold text-xsmall">Check Number</div>
+                    </div>
+                    <div class="row">
+                      <div class="col text-small"><%= contribution.agreement.check_number %></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-8">
+                <div class="row align-items-center">
+                  <div class="col-auto ms-2 pe-1"><i class="bi bi-journal-text"></i></div>
+                  <div class="col my-1 text-start">
+                    <div class="row">
+                      <div class="col fw-bold text-xsmall">Description/Notes</div>
+                    </div>
+                    <div class="row">            
+                      <div class="col">
+                        <%= contribution.agreement.description %>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-auto">
+            <div class="btn-group">
+              <%= link_to foundation_commitment_contribution_path(@foundation, contribution.commitment, contribution), class: "btn btn-sm btn-outline-secondary" do %>
+                <i class="bi bi-pencil-square pe-1"></i>
+              <% end %>
+              <%= button_to foundation_commitment_contribution_path(@foundation, contribution.commitment, contribution), method: :delete, class: "btn btn-sm btn-outline-danger", 
+                  form: {data: {turbo_confirm: 'Are you sure?'}} do %>
+                <i class="bi bi-trash pe-1"></i>
+              <% end %>
+            </div>
+          </div>
         </div>
       </div>
     </div>

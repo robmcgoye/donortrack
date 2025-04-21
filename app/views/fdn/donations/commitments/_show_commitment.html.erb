@@ -12,7 +12,7 @@
 
 
             <%= link_to edit_foundation_commitment_path(@foundation, @commitment, :show => "1"), 
-                        class: "btn btn-nav", 
+                        class: "ms-1 btn btn-nav", 
                         :"data-turbo-stream" => true,
                         data: { turbo_frame: dom_id(@commitment) }  do %>
               <i class="bi bi-pencil"></i> Edit
@@ -141,11 +141,16 @@
           <%= @commitment.percentage_paid %>% Complete
         </div>
       </div>
-      <div class="row mb-2">
+      <div class="row mb-1">
         <div class="col">
           <div class="progress" role="progressbar" aria-label="Payment Progress" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
             <div class="progress-bar" style="width: <%= @commitment.percentage_paid %>%"></div>
           </div>
+        </div>
+      </div>
+      <div class="row mb-3">
+        <div class="col text-small">
+          Suggested Payment Amount: <b><%= Money.new(@commitment.amount_cents).format %></b> (<%= @commitment.number_payments - @commitment.contributions.count %> payments remaining )
         </div>
       </div>
 

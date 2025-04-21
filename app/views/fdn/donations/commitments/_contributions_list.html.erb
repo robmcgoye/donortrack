@@ -7,9 +7,11 @@
       </div>
     </div>
     <% else %>
-      <% contributions.each do |contribution| %>
-        <%= render "contribution", contribution: contribution %>
-      <% end %>
+      <div class="accordion" id="contribution-accordion">
+        <% contributions.each_with_index do |contribution, index| %>
+          <%= render partial: 'contribution', locals: { contribution: contribution, contribution_counter: index } %>
+        <% end %>
+      </div>
     <% end %>
 
 <% end %>
