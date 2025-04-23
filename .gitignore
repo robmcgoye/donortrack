@@ -45,3 +45,4 @@
 core
 core.*
 
+.deployment/config.conf
