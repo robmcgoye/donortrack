@@ -35,7 +35,8 @@ fi
 
 # Build the Docker image
 echo "docker build -t $NAME ."
-docker build -f "$DOCKERFILE" -t "$NAME" .
+# docker build -f "$DOCKERFILE" -t "$NAME" .
+docker build --build-arg RAILS_MASTER_KEY="$RAILS_MASTER_KEY" -f "$DOCKERFILE" -t "$NAME" .
 
 # Tag the Docker image
 echo "docker tag $NAME $REGUSER/$NAME:$VERSION"
