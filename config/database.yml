@@ -86,5 +86,7 @@ test:
 production:
   <<: *default
   database: donortrack_production
-  username: donortrack
-  password: <%= ENV["DONORTRACK_DATABASE_PASSWORD"] %>
+  username: <%= ENV["POSTGRES_USER"] %>
+  password: <%= ENV["POSTGRES_PASSWORD"] %>
+  # username: donortrack
+  # password: <%= ENV["DONORTRACK_DATABASE_PASSWORD"] %>
