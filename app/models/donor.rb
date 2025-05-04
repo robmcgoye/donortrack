@@ -26,8 +26,9 @@ class Donor < ApplicationRecord
   private
 
     def validate_before_destroy
-      if Contribution.where(donor_id: id).count > 0 || Commitment.where(donor_id: id).count > 0
-        errors.add(:base, "Cannot delete this Donor because they have Contributions and or Commitments!")
+      num_of_contributions = Contribution.where(donor_id: id).count
+      if num_of_contributions > 0
+        errors.add(:base, "Cannot delete this Donor because they have #{num_of_contributions}Contributions!")
         throw(:abort)
       end
     end

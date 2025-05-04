@@ -27,13 +27,18 @@ class Fdn::Donations::ContributionsController < Fdn::BaseController
   end
 
   def sort
-    @pagy, @contributions = pagy(ContributionsFilter.new.process_request(Contribution.organization_contributions(@foundation.organization_ids), @by, @dir))
+    @pagy, @contributions = pagy(ContributionsFilter.new.process_request(Contribution.organization_contributions(@foundation.organization_ids).open_contributions, @by, @dir))
     # @pagy, @contributions = pagy(ContributionsFilter.new.process_request(Contribution.organization_contributions(@foundation.organization_ids).open_contributions, @by, @dir))
     render turbo_stream: [
       turbo_stream.replace("contribution-list", partial: "contribution_list", locals: { contributions: @contributions })
     ]
   end
 
+  def show_filter
+    render turbo_stream: [
+      turbo_stream.replace("contribution-filter", partial: "show_filter")
+    ]
+  end
   def new_next
     if !params[:organization_id].blank?
       @organization = @foundation.organizations.where(id: params[:organization_id].to_i).take
@@ -80,7 +85,7 @@ class Fdn::Donations::ContributionsController < Fdn::BaseController
   def create
     @contribution = Contribution.new(contribution_params)
     if @contribution.save
-      @pagy, @contributions = pagy(Contribution.organization_contributions(@foundation.organization_ids).sort_date_up)
+      @pagy, @contributions = pagy(Contribution.organization_contributions(@foundation.organization_ids).open_contributions.sort_date_up)
       # @pagy, @contributions = pagy(Contribution.organization_contributions(@foundation.organization_ids).open_contributions.sort_date_up)
       flash.now[:notice] = "Contribution was successfully created."
       render turbo_stream: [

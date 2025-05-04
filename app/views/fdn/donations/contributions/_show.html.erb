@@ -24,10 +24,15 @@
       </div>
       <div class="card-body">
         <% if @contribution.commitment.present? %>
-          <div class="row align-items-center pb-3">
-            <div class="col-auto"><span class="badge rounded-pill bg-secondary">Commitment Code : </span></div>
-            <div class="col border-start border-secondary">
-              <%= @contribution.commitment.code %>
+          <div class="card p-2 mb-3">
+            <div class="row">
+              <div class="col-auto text-burntorange"><i class="bi bi-arrow-up-right-circle"></i></div>
+              <div class="col ps-0 fw-bold">Commitment Payment</div>
+            </div>
+            <div class="row">
+              <div class="col ps-4">
+                <%= @contribution.commitment.code %>
+              </div>
             </div>
           </div>
         <% end %>

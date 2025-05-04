@@ -16,7 +16,7 @@ class FundingSource < ApplicationRecord
   private
 
     def validate_before_destroy
-      if Contribution.where(funding_source_id: id).count > 0
+      if Check.where(funding_source_id: id).count > 0 || FundsTransfer.where(funding_source_id: id).count > 0
         errors.add(:base, "Cannot delete this fund because it is associated with a contribution(s)")
         throw(:abort)
       end

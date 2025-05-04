@@ -1,7 +1,7 @@
 <%# locals: (donor:, donor_counter: 0, donor_iteration: 1) -%>
 <%= turbo_frame_tag donor do %>
   <div class="row <%= donor_counter.odd? ? "ct-odd" : "ct-even" %>">
-    <div class="col-3 col-sm-4 ct-td">      
+    <div class="col-3 col-sm-4 ct-td">
       <%= donor.code %>
     </div>
     <div class="col-6 ct-td">

@@ -8,7 +8,8 @@
 
     <%# <div class="text-center pb-2"><h5>Contributions</h5></div> %>
 
-     
+     <%= render "hide_filter" %>
+
     <div class="card-table">
       <div class=" ct-table">
         <div class="row ct-th">
@@ -65,17 +66,26 @@
               </div>
 
               <div class="col-2 px-0 text-center">
+                <%#= link_to foundation_contributions_filter_path(@foundation), 
+                          class: "py-0 btn btn-sm btn-secondary", 
+                          :"data-turbo-stream" => true,
+                          data: { turbo_frame: "new_contribution" } do %>
+                  <%# <i class="bi bi-funnel pe-1" data-controller="tooltip" data-tooltip-target="tooltip" title="Filter"></i> %>
+                <%# end %>
                 <%= link_to new_foundation_contribution_path(@foundation), 
                           class: "py-0 btn btn-sm btn-secondary", 
                           :"data-turbo-stream" => true,
                           data: { turbo_frame: "new_contribution" } do %>
-                  New
+                  <i class="bi bi-plus-circle pe-1" data-controller="tooltip" data-tooltip-target="tooltip" title="New Contribution"></i>New
                 <% end %>
               </div>
             </div>
           </div>
         </div>
         <%= render "contribution_list", contributions: @contributions %>
+      </div>
+      <div class="text-center pt-2 text-small text-muted">
+        <b>Note:</b> This list only shows uncleared contributions. To view cleared contributions, please run a report.
       </div>
     </div>
 

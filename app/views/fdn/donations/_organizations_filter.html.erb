@@ -13,7 +13,7 @@
           <%= label_tag("organization_id_#{organization.id.to_s}", organization.name, class: "form-check-label") %>
         </div>
         <div class="d-none d-sm-block col-sm-4">
-          <%= label_tag("organization_id_#{organization.id.to_s}", organization.contact, class: "form-check-label") %>
+          <%= label_tag("organization_id_#{organization.id.to_s}", organization.contact || "None", class: "form-check-label#{ ' fst-italic' unless organization.contact.present? }") %>
         </div>
         <div class="d-none d-sm-block col-sm-2">
           <%= label_tag("organization_id_#{organization.id.to_s}", organization.organization_type.code, class: "form-check-label") %>

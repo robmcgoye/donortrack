@@ -2,142 +2,134 @@ import { Controller } from "@hotwired/stimulus"
 
 // Connects to data-controller="sortmgmt"
 export default class extends Controller {
-  static targets = [ "sort_icon", "query" ];
-  static values = { selected: { type: Number, default: 0 }, 
-                    query: { type: String, default: ""},
-                    dir: { type: Number, default: 1},
-                    url: String 
-                  };
-  #sort_dirs = [];
-  #query = "";
+  static targets = ["sort_icon", "query"];
+  static values = {
+    selected: { type: Number, default: 0 },
+    query: { type: String, default: "" },
+    dir: { type: Number, default: 1 },
+    url: String
+  };
+
+  sortDirs = [];
+  queryText = "";
 
   initialize() {
-   for (let index = 0; index < this.sort_iconTargets.length; index++) {
-      this.#sort_dirs.push(1);
-    };
-    for (let index = 0; index < this.#sort_dirs.length; index++) {
-      if (index == this.selectedValue) {
-        this.#sort_dirs[index] = this.dirValue;
-      }
-    };
+    this.sortDirs = this.sort_iconTargets.map((_, index) =>
+      index === this.selectedValue ? this.dirValue : 1
+    );
+
     if (this.hasQueryTarget) {
       this.queryTarget.value = this.queryValue;
-      this.#query = this.queryTarget.value;  
+      this.queryText = this.queryValue;
     }
   }
 
-  update_query(){
-    this.queryTarget.value = this.#query;
+  updateQuery() {
+    this.queryTarget.value = this.queryText;
   }
 
-  filter(e) {
-    this.#query = this.queryTarget.value;
-    if (this.#sort_dirs[0] == 2) {
-      this.#sort_dirs[0] = 1;
+  filter(event) {
+    event.preventDefault();
+    this.queryText = this.queryTarget.value;
+
+    // Reset direction for column 0 if needed
+    if (this.sortDirs[0] === 2) {
+      this.sortDirs[0] = 1;
     }
-    if (this.selectedValue == 0) {
+
+    // Re-apply sort
+    if (this.selectedValue === 0) {
       this.selectedValueChanged();
     } else {
       this.selectedValue = 0;
     }
-    e.preventDefault();
   }
 
-  #get_current_sort_dir(){
-    if (this.#sort_dirs[this.selectedValue] == 1) {
-      return 2;
-    } else {
-      return 1;
-    }
+//   show(event) {
+//     event.preventDefault();
+//     const target = event.target;
+//     const url = `${target.dataset.url}&by=${this.selectedValue}&dir=${this.nextSortDir()}&query=${this.getQuery()}`;
+// console.log(url);
+//     this.turboGet(url);
+//   }
+
+  sort(event) {
+    event.preventDefault();
+    // const target = event.target;
+    const target = event.target.closest("[data-url]");
+    const value = Number(target.dataset.value);
+    this.urlValue = target.dataset.url;
+    this.setSelected(value);
   }
 
-  show(e){
-    const url = `${e.srcElement.getAttribute("data-url")}&by=${this.selectedValue}&dir=${this.#get_current_sort_dir()}&query=${this.#get_query()}`;
-    this.#turbo_get(url);
-    e.preventDefault();
-  }
-
-  sort(e) {
-    this.urlValue = e.srcElement.getAttribute("data-url");
-    this.#set_selected(e.srcElement.getAttribute("data-value"));
-    e.preventDefault();
-  }
-
-  #set_selected(value) {
-    if (this.selectedValue != value) {
-      this.selectedValue = value;
-      this.#reset_sort_dir(value);
+  setSelected(index) {
+    if (this.selectedValue !== index) {
+      this.selectedValue = index;
+      this.resetSortDirsExcept(index);
     } else {
       this.selectedValueChanged();
     }
   }
-  
-  #get_query() {
-    if (this.hasQueryTarget){
-      this.#query = this.queryTarget.value;
-      return this.queryTarget.value;
-    } else {
-      return "";
-    }
-  }
-
-  get_query_url() {
-    return `${this.urlValue}&dir=${this.#sort_dirs[this.selectedValue]}&query=${this.#get_query()}`;
-  }
-
-  get_filter() {
-    let search = "";
-    let url = this.get_query_url();
-    let search_starting_position = url.indexOf("?");
-    if ((search_starting_position > 0) && ((search_starting_position + 1) < url.length)) {
-      search = url.slice((search_starting_position + 1), url.length);
-    }
-    return search;
-  }
 
   selectedValueChanged() {
-    const url = this.get_query_url();
-    // const url = `${this.urlValue}&dir=${this.#sort_dirs[this.selectedValue]}`;
-    this.#turbo_get(url);
-    this.#set_sort_icon();
+    const url = this.getQueryUrl();
+    // console.log(url);
+    this.turboGet(url);
+    this.setSortIcons();
   }
 
-  #set_sort_icon() {
-    this.sort_iconTargets.forEach((element, index) => {
-      if (index == this.selectedValue) {
-        if (this.#sort_dirs[index] == 1) {
-          element.classList.remove('bi-sort-alpha-down-alt'); 
-          element.classList.add('bi-sort-alpha-down');
-          this.#sort_dirs[index] = 2;
+  nextSortDir() {
+    return this.sortDirs[this.selectedValue] === 1 ? 2 : 1;
+  }
+
+  getQuery() {
+    if (this.hasQueryTarget) {
+      this.queryText = this.queryTarget.value;
+      return this.queryText;
+    }
+    return "";
+  }
+
+  getQueryUrl() {
+    return `${this.urlValue}&dir=${this.sortDirs[this.selectedValue]}&query=${this.getQuery()}`;
+  }
+
+  getFilter() {
+    const url = this.getQueryUrl();
+    const queryString = url.split("?")[1];
+    return queryString || "";
+  }
+
+  setSortIcons() {
+    this.sort_iconTargets.forEach((icon, index) => {
+      if (index === this.selectedValue) {
+        if (this.sortDirs[index] === 1) {
+          icon.classList.remove("bi-sort-alpha-down-alt");
+          icon.classList.add("bi-sort-alpha-down");
+          this.sortDirs[index] = 2;
         } else {
-          element.classList.remove('bi-sort-alpha-down');
-          element.classList.add('bi-sort-alpha-down-alt'); 
-          this.#sort_dirs[index] = 1;
+          icon.classList.remove("bi-sort-alpha-down");
+          icon.classList.add("bi-sort-alpha-down-alt");
+          this.sortDirs[index] = 1;
         }
       } else {
-        element.classList.remove('bi-sort-alpha-down');
-        element.classList.remove('bi-sort-alpha-down-alt');  
+        icon.classList.remove("bi-sort-alpha-down", "bi-sort-alpha-down-alt");
       }
     });
-  }  
-
-  #reset_sort_dir(current_index) {
-    for (let index = 0; index < this.#sort_dirs.length; index++) {
-      if (index != current_index) {
-        this.#sort_dirs[index] = 1;
-      }
-    }
   }
 
-  #turbo_get(request){
-    fetch(request, {
+  resetSortDirsExcept(activeIndex) {
+    this.sortDirs = this.sortDirs.map((_, index) => index === activeIndex ? this.sortDirs[index] : 1);
+  }
+
+  turboGet(url) {
+    fetch(url, {
       method: "GET",
       headers: {
         Accept: "text/vnd.turbo-stream.html"
       }
     })
-      .then(r => r.text())
-      .then(html => Turbo.renderStreamMessage(html))
+      .then(response => response.text())
+      .then(html => Turbo.renderStreamMessage(html));
   }
-
 }

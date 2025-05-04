@@ -45,4 +45,5 @@
 core
 core.*
 
+/lib/seeds/*
 .deployment/config.conf

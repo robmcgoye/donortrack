@@ -20,7 +20,7 @@
       <% elsif item.is_a?(String) %>
         <li class="page-item active"><%== anchor.call(item) %></li>
       <% elsif item == :gap %>
-        <li class="page-item disabled gap"><a href="#" class="page-link"><%== pagy_t('pagy.nav.gap') %></a></li>
+        <li class="page-item disabled gap"><a href="#" class="page-link">...<%#== pagy_t('pagy.nav.gap') %></a></li>
       <% end %>
     <% end %>
     <% if pagy.next %>

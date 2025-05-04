@@ -3,7 +3,14 @@
     <h2 class="accordion-header">
       <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#<%= dom_id(contribution, :collapse) %>" aria-expanded="false" aria-controls="<%= dom_id(contribution, :collapse) %>">
         <div class="row align-items-center w-100">
-          <div class="col"><i class="bi bi-calendar pe-2"></i><%= contribution.agreement.transaction_at.strftime("%m/%d/%Y") %></div>
+          <div class="col">
+            <% if contribution.agreement.cleared? %>
+              <i class="bi bi-check-circle pe-2"></i>
+            <% else %>
+              <i class="bi bi-circle pe-2"></i>
+            <% end %>
+            <i class="bi bi-calendar pe-2"></i><%= contribution.agreement.transaction_at.strftime("%m/%d/%Y") %>
+          </div>
           <div class="col"><i class="bi bi-person pe-2"></i><%= contribution.donor.code %></div>
           <div class="col text-end pe-5"><%= contribution.agreement.amount.format %></div>
         </div>
@@ -79,12 +86,14 @@
           </div>
           <div class="col-auto">
             <div class="btn-group">
-              <%= link_to foundation_commitment_contribution_path(@foundation, contribution.commitment, contribution), class: "btn btn-sm btn-outline-secondary" do %>
-                <i class="bi bi-pencil-square pe-1"></i>
-              <% end %>
-              <%= button_to foundation_commitment_contribution_path(@foundation, contribution.commitment, contribution), method: :delete, class: "btn btn-sm btn-outline-danger", 
-                  form: {data: {turbo_confirm: 'Are you sure?'}} do %>
-                <i class="bi bi-trash pe-1"></i>
+              <% if !contribution.agreement.cleared? %>
+                <%= link_to foundation_commitment_contribution_path(@foundation, contribution.commitment, contribution), class: "btn btn-sm btn-outline-secondary" do %>
+                  <i class="bi bi-pencil-square pe-1"></i>
+                <% end %>
+                <%= button_to foundation_commitment_contribution_path(@foundation, contribution.commitment, contribution), method: :delete, class: "btn btn-sm btn-outline-danger", 
+                    form: {data: {turbo_confirm: 'Are you sure?'}} do %>
+                  <i class="bi bi-trash pe-1"></i>
+                <% end %>
               <% end %>
             </div>
           </div>

@@ -50,7 +50,7 @@ class Fdn::Settings::DonorsController < Fdn::BaseController
         turbo_stream.replace("messages", partial: "layouts/messages")
       ]
     else
-      flash.now[:alert] = "Error this donor has contributions and or commitments."
+      flash.now[:alert] = "Error this donor has contributions."
       render turbo_stream: [
         turbo_stream.replace("messages", partial: "layouts/messages")
       ]

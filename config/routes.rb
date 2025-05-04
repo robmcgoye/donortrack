@@ -78,6 +78,8 @@ Rails.application.routes.draw do
         # get "contributions/existing_organization", to: "contributions#existing_organization"
         get "donations/filter_organizations", to: "donations#filter_organizations"
 
+        get "contributions/filter", to: "contributions#show_filter"
+        post "contributions/filter", to: "contributions#filter"
         get "contributions/new_next", to: "contributions#new_next"
         get "commitments/new_next", to: "commitments#new_next"
         get "contributions/sort", to: "contributions#sort"

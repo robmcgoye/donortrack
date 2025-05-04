@@ -18,7 +18,11 @@
       <%= render partial: 'reconciliation', locals: { reconciliation: reconciliation, reconciliation_counter: index } %>
     <% end %>
   <% else %>
-    No Reconciliations
+    <div class="row mb-1">
+      <div class="col text-center text-muted ct-td">
+        No Reconciliations...
+      </div>
+    </div>
   <% end %>
 
   <%#= render @reconciliations %>  

@@ -1,5 +1,6 @@
 import { Controller } from "@hotwired/stimulus";
-import bootstrap from "bootstrap";
+import { Tooltip } from "bootstrap";
+
 
 // Connects to data-controller="tooltip"
 export default class extends Controller {
@@ -11,7 +12,7 @@ export default class extends Controller {
 
   initializeTooltips() {
     this.tooltipElements = this.tooltipTargets.map(
-      (element) => new bootstrap.Tooltip(element)
+      (element) => new Tooltip(element)
     );
   }
 }
