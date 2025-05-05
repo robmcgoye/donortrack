@@ -13,6 +13,12 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
+      - name: Cache dependencies
+        uses: actions/cache@v3
+        with:
+          path: ~/.cache
+          key: dependency-cache-${{ runner.os }}-${{ hashFiles('**/Gemfile.lock') }}
+
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
         with:
@@ -27,6 +33,12 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
+
+      - name: Cache dependencies
+        uses: actions/cache@v3
+        with:
+          path: ~/.cache
+          key: dependency-cache-${{ runner.os }}-${{ hashFiles('**/Gemfile.lock') }}
 
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
@@ -62,6 +74,12 @@ jobs:
 
       - name: Checkout code
         uses: actions/checkout@v4
+
+      - name: Cache dependencies
+        uses: actions/cache@v3
+        with:
+          path: ~/.cache
+          key: dependency-cache-${{ runner.os }}-${{ hashFiles('**/Gemfile.lock') }}
 
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
