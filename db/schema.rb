@@ -10,7 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2023_12_29_162205) do
+ActiveRecord::Schema[7.2].define(version: 2025_05_17_114813) do
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -45,8 +48,8 @@ ActiveRecord::Schema[7.1].define(version: 2023_12_29_162205) do
     t.integer "foundation_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "starting_balance_cents", limit: 8, default: 0, null: false
-    t.integer "balance_cents", limit: 8, default: 0, null: false
+    t.bigint "starting_balance_cents", default: 0, null: false
+    t.bigint "balance_cents", default: 0, null: false
     t.index ["foundation_id"], name: "index_bank_accounts_on_foundation_id"
   end
 
@@ -55,7 +58,7 @@ ActiveRecord::Schema[7.1].define(version: 2023_12_29_162205) do
     t.datetime "transaction_at"
     t.integer "transaction_type"
     t.string "description"
-    t.integer "amount_cents", limit: 8, default: 0, null: false
+    t.bigint "amount_cents", default: 0, null: false
     t.string "amount_currency", default: "USD", null: false
     t.boolean "cleared", default: false, null: false
     t.integer "bank_account_id", null: false
@@ -70,7 +73,7 @@ ActiveRecord::Schema[7.1].define(version: 2023_12_29_162205) do
   create_table "commitments", force: :cascade do |t|
     t.string "code"
     t.integer "number_payments"
-    t.integer "amount_cents", limit: 8, default: 0, null: false
+    t.bigint "amount_cents", default: 0, null: false
     t.string "amount_currency", default: "USD", null: false
     t.datetime "start_at"
     t.datetime "end_at"
@@ -130,22 +133,26 @@ ActiveRecord::Schema[7.1].define(version: 2023_12_29_162205) do
   create_table "funds_transfers", force: :cascade do |t|
     t.datetime "transaction_at"
     t.string "description"
-    t.integer "amount_cents", limit: 8, default: 0, null: false
+    t.bigint "amount_cents", default: 0, null: false
     t.string "amount_currency", default: "USD", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "funding_source_id"
+    t.integer "status", default: 0, null: false
+    t.datetime "status_set_at"
     t.index ["funding_source_id"], name: "index_funds_transfers_on_funding_source_id"
   end
 
   create_table "in_kinds", force: :cascade do |t|
     t.datetime "transaction_at"
     t.string "description"
-    t.integer "value_cents", limit: 8, default: 0, null: false
+    t.bigint "value_cents", default: 0, null: false
     t.string "value_currency", default: "USD", null: false
     t.integer "type_of"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "status", default: 0, null: false
+    t.datetime "status_set_at"
   end
 
   create_table "organization_types", force: :cascade do |t|
@@ -193,9 +200,9 @@ ActiveRecord::Schema[7.1].define(version: 2023_12_29_162205) do
   create_table "reconciliations", force: :cascade do |t|
     t.datetime "started_at"
     t.datetime "ended_at"
-    t.integer "starting_balance_cents", limit: 8, default: 0, null: false
+    t.bigint "starting_balance_cents", default: 0, null: false
     t.string "starting_balance_currency", default: "USD", null: false
-    t.integer "ending_balance_cents", limit: 8, default: 0, null: false
+    t.bigint "ending_balance_cents", default: 0, null: false
     t.string "ending_balance_currency", default: "USD", null: false
     t.integer "bank_account_id", null: false
     t.datetime "created_at", null: false
