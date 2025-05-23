@@ -30,7 +30,15 @@ class Contribution < ApplicationRecord
   # enum :contribution_type, { check: 0, funds_transfer: 1, in_kind: 2 }, default: :check
 
   scope :cleared_contributions, ->() { joins(:check).where("checks.cleared = true") }
-  scope :open_contributions, ->() { joins(:check).where("checks.cleared = false") }
+  # scope :open_contributions, ->() { joins(:check).where("checks.cleared = false") }
+  # scope :open_contributions, -> {
+  #   open_checks
+  #     .or(pending_in_kinds)
+  #     .or(pending_funds_transfers)
+  # }
+  scope :open_checks, ->() { joins(:check).where("checks.cleared = false") }
+  scope :pending_in_kinds, -> { joins(:in_kind).where("in_kinds.status = ?", InKind.statuses[:pending]) }
+  scope :pending_funds_transfers, -> { joins(:funds_transfer).where("funds_transfers.status = ?", FundsTransfer.statuses[:pending]) }
   scope :sort_check_num_up, -> { includes(:check).order("checks.check_number") }
   scope :sort_check_num_down, -> { includes(:check).order("checks.check_number desc") }
 
@@ -67,6 +75,15 @@ class Contribution < ApplicationRecord
 
   # def self.transactions_during(starting_at, ending_at)
   # end
+
+  def self.open_contributions
+    # from("(#{open_checks.to_sql} UNION #{pending_in_kinds.to_sql} UNION #{pending_funds_transfers.to_sql}) AS contributions").distinct
+
+    ids = open_checks.pluck(:id) +
+          pending_in_kinds.pluck(:id) +
+          pending_funds_transfers.pluck(:id)
+    where(id: ids.uniq)
+  end
 
   def formatted_amount(dollarsign = true)
     if agreement_type == "InKind"
