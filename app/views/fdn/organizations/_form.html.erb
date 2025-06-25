@@ -1,4 +1,4 @@
-<%# locals: (organization:, form_url:, page:, show:, new_donation:) -%>
+<%# locals: (organization:, form_url:, page:, show:, new_donation:, index:) -%>
 
 <%= render 'shared/error_messages', resource: organization %>
 <%= form_with model: organization, url: form_url do |f| %>
@@ -84,7 +84,7 @@
           <i class="bi bi-floppy pe-1"></i>Save
         <% end %>
         <% if not new_donation %>
-          <%= link_to cancel_foundation_organization_path(@foundation, get_id(organization), page: page, show: show), 
+          <%= link_to cancel_foundation_organization_path(@foundation, get_id(organization), page: page, show: show, index: index), 
                 :"data-turbo-stream" => true, class: "py-1 btn btn-sm btn-outline-secondary text-start" do %>
             <i class="bi bi-x-square pe-1"></i>Cancel
           <% end %>

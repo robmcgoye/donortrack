@@ -23,7 +23,7 @@
             </a>
           </li>
           <li>
-            <%= link_to edit_foundation_organization_path(@foundation, organization, page: page, show: "0"), class: "dropdown-item" do %>
+            <%= link_to edit_foundation_organization_path(@foundation, organization, page: page, show: "0", index: organization_counter), class: "dropdown-item" do %>
               <i class="bi bi-pencil-square pe-1"></i>Edit
             <% end %>
           </li>

@@ -45,13 +45,13 @@ export default class extends Controller {
     }
   }
 
-//   show(event) {
-//     event.preventDefault();
-//     const target = event.target;
-//     const url = `${target.dataset.url}&by=${this.selectedValue}&dir=${this.nextSortDir()}&query=${this.getQuery()}`;
-// console.log(url);
-//     this.turboGet(url);
-//   }
+  show(event) {
+    event.preventDefault();
+    const target = event.target;
+    const url = `${target.dataset.url}&by=${this.selectedValue}&dir=${this.nextSortDir()}&query=${this.getQuery()}`;
+console.log(url);
+    this.turboGet(url);
+  }
 
   sort(event) {
     event.preventDefault();

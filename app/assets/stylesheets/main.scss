@@ -326,9 +326,11 @@ body.collapsed-sidebar #main-navbar {
 }
 
 .card-pagy {
-  background-color: #C0C0C0;
+  background-color: #555555;
+  // background-color: #C0C0C0;
   border: 1px solid #333;
-  color: black;
+  color: white;
+  // color: black;
   border-radius: 8px;
 }
 
@@ -1304,6 +1306,7 @@ body.collapsed-sidebar #main-navbar {
 
 /* Disabled state for buttons */
 .pagy-bootstrap-nav .page-item.disabled .page-link {
+  // background-color: #f3f4f6; /* Light gray background */
   background-color: #e9ecef; /* Light gray background */
   color: #6c757d; /* Bootstrap gray color */
   pointer-events: none; /* Disable interaction */
@@ -1319,7 +1322,8 @@ body.collapsed-sidebar #main-navbar {
 /* Next and Previous buttons specific styles */
 .pagy-bootstrap-nav .page-item.prev.disabled .page-link,
 .pagy-bootstrap-nav .page-item.next.disabled .page-link {
-  background-color: #4f5d64; /* Green background for Next/Prev buttons */
+  background-color: #7a868c; /* Green background for Next/Prev buttons */
+  // background-color: #4f5d64; /* Green background for Next/Prev buttons */
   color: white; /* White text */
 }
 

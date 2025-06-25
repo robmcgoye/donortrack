@@ -15,7 +15,7 @@
     <div class="container-fluid py-2">
       <div class="row tb-header">
         <div class="col-6 col-sm-3"><i class="bi bi-check2-circle pe-2"></i>Date</div>
-        <div class="d-none d-sm-block col-sm-3">Check #</div>
+        <div class="d-none d-sm-block col-sm-3">Type</div>
         <div class="col-6 col-sm-3">Amount</div>
         <div class="d-none d-sm-block col-sm-3">Donor</div>
       </div>
@@ -31,7 +31,11 @@
               <%= contribution.agreement_type %>
             </div>
             <div class="col-6 col-sm-3">
+              <% if contribution.agreement_type != "InKind" %>
               <%= contribution.agreement.amount.format %>
+              <% else %>
+              <%= contribution.agreement.value.format %>
+              <% end %>
             </div>
             <div class="d-none d-sm-block col-sm-3">
               <%= contribution.donor.code %>

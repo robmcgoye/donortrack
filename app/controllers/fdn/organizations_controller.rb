@@ -28,7 +28,7 @@ class Fdn::OrganizationsController < Fdn::BaseController
       set_organization
       render turbo_stream: [
         params[:show].to_i == 0 ?
-        turbo_stream.replace(@organization, partial: "organization", locals: { organization: @organization, page: params[:page] }) : turbo_stream.replace(@organization, partial: "show_details", locals: { organization: @organization, foundation: @foundation, page: @page, by: @by, dir: @dir, query: @query })
+        turbo_stream.replace(@organization, partial: "organization", locals: { organization: @organization, organization_counter: params[:index].to_i, page: params[:page] }) : turbo_stream.replace(@organization, partial: "show_details", locals: { organization: @organization, foundation: @foundation, page: @page, by: @by, dir: @dir, query: @query })
       ]
     end
   end

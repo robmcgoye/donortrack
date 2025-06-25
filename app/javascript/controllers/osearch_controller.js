@@ -10,7 +10,7 @@ export default class extends Controller {
     if (this.createValue == true) {
       this.sortmgmtOutlet.filter();
     } else {
-      this.sortmgmtOutlet.update_query();
+      this.sortmgmtOutlet.updateQuery();
     }      
   }
 
