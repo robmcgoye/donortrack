@@ -3,7 +3,7 @@
   <div class="card card-secondary" data-controller="reconciliation" 
               data-reconciliation-reconciliationbalance-value="<%= @reconciliation.ending_balance_cents - @reconciliation.starting_balance_cents  %>" >
     <%= form_with model: @reconciliation, url: foundation_bank_account_reconciliations_path(@foundation, @bank_account), 
-          id: dom_id(@reconciliation, "form"), class: "pb-1 ps-1" do |f| %>
+          id: dom_id(@reconciliation, "form"), class: "pb-1" do |f| %>
       <%= f.hidden_field :bank_account_id, value: @reconciliation.bank_account_id %>
       <%= f.hidden_field :started_at, value: @reconciliation.started_at %>
       <%= f.hidden_field :ended_at, value: @reconciliation.ended_at %>
