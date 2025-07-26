@@ -4,12 +4,12 @@
     <div class="card-donation">
       <div class="card-header">
         <div class="row">
+ 
           <div class="col fs-bold">
             <i class="bi bi-buildings"></i>
             <%= @contribution.organization.name %>
-          </div>
-          <div class="col-auto">
-            <span class="badge badge-orange mx-2">
+            <span class="ps-3 col text-lightgrey"> 
+              (
               <% if @contribution.agreement_type == "Check" %>
                 <i class="bi bi-cash pe-1"></i>Check
               <% elsif @contribution.agreement_type == "FundsTransfer" %>
@@ -17,7 +17,17 @@
               <% elsif @contribution.agreement_type == "InKind" %>
                 <i class="bi bi-gift pe-1"></i>In Kind
               <% end %>
-              </span>
+              )
+            </span>
+          </div>
+          
+          <div class="col-auto">
+
+              <% if @contribution.agreement_type == "FundsTransfer" || @contribution.agreement_type == "InKind" %>
+                <span class="badge badge-pending mx-2">
+                  <%= "#{@contribution.agreement.status}" %>
+                </span>
+              <% end %>
           </div>
 
         </div>

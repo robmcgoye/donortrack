@@ -11,6 +11,7 @@ $dropdown-secondary-text:       #d3e3f1;
 
 $text-white:                    #ffffff;
 $text-grey:                     #ddd;
+$text-lightgrey:               #888888;
 $text-darkgrey:                 #666;
 $text-darkergrey:               #444444;
 $text-redgrey:                  #555555;
@@ -66,6 +67,32 @@ $table-row-even-color:          #ffffff;
 $table-hover-color:             #ADD8E6;
 // $table-hover-color:                 #E5E5E5;
 
+.badge-processing, 
+.badge-pending {
+  background-color: #F59E0B;
+  color: #333;
+  width: max-content;
+  padding-inline: 20px;
+  border: 1px solid #333;
+}
+
+.badge-reviewed {
+  background-color: #3B82F6;
+  color: #333;
+  width: max-content;
+  padding-inline: 20px;
+  border: 1px solid #333;
+}
+
+.badge-cleared, 
+.badge-acknowledged {
+  background-color: #10B981;
+  color: #333;
+  width: max-content;
+  padding-inline: 20px;
+  border: 1px solid #333;
+}
+
 .badge-dark {
   background-color: #333333;
   color: #ffffff;
@@ -113,6 +140,9 @@ hr {
   color: $text-darkergrey;
 }
 
+.text-lightgrey {
+  color: $text-lightgrey;
+}
 .text-green {
   color: $bg-limegreen;
 }
